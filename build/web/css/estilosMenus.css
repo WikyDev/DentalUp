@@ -1,0 +1,47 @@
+
+/* 
+    Created on : 20/05/2025, 3:50:25 p. m.
+    Author     : Anthony
+*/
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+h2 {
+    color: #333;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+}
+
+.menu a {
+    padding: 12px;
+    background-color: #007acc;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.menu a:hover {
+    background-color: #005b9e;
+}
+
+/* Colores específicos para cada tipo de usuario */
+.menu-odontologo a { background-color: #2196f3; }
+.menu-odontologo a:hover { background-color: #1976d2; }
+
+.menu-secretario a { background-color: #f57c00; }
+.menu-secretario a:hover { background-color: #e65100; }
+
+.menu-admin a { background-color: #00838f; }
+.menu-admin a:hover { background-color: #006064; }
+

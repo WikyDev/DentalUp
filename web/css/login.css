@@ -1,0 +1,36 @@
+
+/* 
+    Created on : 15/05/2025, 11:54:47 p. m.
+    Author     : Anthony
+*/
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+}
+.login-container {
+    width: 300px;
+    margin: 100px auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px #aaa;
+    border-radius: 8px;
+}
+.login-container h2 {
+    text-align: center;
+}
+.login-container input,
+.login-container select {
+    width: 270px;
+    padding: 10px;
+    margin: 10px 0;
+}
+button {
+    width: 100%;
+    padding: 10px;
+    background: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
