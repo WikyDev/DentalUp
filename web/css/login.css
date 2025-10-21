@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+/* ====== Estilos generales ====== */
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: linear-gradient(135deg, #f7f7f7, #a29bfe);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+select {
+   font-family: 'DM Sans', sans-serif;
+}
+
+input {
+   font-family: 'DM Sans', sans-serif;
+}
+
+/* ====== Contenedor principal ====== */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.login-card {
+  background: #ffffff;
+  padding: 40px 50px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 350px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* ====== Título ====== */
+.login-title {
+  font-size: 1.8em;
+  color: #2d3436;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+/* ====== Inputs ====== */
+.input-group {
+  margin-bottom: 20px;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  border: 1.5px solid #dfe6e9;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+input:focus, select:focus {
+  border-color: #0984e3;
+  box-shadow: 0 0 6px rgba(9, 132, 227, 0.3);
+}
+
+/* ====== Botones ====== */
+.btn-login {
+  font-family: 'DM Sans', sans-serif;
+  width: 100%;
+  padding: 12px;
+  background-color: #0984e3;
+  color: white;
+  font-weight: 500; /* intermedio */
+  letter-spacing: 0.5px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-login:hover {
+  background-color: #74b9ff;
+}
+
+.btn-secondary {
+  font-family: 'DM Sans', sans-serif;
+  width: 100%;
+  padding: 12px;
+  background-color: #636e72;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500; /* intermedio */
+  letter-spacing: 0.5px;
+  transition: 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #2980b9;
+}
+
+/* ====== Mensaje de error ====== */
+.error-message {
+  background-color: #ff7675;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  animation: shake 0.4s ease-in-out;
+}
+
+/* ====== Línea divisoria ====== */
+.divider {
+  margin: 20px 0;
+  border-top: 1px solid #dfe6e9;
+}
+
+/* ====== Animaciones ====== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-3px); }
+}
