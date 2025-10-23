@@ -1,0 +1,40 @@
+/* 
+    Created on : 15/05/2025, 11:58:29 p. m.
+    Author     : Anthony
+*/
+body {
+    font-family: sans-serif;
+    background: #f0f2f5;
+}
+.form-container {
+    max-width: 400px;
+    margin: 40px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+}
+.form-container h2 {
+    text-align: center;
+}
+input, select, textarea {
+    width: 370px;
+    margin: 10px 0;
+    padding: 10px;
+}
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+
+
+.oculto{
+    display: none;
+}
+
+
