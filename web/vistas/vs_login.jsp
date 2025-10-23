@@ -31,14 +31,25 @@
     <!-- resto del formulario -->
     <div class="login-card">
       <h2 class="login-title">Ingreso al Sistema</h2>
+      <!--<div class="error-message"></div>-->
+       <% 
+        if (request.getParameter("error") != null) {
+            String tipoError = request.getParameter("error");
+            if ("true".equals(tipoError)) {
+        %>
+                <p style="color:red;">Usuario o contraseña incorrectos.</p>
+        <%
+            } else if ("rol".equals(tipoError)) {
+        %>
+                <p style="color:red;">El rol del usuario no está definido.</p>
+        <%
+            }
+        }
+        %>  
+      
 
-      
-      
-        <!--<div class="error-message"></div>-->
-        
-      
-
-      <form action="/control_inter/ct_login.jsp" method="post" class="login-form">
+        <!-- comment 
+        <form action="../control_inter/ct_login.jsp" method="post" class="login-form">
         <div class="input-group">
           <input type="text" name="nombre_user" placeholder="Usuario" required>
         </div>
@@ -53,14 +64,28 @@
           </select>
         </div>
         <button type="submit" class="btn-login">Ingresar</button>
-      </form>
-
+        </form>
+        -->
+        
+        <!-- formulario para inicio de sesion, llama a la clase ct_login.jsp
+        la cual actua como una intermediaria entre la vista y la logica de ctLogin.java-->
+        <form action="../control_inter/ct_login.jsp" method="post">
+            <div class="input-group">
+               <input type="text" name="usuario" placeholder="Usuario" required><br> 
+            </div>
+            <div class="input-group">
+               <input type="password" name="password" placeholder="Contraseña" required><br> 
+            </div>
+     
+            <button type="submit" class="btn-login">Ingresar</button>
+        </form>
+      <!-- comment 
       <div class="divider"></div>
-
-      <form action="/vista/vs_inicio.jsp" method="get">
-        <button type="submit" class="btn-secondary">Volver al inicio</button>
-      </form>
-    </div>
+        <form action="/vista/vs_inicio.jsp" method="get">
+          <button type="submit" class="btn-secondary">Volver al inicio</button>
+        </form>
+      </div>
+      -->
   </div>
 </body>
 </html>

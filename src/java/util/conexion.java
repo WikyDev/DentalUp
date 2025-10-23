@@ -138,7 +138,7 @@ public class conexion {
         }
     }
     
-    public Connection getConexion() {
+    /*public Connection getConexion() {
     try {
         if (conn == null || conn.isClosed()) {
             Class.forName("com.mysql.jdbc.Driver");
@@ -148,7 +148,18 @@ public class conexion {
         System.out.println("Error al obtener la conexión: " + e);
     }
     return conn;
-}
+    }*/
+    
+    public static Connection getConexion() {
+        Connection con = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/consulPrueba", "root", "");
+        } catch (Exception e) {
+            System.out.println("Error en la conexión: " + e.getMessage());
+        }
+        return con;
+    }
     
     /*public boolean insertar(String tabla, ArrayList datos) {
         try {

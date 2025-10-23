@@ -7,7 +7,7 @@
     <title>Menú Administrador</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilosMenus.css">
 </head>
-<body>
+<%--<body>
     <h2>Menú Administrador</h2>
     <div class="menu menu-admin">
         <a href="/control/ct_admin.jsp?op=resumenSemanal">Ver resumen semanal</a><br>
@@ -20,5 +20,14 @@
     <p style="margin-top:20px;">
       <a href="/vista/vs_login.jsp">Cerrar sesión</a>
     </p>
+</body>
+</html>--%>
+
+<!-- muestra el nombre_user y rol que este en la base de datos -->
+<body>
+    <h1>Bienvenido, <%= session.getAttribute("usuario") %></h1>
+    <h2>Rol: <%= session.getAttribute("rol") %></h2>
+
+    <a href="logout.jsp">Cerrar sesión</a>
 </body>
 </html>

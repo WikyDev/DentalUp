@@ -9,33 +9,37 @@ package controlador;
  * @author Anthony
  */
 
-import modelo.mdLogin;
-import util.conexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import util.conexion;
 
 /**
  * Controlador simple para validar usuarios. Retorna el rol si las credenciales son correctas, o null si no.
  */
 public class ctLogin {
-
-    /*public String validar(String usuario, String password) {
+      //metodo de validación de usuarios
+      public String validarAcceso(String usuario, String password) {
         String rol = null;
-        try {
-            conexion c = new conexion();
-            String sql = "SELECT rol FROM usuarios WHERE usuario='" + usuario + "' AND password='" + password + "'";
-            ResultSet rs = c.st.executeQuery(sql);
-            if (rs.next()) {
-                rol = rs.getString("rol"); // por ejemplo: admin, secre, odonto
+        String sql = "SELECT rol FROM usuarios WHERE nombre_user = ? AND password = ?";
+
+        try (Connection con = conexion.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, usuario);
+            ps.setString(2, password);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    rol = rs.getString("rol");
+                }
             }
+
         } catch (Exception e) {
-            System.out.println("Error en ctLogin: " + e.getMessage());
+            System.out.println("Error en validarAcceso: " + e.getMessage());
         }
-        return rol;
-    }*/
-    
-    public boolean validarAcceso(String usuario, String password) {
-        mdLogin login = new mdLogin();
-        return login.validar(usuario, password);
+
+        return rol; // Devuelve el rol si el usuario existe
     }
 }
 

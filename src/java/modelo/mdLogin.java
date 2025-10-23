@@ -12,26 +12,26 @@ import java.sql.*;
  * @author Anthony
  */
 public class mdLogin {
-    private String usuario;
+    private String nombre_user;
     private String password;
     private String rol;
 
     public mdLogin() {}
 
-    public mdLogin(String usuario, String password, String rol) {
-        this.usuario = usuario;
+    public mdLogin(String nombre_user, String password, String rol) {
+        this.nombre_user = nombre_user;
         this.password = password;
         this.rol = rol;
     }
     
-    public boolean validar(String usuario, String password) {
+    public boolean validar(String nombre_user, String password) {
         boolean acceso = false;
-        String sql = "SELECT * FROM usuarios WHERE usuario=? AND password=?";
+        String sql = "SELECT * FROM usuarios WHERE nombre_user=? AND password=?";
         conexion c = new conexion();
         try (Connection cn = c.getConexion();
             PreparedStatement ps = cn.prepareStatement(sql)) {
 
-            ps.setString(1, usuario);
+            ps.setString(1, nombre_user);
             ps.setString(2, password);
 
             ResultSet rs = ps.executeQuery();
@@ -46,10 +46,10 @@ public class mdLogin {
     }
 
     public String getUsuario() { 
-        return usuario; 
+        return nombre_user; 
     }
     public void setUsuario(String usuario) { 
-        this.usuario = usuario; 
+        this.nombre_user = usuario; 
     }
     public String getPassword() { 
         return password; 
