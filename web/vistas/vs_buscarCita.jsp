@@ -1,41 +1,46 @@
-<%@ page import="controlador.ControladorSecre, java.util.ArrayList" %>
-<%
-    if ("POST".equalsIgnoreCase(request.getMethod())) {
-        String idPaciente = request.getParameter("id_paciente");
-        ControladorSecre ctrl = new ControladorSecre();
-        ArrayList<String> resultado = ctrl.buscarCitasPorPaciente(idPaciente);
-        request.setAttribute("resultadoBuscar", resultado);
-    }
-%>
-
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Buscar Cita</title>
+    <meta charset="UTF-8">
 </head>
 <body>
     <h2>Buscar cita por ID</h2>
 
-    <form method="get">
+    <!-- ? El formulario envía al Servlet con op=buscarCita -->
+    <form action="${pageContext.request.contextPath}/ctSecre" method="get">
+        <input type="hidden" name="op" value="buscarCita">
         <input type="number" name="id_cita" required placeholder="ID de cita">
         <button type="submit">Buscar</button>
     </form>
 
-    
+    <%
+        // ? Recuperar resultado enviado desde el servlet
+        ArrayList<String> resultado = (ArrayList<String>) request.getAttribute("resultadoBuscar");
+        if (resultado != null && !resultado.isEmpty()) {
+    %>
         <h3>Resultado:</h3>
-        <p><b>Paciente:</b> </p>
-        <p><b>OdontÃ³logo:</b> </p>
-        <p><b>Fecha:</b> </p>
-        <p><b>Motivo:</b> </p>
-    
-        <p style="color:red;">No se encontrÃ³ una cita con ese ID.</p>
-    
-        <p style="color:red;">Error: </p>
-    
-    
+        <p><b>ID Cita:</b> <%= resultado.get(0) %></p>
+        <p><b>Paciente:</b> <%= resultado.get(1) %></p>
+        <p><b>Odontólogo:</b> <%= resultado.get(2) %></p>
+        <p><b>Fecha:</b> <%= resultado.get(3) %></p>
+        <p><b>Motivo:</b> <%= resultado.get(4) %></p>
+    <%
+        } else if (request.getAttribute("noEncontrado") != null) {
+    %>
+        <p style="color:red;">No se encontró una cita con ese ID.</p>
+    <%
+        } else if (request.getAttribute("error") != null) {
+    %>
+        <p style="color:red;">Error: <%= request.getAttribute("error") %></p>
+    <%
+        }
+    %>
+
     <div>
         <br>
-        <a href="/vista/vs_menuSecre.jsp">Volver al menÃº</a>
+        <a href="${pageContext.request.contextPath}/vistas/vs_menuSecre.jsp">Volver al menú</a>
     </div>
 </body>
 </html>
