@@ -3,15 +3,19 @@
     <type>org.netbeans.modules.web.project</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/web-project/3">
-            <name>PruebaAgenda</name>
+            <name>DentalUp_app</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
+                <library dirs="200">
+                    <file>${file.reference.itextpdf-5.5.13.2.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
                 <library dirs="200">
                     <file>${file.reference.mysql-connector-j-8.3.0.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.itextpdf-5.5.13.2.jar}</file>
+                    <file>${libs.jakartaee-api-10.0.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
