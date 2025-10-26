@@ -1,18 +1,16 @@
 # DentalUP
-<p align="center">
-    ![Status](https://img.shields.io/badge/Estado-En %20Desarrollo-orange)
+<hr> <p align="center">
+    ![Estado del Proyecto](https://img.shields.io/badge/Estado-En%20Desarrollo-orange)
 </p>
-
 ## Descripción del Proyecto
 
 Sistema de **Gestión de Citas Odontológicas** con foco en la usabilidad.
 
 ## Tecnologías Utilizadas
-
-![HTML](https://img.shields.io/badge/Tecnología%201-Nombre-blue) 
-![CSS](https://img.shields.io/badge/Tecnología%202-Nombre-green)
-![JAVA](https://img.shields.io/badge/Tecnología%203-Nombre-blue) 
-![TOMCAT](https://img.shields.io/badge/Tecnología%204-Nombre-green)
+![Tecnología 1](https://img.shields.io/badge/Tecnología%201-JAVA-blue) 
+![Tecnología 2](https://img.shields.io/badge/Tecnología%202-HTML-green)
+![Tecnología 1](https://img.shields.io/badge/Tecnología%203-CSS-blue) 
+![Tecnología 2](https://img.shields.io/badge/Tecnología%204-TOMVAT-green)
 ## 👥 Equipo de Trabajo
 
 | Integrante | Código | Contacto o Rol |
