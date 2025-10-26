@@ -1,6 +1,6 @@
 # DentalUP
 <p align="center">
-    ![Status](https://img.shields.io/badge/Estado-En%20Desarrollo-orange)
+    ![Status](https://img.shields.io/badge/Estado-En %20Desarrollo-orange)
 </p>
 
 ## Descripción del Proyecto
