@@ -9,9 +9,10 @@ Sistema de **Gestión de Citas Odontológicas** con foco en la usabilidad.
 
 ## Tecnologías Utilizadas
 
-![Tecnología 1](https://img.shields.io/badge/Tecnología%201-java) 
-![Tecnología 2](https://img.shields.io/badge/Tecnología%202-html)
-
+![HTML](https://img.shields.io/badge/Tecnología%201-Nombre-blue) 
+![CSS](https://img.shields.io/badge/Tecnología%202-Nombre-green)
+![JAVA](https://img.shields.io/badge/Tecnología%203-Nombre-blue) 
+![TOMCAT](https://img.shields.io/badge/Tecnología%204-Nombre-green)
 ## 👥 Equipo de Trabajo
 
 | Integrante | Código | Contacto o Rol |
@@ -20,7 +21,7 @@ Sistema de **Gestión de Citas Odontológicas** con foco en la usabilidad.
 | **Anthony Brand Ramos** | 2357831 | Diseñador UX/UI |
 | **Wilson Andres Ospina Hinestroza** | 2264366 | Desarrollador Frontend |
 | **Daniel Alejandro Martinez Escandon** | 2309876 | Documentación |
-| **Jesús Estenillos Loaiza Serrano** | 2313021 | Testers |
+| **Jesús Estenillos Loaiza Serrano** | 2313021 | SCRUM MASTER |
 
 <br>
 
