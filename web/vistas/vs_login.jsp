@@ -79,6 +79,11 @@
      
             <button type="submit" class="btn-login">Ingresar</button>
         </form>
+        
+        <form action="registro_paciente.jsp" method="get">
+            <button type="submit" class="btn-registro">Registrar paciente</button>
+        </form>
+
       <!-- comment 
       <div class="divider"></div>
         <form action="/vista/vs_inicio.jsp" method="get">
