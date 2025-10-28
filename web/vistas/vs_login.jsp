@@ -1,21 +1,8 @@
-<%@ page import="controlador.ctLogin" %>
-<%
-    /*
-    if ("POST".equalsIgnoreCase(request.getMethod())) {
-        String usuario = request.getParameter("usuario");
-        String password = request.getParameter("password");
-        ctLogin ctrl = new ctLogin();
-        String rol = ctrl.validarAcceso(usuario, password);
-        if (rol != null) {
-            if ("admin".equalsIgnoreCase(rol)) { response.sendRedirect("/vistas/vs_menuAdmin.jsp"); }
-            else if ("secre".equalsIgnoreCase(rol) || "secretario".equalsIgnoreCase(rol)) { response.sendRedirect("/vistas/vs_menuSecre.jsp"); }
-            else if ("odonto".equalsIgnoreCase(rol) || "odontologo".equalsIgnoreCase(rol)) { response.sendRedirect("/vistas/vs_menuOdonto.jsp"); }
-            else { request.setAttribute("error","Rol desconocido: "+rol); }
-        } else {
-            request.setAttribute("error","Usuario o clave incorrectos");
-        }
-    }*/
-%>
+<%-- 
+    Document   : registro_paciente
+    Created on : 28/10/2025, 11:25:45?a. m.
+    Author     : WikyLix
+--%>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -45,30 +32,7 @@
         <%
             }
         }
-        %>  
-      
-
-        <!-- comment 
-        <form action="../control_inter/ct_login.jsp" method="post" class="login-form">
-        <div class="input-group">
-          <input type="text" name="nombre_user" placeholder="Usuario" required>
-        </div>
-        <div class="input-group">
-          <input type="password" name="password" placeholder="Contraseña" required>
-        </div>
-        <div class="input-group">
-          <select name="rol" required>
-            <option value="admin">Administrador</option>
-            <option value="secretario">Secretario</option>
-            <option value="odontologo">Odontólogo</option>
-          </select>
-        </div>
-        <button type="submit" class="btn-login">Ingresar</button>
-        </form>
-        -->
-        
-        <!-- formulario para inicio de sesion, llama a la clase ct_login.jsp
-        la cual actua como una intermediaria entre la vista y la logica de ctLogin.java-->
+        %>
         <form action="../control_inter/ct_login.jsp" method="post">
             <div class="input-group">
                <input type="text" name="usuario" placeholder="Usuario" required><br> 
@@ -79,13 +43,18 @@
      
             <button type="submit" class="btn-login">Ingresar</button>
         </form>
-      <!-- comment 
-      <div class="divider"></div>
-        <form action="/vista/vs_inicio.jsp" method="get">
-          <button type="submit" class="btn-secondary">Volver al inicio</button>
+        
+        <!-- Botón para registro de Pacientes -->
+        <form action="registro_paciente.jsp" method="get">
+            <button type="submit" class="btn-registro">Registrar paciente</button>
         </form>
-      </div>
-      -->
+        
+        <%if ("ok".equals(request.getParameter("registro"))) {%>
+        <p style="color:green;">Paciente registrado con éxito. Ya puede iniciar sesión.</p>
+        <%
+            }
+        %>
+
   </div>
 </body>
 </html>

@@ -28,6 +28,9 @@
             case "odontologo":
                 response.sendRedirect("../vistas/vs_menuOdonto.jsp");
                 break;
+            case "paciente":
+                response.sendRedirect("../vistas/vs_menuAdmin.jsp");
+                break;
             default:
                 response.sendRedirect("../vistas/vs_login.jsp?error=rol");
                 break;

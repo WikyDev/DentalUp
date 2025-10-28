@@ -131,3 +131,22 @@ input:focus, select:focus {
   50% { transform: translateX(5px); }
   75% { transform: translateX(-3px); }
 }
+
+.btn-registro {
+  margin-top: 15px;
+  font-family: 'DM Sans', sans-serif;
+  width: 100%;
+  padding: 12px;
+  background-color: #0984e3;
+  color: white;
+  font-weight: 500; /* intermedio */
+  letter-spacing: 0.5px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-registro:hover {
+  background-color: #74b9ff;
+}
