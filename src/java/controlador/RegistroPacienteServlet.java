@@ -19,10 +19,10 @@ public class RegistroPacienteServlet extends HttpServlet {
         boolean exito = registroCtrl.registrarPaciente(usuario, password);
 
         if (exito) {
-            response.sendRedirect("vistas/login.jsp?registro=ok");
+            response.sendRedirect("vistas/vs_login.jsp?registro=ok");
         } else {
             request.setAttribute("mensajeError", "Error al registrar el paciente.");
-            RequestDispatcher rd = request.getRequestDispatcher("vistas/registro_paciente.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("vistas/vs_registro_paciente.jsp");
             rd.forward(request, response);
         }
     }
@@ -30,7 +30,7 @@ public class RegistroPacienteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher("vistas/registro_paciente.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("vistas/vs_registro_paciente.jsp");
         rd.forward(request, response);
     }
 }

@@ -17,9 +17,11 @@ import java.util.ArrayList;
  * @author Anthony
  */
 public class conexion {
+    
     Connection conn; // Objeto para la conexion
     String mensaje; // asignar mensajes posibles mensajes de error
     public Statement st;
+    
 
     //constructor
     public conexion() {

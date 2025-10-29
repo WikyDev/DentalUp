@@ -1,5 +1,5 @@
 <%-- 
-    Document   : registro_paciente
+    Document   : vs_registro_paciente
     Created on : 28/10/2025, 11:25:45?a. m.
     Author     : WikyLix
 --%>
