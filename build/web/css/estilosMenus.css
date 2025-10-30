@@ -3,45 +3,72 @@
     Created on : 20/05/2025, 3:50:25 p. m.
     Author     : Anthony
 */
+/* ======== Estilos generales ======== */
 body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background-color: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e3f2fd, #ffffff);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
-h2 {
-    color: #333;
+/* ======== Contenedor principal ======== */
+.menu-container {
+    background-color: #fff;
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 380px;
 }
 
-.menu {
+/* ======== Títulos ======== */
+h1 {
+    color: #007acc;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: #555;
+    margin-bottom: 25px;
+    font-weight: normal;
+}
+
+/* ======== Menú de opciones ======== */
+.menu-opciones {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    max-width: 400px;
+    gap: 15px;
 }
 
-.menu a {
-    padding: 12px;
+/* ======== Botones ======== */
+.boton {
     background-color: #007acc;
     color: white;
     text-decoration: none;
+    padding: 12px;
     border-radius: 6px;
-    text-align: center;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    font-size: 14px;
 }
 
-.menu a:hover {
+.boton:hover {
     background-color: #005b9e;
+    transform: translateY(-2px);
 }
 
-/* Colores específicos para cada tipo de usuario */
-.menu-odontologo a { background-color: #2196f3; }
-.menu-odontologo a:hover { background-color: #1976d2; }
+.boton.cancelar {
+    background-color: #9e9e9e;
+}
 
-.menu-secretario a { background-color: #f57c00; }
-.menu-secretario a:hover { background-color: #e65100; }
+.boton.cancelar:hover {
+    background-color: #757575;
+}
 
-.menu-admin a { background-color: #00838f; }
-.menu-admin a:hover { background-color: #006064; }
+
 

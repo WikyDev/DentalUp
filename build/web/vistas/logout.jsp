@@ -8,5 +8,5 @@
 <%
     //clase que redirige al login(cerrar sesion) desde cualquier menu 
     session.invalidate();
-    response.sendRedirect("vs_login.jsp");
+    response.sendRedirect("vs_login.jsp"); 
 %>

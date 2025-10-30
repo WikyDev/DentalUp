@@ -12,30 +12,38 @@
 
     ctLogin controlador = new ctLogin();
     String rol = controlador.validarAcceso(usuario, password);
-    //valida si existe el rol en la base de datos
+
     if (rol != null) {
-    //toma el nombre_user y rol de la base de datos y dependiendo del tipo de usuario que sea lo redirige a su menu respectivo
         session.setAttribute("usuario", usuario);
         session.setAttribute("rol", rol);
-        
-        switch (rol.toLowerCase()) {
+
+        // Redirección al respectivo menú según el rol
+        switch (rol) {
             case "admin":
                 response.sendRedirect("../vistas/vs_menuAdmin.jsp");
                 break;
+
             case "secretario":
                 response.sendRedirect("../vistas/vs_menuSecre.jsp");
                 break;
+
             case "odontologo":
                 response.sendRedirect("../vistas/vs_menuOdonto.jsp");
                 break;
+
             case "paciente":
-                response.sendRedirect("../vistas/vs_menuAdmin.jsp");
+                int idPaciente = controlador.obtenerIdPaciente(usuario);
+                session.setAttribute("id_paciente", idPaciente);
+                response.sendRedirect("../vistas/vs_menuPaciente.jsp");
                 break;
+
             default:
                 response.sendRedirect("../vistas/vs_login.jsp?error=rol");
                 break;
         }
+
     } else {
+        //En caso de ser una credencial incorrecta muestra mensaje de error
         response.sendRedirect("../vistas/vs_login.jsp?error=true");
     }
 %>

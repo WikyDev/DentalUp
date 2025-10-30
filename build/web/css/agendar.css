@@ -3,38 +3,56 @@
     Author     : Anthony
 */
 body {
-    font-family: sans-serif;
-    background: #f0f2f5;
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(135deg, #f7f7f7, #e1f5fe);
+    margin: 0;
+    padding: 0;
 }
-.form-container {
-    max-width: 400px;
+.container {
+    max-width: 800px;
+    background: #fff;
     margin: 40px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #ccc;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
-.form-container h2 {
+h2 {
     text-align: center;
+    color: #2196F3;
 }
-input, select, textarea {
-    width: 370px;
-    margin: 10px 0;
-    padding: 10px;
+form label {
+    font-weight: 600;
+    display: block;
+    margin-top: 10px;
 }
-button {
+form input, form select, form textarea {
     width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+.btn {
+    background-color: #2196F3;
     color: white;
     border: none;
-    border-radius: 5px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    margin-top: 15px;
+    cursor: pointer;
 }
-
-
-
-.oculto{
-    display: none;
+.btn:hover {
+    background-color: #1976D2;
+}
+.mensaje {
+    text-align: center;
+    font-weight: bold;
+    color: green;
+}
+.error {
+    text-align: center;
+    font-weight: bold;
+    color: red;
 }
 
 
