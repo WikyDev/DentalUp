@@ -19,7 +19,7 @@ Sistema de **Gestión de Citas Odontológicas** con foco en la usabilidad.
 | Integrante | Código |  Rol |
 | :--- | :--- | :--- |
 | **Jhon Eduard Suarez Salazar** | 2357574 | Desarrollador Backend |
-| **Anthony Brand Ramos** | 2357831 | Diseñador UX/UI |
+| **Anthony Brand Ramos** | 2357831 | Diseñador UX/UI / Desarrollador Backend |
 | **Wilson Andres Ospina Hinestroza** | 2264366 | Desarrollador Frontend |
 | **Daniel Alejandro Martinez Escandon** | 2309876 | Documentación |
 | **Jesús Estenillos Loaiza Serrano** | 2313021 | Scrum Master |
