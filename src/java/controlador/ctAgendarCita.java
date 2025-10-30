@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package controlador;
 
 /**
@@ -10,58 +7,60 @@ package controlador;
  */
 import modelo.mdPaciente;
 import modelo.mdResponsable;
-import modelo.mdAgendar;
+import modelo.mdCita;
 import util.conexion;
 import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 
 /**
- * Controlador que encapsula la lógica de agendar una cita.
+ * Controlador que encapsula la lógica de agendar una cita y obtener las citas del paciente logueado.
+ * Opciones del menu paciente 
  * Método principal: registrarCita(...) que guarda paciente, responsable (si aplica) y la cita.
- * Usa util.conexion y Statement (compatibilidad con tu proyecto original).
  */
+
 public class ctAgendarCita {
 
-    public boolean registrarCita(mdPaciente paciente, mdResponsable responsable, mdAgendar cita) {
-        boolean exitoPaciente = false;
-        boolean exitoResponsable = true;
-        boolean exitoCita = false;
-
-        try {
-            conexion c = new conexion();
-            Statement st = c.st;
-
-            // Insertar paciente
-            String sqlPaciente = String.format("INSERT INTO pacientes (id_paciente, nombre, apellido, edad, telefono, fecha_nac, tiene_OS, tipo_sangre, email) VALUES ('%s','%s','%s','%d','%s','%s','%s','%s','%s')",
-                    paciente.getIdPaciente(), paciente.getNombre(), paciente.getApellido(), paciente.getEdad(), paciente.getTelefono(), paciente.getFechaNac(), paciente.getTieneOS(), paciente.getTipoSangre(), paciente.getEmail());
-            exitoPaciente = (st.executeUpdate(sqlPaciente) > 0);
-
-            // Insertar responsable si viene
-            if (responsable != null && responsable.getCedula() != null && !responsable.getCedula().isEmpty()) {
-                String sqlResp = String.format("INSERT INTO responsables (cedula_responsable, nombre, apellido, edad, telefono, fecha_nac, email, tipo_relacion) VALUES ('%s','%s','%s','%d','%s','%s','%s','%s')",
-                        responsable.getCedula(), responsable.getNombre(), responsable.getApellido(), responsable.getEdad(), responsable.getTelefono(), responsable.getFechaNac(), responsable.getEmail(), responsable.getTipoRelacion());
-                exitoResponsable = (st.executeUpdate(sqlResp) > 0);
-
-                // actualizar paciente con cedula responsable
-                if (exitoResponsable) {
-                    String sqlUpdate = String.format("UPDATE pacientes SET cedula_responsable = '%s' WHERE id_paciente = '%s'",
-                            responsable.getCedula(), paciente.getIdPaciente());
-                    st.executeUpdate(sqlUpdate);
-                }
-            }
-
-            // Insertar cita
-            String sqlCita = String.format("INSERT INTO citas (id_paciente, id_odontologo, fecha_cita, motivo) VALUES ('%s','%s','%s','%s')",
-                    cita.getIdPaciente(), cita.getIdOdontologo(), cita.getFechaCita(), cita.getMotivo());
-            exitoCita = (st.executeUpdate(sqlCita) > 0);
-
-            // cerrar conexión si tu clase lo requiere (la clase util.conexion original puede manejarlo internamente)
-            try { if (c.st != null) c.st.close(); } catch (Exception ignore) {}
-
+    //Registra una nueva cita 
+    public boolean registrarCita(mdCita c) {
+        boolean exito = false;
+        String sql = "INSERT INTO citas (id_paciente, id_odontologo, fecha_cita, motivo) VALUES (?, ?, ?, ?)";
+        try (Connection con = conexion.getConexion();
+            PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, c.getIdPaciente());
+            ps.setInt(2, c.getIdOdontologo());
+            ps.setString(3, c.getFechaCita());
+            ps.setString(4, c.getMotivo());
+            exito = ps.executeUpdate() > 0;
         } catch (Exception e) {
-            System.out.println("Error en ControladorAgendarCita: " + e.getMessage());
+            System.out.println("Error al registrar cita: " + e.getMessage());
         }
-
-        return exitoPaciente && exitoResponsable && exitoCita;
+        return exito;
     }
+
+    // Listar todas las citas de un paciente
+    public ArrayList<mdCita> obtenerCitasPorPaciente(int idPaciente) {
+        ArrayList<mdCita> lista = new ArrayList<>();
+        String sql = "SELECT * FROM citas WHERE id_paciente = ?";
+        try (Connection con = conexion.getConexion();
+            PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idPaciente);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                mdCita c = new mdCita();
+                c.setIdCita(rs.getInt("id_cita"));
+                c.setIdPaciente(rs.getInt("id_paciente"));
+                c.setIdOdontologo(rs.getInt("id_odontologo"));
+                c.setFechaCita(rs.getString("fecha_cita"));
+                c.setMotivo(rs.getString("motivo"));
+                lista.add(c);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al obtener citas: " + e.getMessage());
+        }
+        return lista;
+    }
+    
 }
+
 

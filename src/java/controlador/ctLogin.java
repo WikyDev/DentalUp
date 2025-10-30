@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package controlador;
 
 /**
@@ -9,17 +6,23 @@ package controlador;
  * @author Anthony
  */
 
-import java.sql.Connection;
+import java.sql.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.servlet.http.HttpSession;
 import util.conexion;
 
 /**
- * Controlador simple para validar usuarios. Retorna el rol si las credenciales son correctas, o null si no.
+ * Controlador simple para validar usuarios. Retorna el rol si las credenciales son 
+   correctas, o null si no.
  */
 public class ctLogin {
-      //metodo de validación de usuarios
-      public String validarAcceso(String usuario, String password) {
+
+    /**
+     * Método principal para validar acceso.
+     * Retorna el rol del usuario si las credenciales son correctas.
+     */
+    public String validarAcceso(String usuario, String password) {
         String rol = null;
         String sql = "SELECT rol FROM usuarios WHERE nombre_user = ? AND password = ?";
 
@@ -39,7 +42,33 @@ public class ctLogin {
             System.out.println("Error en validarAcceso: " + e.getMessage());
         }
 
-        return rol; // Devuelve el rol si el usuario existe
+        return rol; // Retorna el rol si existe usuario
+    }
+
+    /**
+     * Obtiene el id_paciente asociado al usuario logueado.
+     */
+    public int obtenerIdPaciente(String usuario) {
+        int idPaciente = 0;
+        String sql = "SELECT p.id_paciente FROM pacientes p " +
+                     "INNER JOIN usuarios u ON p.id_user = u.id_user " +
+                     "WHERE u.nombre_user = ?";
+
+        try (Connection con = conexion.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, usuario);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                idPaciente = rs.getInt("id_paciente");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error en obtenerIdPaciente: " + e.getMessage());
+        }
+
+        return idPaciente;
     }
 }
 

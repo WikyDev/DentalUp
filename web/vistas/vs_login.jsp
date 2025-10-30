@@ -45,7 +45,7 @@
         </form>
         
         <!-- Botón para registro de Pacientes -->
-        <form action="registro_paciente.jsp" method="get">
+        <form action="vs_registro_paciente.jsp" method="get">
             <button type="submit" class="btn-registro">Registrar paciente</button>
         </form>
         

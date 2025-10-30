@@ -2,4 +2,112 @@
     Created on : 28/10/2025, 12:12:25 p. m.
     Author     : WikyLix
 */
+/* ======== Estilos generales ======== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e3f2fd, #ffffff);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* ======== Contenedor del formulario ======== */
+.form-container {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 40px 50px;
+    width: 400px;
+    text-align: center;
+}
+
+/* ======== Encabezado ======== */
+h2 {
+    color: #007acc;
+    margin-bottom: 25px;
+    font-size: 22px;
+}
+
+/* ======== Campos del formulario ======== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #007acc;
+    box-shadow: 0 0 4px rgba(0, 122, 204, 0.4);
+}
+
+/* ======== Botones ======== */
+.btn {
+    background-color: #007acc;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #005b9e;
+}
+
+.btn.cancelar {
+    background-color: #9e9e9e;
+}
+
+.btn.cancelar:hover {
+    background-color: #757575;
+}
+
+/* ======== Mensajes ======== */
+p {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+p.error {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+p.mensaje {
+    color: #2e7d32;
+    font-weight: bold;
+}
 

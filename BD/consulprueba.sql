@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-10-2025 a las 02:42:40
+-- Tiempo de generación: 30-10-2025 a las 19:56:20
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.1.25
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -60,10 +60,9 @@ CREATE TABLE `citas` (
 --
 
 INSERT INTO `citas` (`id_cita`, `id_paciente`, `id_odontologo`, `fecha_cita`, `motivo`) VALUES
-(5, 121344, 1, '2025-06-25 14:00:00', 'Infeccion en las encias '),
-(28, 121322, 1, '2025-06-19 10:44:00', 'Caries en dos muelas '),
-(31, 123589, 2, '2025-06-30 10:00:00', 'limpieza para mis muelas'),
-(32, 112354, 3, '2025-07-04 15:00:00', 'dolor en la rodilla ');
+(33, 11, 1, '2025-11-05 14:00:00', 'dolor de muela '),
+(35, 123590, 1, '2025-11-04 16:30:00', 'dolor de muela'),
+(38, 123591, 2, '2025-11-03 16:30:00', 'dolor de diente');
 
 -- --------------------------------------------------------
 
@@ -104,20 +103,18 @@ CREATE TABLE `pacientes` (
   `tiene_OS` varchar(3) DEFAULT NULL,
   `tipo_sangre` varchar(6) DEFAULT NULL,
   `email` varchar(40) DEFAULT NULL,
-  `cedula_responsable` int(11) DEFAULT NULL
+  `cedula_responsable` int(11) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `pacientes`
 --
 
-INSERT INTO `pacientes` (`id_paciente`, `nombre`, `apellido`, `edad`, `telefono`, `fecha_nac`, `tiene_OS`, `tipo_sangre`, `email`, `cedula_responsable`) VALUES
-(14587, 'carlos', 'mendez', 20, '324518', '2005-06-06', 'SI', 'B+', 'carlos34@gmail.com', NULL),
-(112354, 'ailin', 'escalante', 19, '315089', '2006-01-01', 'SI', 'O+', 'ailin0417@gmail.com', NULL),
-(121322, 'maria', 'ospina', 14, '222333', '2011-02-09', 'SI', 'A+', 'jaimeos77@gmail.com', 152224),
-(121344, 'oscar', 'martinez', 30, '3124522', '1995-03-09', 'SI', 'B-', 'carlosm33@gmail.com', NULL),
-(123589, 'marcos', 'paredes', 32, '312548', '1993-02-17', 'NO', 'B+', 'paredesmar44@gmail.com', NULL),
-(125622, 'carlos', 'sanchez', 25, '324556', '2000-03-09', 'SI', 'A+', 'carlosk554@gmail.com', NULL);
+INSERT INTO `pacientes` (`id_paciente`, `nombre`, `apellido`, `edad`, `telefono`, `fecha_nac`, `tiene_OS`, `tipo_sangre`, `email`, `cedula_responsable`, `id_user`) VALUES
+(11, 'antonio', 'sanchez', 25, '324556', '2000-03-09', 'SI', 'A+', 'carlosk554@gmail.com', NULL, 11),
+(123590, 'Maria', 'perez', 20, '31245867', '2025-10-13', NULL, 'A+', 'maria4@gmail.com', NULL, 19),
+(123591, 'Jose', 'perez', 25, '31245889', '2000-06-13', NULL, 'B+', 'jose99@gmail.com', NULL, 20);
 
 -- --------------------------------------------------------
 
@@ -189,7 +186,9 @@ INSERT INTO `usuarios` (`id_user`, `nombre_user`, `password`, `rol`) VALUES
 (6, 'odontoB', '235689', 'odontologo'),
 (7, 'odontoC', 'zxc123', 'odontologo'),
 (8, 'secretario444', 'qwe123', 'secretario'),
-(10, 'nuevo', 'nuevo', 'paciente');
+(11, 'antonio', '142536', 'paciente'),
+(19, 'maria', '451245', 'paciente'),
+(20, 'jose', '0000', 'paciente');
 
 --
 -- Índices para tablas volcadas
@@ -222,7 +221,8 @@ ALTER TABLE `odontologos`
 --
 ALTER TABLE `pacientes`
   ADD PRIMARY KEY (`id_paciente`),
-  ADD UNIQUE KEY `cedula_responsable` (`cedula_responsable`);
+  ADD UNIQUE KEY `cedula_responsable` (`cedula_responsable`),
+  ADD KEY `fk_paciente_usuario` (`id_user`);
 
 --
 -- Indices de la tabla `responsables`
@@ -257,13 +257,19 @@ ALTER TABLE `administradores`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `odontologos`
 --
 ALTER TABLE `odontologos`
   MODIFY `id_odontologo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `pacientes`
+--
+ALTER TABLE `pacientes`
+  MODIFY `id_paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123592;
 
 --
 -- AUTO_INCREMENT de la tabla `secretarios`
@@ -275,7 +281,7 @@ ALTER TABLE `secretarios`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Restricciones para tablas volcadas
@@ -304,7 +310,8 @@ ALTER TABLE `odontologos`
 -- Filtros para la tabla `pacientes`
 --
 ALTER TABLE `pacientes`
-  ADD CONSTRAINT `FK_pacientes_responsables` FOREIGN KEY (`cedula_responsable`) REFERENCES `responsables` (`cedula_responsable`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_pacientes_responsables` FOREIGN KEY (`cedula_responsable`) REFERENCES `responsables` (`cedula_responsable`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_paciente_usuario` FOREIGN KEY (`id_user`) REFERENCES `usuarios` (`id_user`);
 
 --
 -- Filtros para la tabla `secretarios`

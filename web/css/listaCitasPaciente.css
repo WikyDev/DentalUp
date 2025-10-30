@@ -1,5 +1,5 @@
 /* 
-    Created on : 15/05/2025, 11:58:29 p. m.
+    Created on : 29/10/2025, 10:02:53 p. m.
     Author     : Anthony
 */
 body {
@@ -9,7 +9,7 @@ body {
     padding: 0;
 }
 .container {
-    max-width: 800px;
+    max-width: 900px;
     background: #fff;
     margin: 40px auto;
     padding: 30px;
@@ -20,39 +20,43 @@ h2 {
     text-align: center;
     color: #2196F3;
 }
-form label {
-    font-weight: 600;
-    display: block;
-    margin-top: 10px;
-}
-form input, form select, form textarea {
+table {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+th {
+    background-color: #2196F3;
+    color: white;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 .btn {
     background-color: #2196F3;
     color: white;
     border: none;
-    padding: 10px 16px;
-    border-radius: 8px;
-    margin-top: 15px;
-    cursor: pointer;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
 }
 .btn:hover {
     background-color: #1976D2;
 }
 .mensaje {
     text-align: center;
-    font-weight: bold;
     color: green;
+    font-weight: bold;
 }
 .error {
     text-align: center;
-    font-weight: bold;
     color: red;
+    font-weight: bold;
 }
 
 
