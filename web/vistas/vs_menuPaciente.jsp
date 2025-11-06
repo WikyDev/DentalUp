@@ -21,7 +21,8 @@
         <div class="menu-opciones">
             <a href="../vistas/vs_agendarCita.jsp" class="boton">Agendar Cita</a>
             <!-- Por el momento esta opcion no se encuentra funcional -->
-            <a href="../vistas/vs_historiaClinica.jsp" class="boton">Ver Historia Clínica</a>
+            <a href="../HistoriaClinicaServlet" class="boton">Ver Historia Clínica</a>
+
             <a href="${pageContext.request.contextPath}/CitaServlet?accion=listar" class="boton">Ver mis Citas</a>
             <!-- Boton para cerrar la sesion -->
             <a href="logout.jsp" class="boton cancelar">Cerrar Sesión</a>
