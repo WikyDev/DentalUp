@@ -56,8 +56,8 @@ body {
 }
 
 .logo {
-  width: 60px;
-  height: 60px;
+  width: 120px;
+  height: 120px;
   background: white;
   border-radius: 16px;
   display: flex;
@@ -105,18 +105,37 @@ body {
 }
 
 .feature-card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  padding: 24px 20px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.4s ease, color 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* 🔹 centra íconos y texto */
+  justify-content: center; /* 🔹 centra verticalmente dentro de cada tarjeta */
   text-align: center;
-  transition: transform 0.3s ease, background 0.3s ease;
 }
 
+
+
 .feature-card:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-8px) scale(1.05);
+  color: #ffffff;
+}
+  
+ .feature-card::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #5a67d8);
+  transition: width 0.4s ease, left 0.4s ease;
+}
+
+.feature-card:hover::after {
+  width: 100%;
+  left: 0;
 }
 
 .feature-icon {
@@ -256,13 +275,32 @@ body {
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.4s ease;
   margin-bottom: 16px;
 }
 
+.btn-login::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.35), rgba(255,255,255,0));
+  transition: all 0.6s ease;
+  z-index: 0;
+}
+
+.btn-login:hover::before {
+  left: 100%;
+}
+
 .btn-login:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
 }
 
 .btn-login:active {
@@ -310,12 +348,33 @@ body {
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.4s ease;
+}
+
+.btn-registro::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(102,126,234,0.15), rgba(90,103,216,0.05));
+  transition: all 0.5s ease;
+  z-index: 0;
+}
+
+.btn-registro:hover::after {
+  left: 100%;
 }
 
 .btn-registro:hover {
-  background: #f7fafc;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.03);
+  border-color: #5a67d8;
+  color: #5a67d8;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.25);
 }
 
 .btn-registro:active {

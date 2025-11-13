@@ -1,6 +1,6 @@
 <%-- 
     Document   : login
-    Author     : TuNombre
+    Author     : Wiky
     Fecha      : 12/11/2025
 --%>
 <!DOCTYPE html>
@@ -42,14 +42,14 @@
         </div>
         <div class="feature-card">
           <div class="feature-icon cyan">?</div>
-          <div class="feature-title">Tecnología</div>
-          <div class="feature-description">avanzada</div>
+          <div class="feature-title">Desarrolladores</div>
+          <div class="feature-description">Acerca de..</div>
         </div>
       </div>
     </div>
     <!-- Derecha: Login -->
     <div class="login-card">
-      <h2 class="login-title">Bienvenido</h2>
+      <h2 class="login-title">Portal de Inicio</h2>
       <p class="login-subtitle">Ingresa tus credenciales para continuar</p>
       <% 
         String error = request.getParameter("error");
@@ -73,8 +73,8 @@
       %>
       <form action="../control_inter/ct_login.jsp" method="post">
         <div class="input-group">
-          <label for="login-usuario">Correo electrónico</label>
-          <input type="text" name="usuario" id="login-usuario" placeholder="Nombre de usuario" required>
+          <label for="login-usuario">Nombre de usuario</label>
+          <input type="text" name="usuario" id="login-usuario" placeholder="Usuario" required>
         </div>
         <div class="input-group">
           <label for="login-password">Contraseña</label>
