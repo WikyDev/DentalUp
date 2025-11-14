@@ -1,5 +1,4 @@
-/* login.css - Mejorado */
-
+/* ======= login.css optimizado ======= */
 * {
   margin: 0;
   padding: 0;
@@ -7,8 +6,7 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-  /* Imagen de fondo más gradiente */
+  font-family: -apple-system, BlinkMacSystemFont, 'DM Sans', Roboto, Arial, sans-serif;
   background:
     linear-gradient(135deg, rgba(102,126,234,0.3) 0%, rgba(90,103,216,0.3) 100%),
     url('../imagenes/fondo.png') no-repeat center center fixed;
@@ -18,33 +16,44 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
+  overflow: hidden;
 }
 
+/* Ajustes de grid */
+.login-wrapper > * {
+  min-width: 0;
+}
 
-/* Animaciones de entrada */
+.left-section, 
+.login-card {
+  width: 100%;
+}
+
+/* Animación general */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
+/* Grid principal */
 .login-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 150px;
+  align-items: center;
+  justify-content: center;
+  gap: 120px;
   max-width: 1200px;
   width: 100%;
-  align-items: center;
+  min-height: 90vh;
 }
 
+/* ----- Sección izquierda ----- */
 .left-section {
   color: white;
-  padding: 5px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   animation: fadeInUp 0.6s ease-out 0.2s backwards;
 }
 
@@ -56,8 +65,8 @@ body {
 }
 
 .logo {
-  width: 120px;
-  height: 120px;
+  width: 130px;
+  height: 130px;
   background: white;
   border-radius: 16px;
   display: flex;
@@ -74,103 +83,40 @@ body {
 }
 
 .logo-text h1 {
-  font-size: 32px;
+  font-size: 45px;
   font-weight: 600;
-  margin-bottom: 4px;
 }
 
 .logo-text p {
-  font-size: 14px;
+  font-size: 17px;
   opacity: 0.9;
 }
 
 .welcome-title {
-  font-size: 48px;
+  font-size: 44px;
   font-weight: 600;
-  line-height: 1.2;
   margin: 40px 0 20px 0;
 }
 
 .welcome-description {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.6;
   opacity: 0.95;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
-.features {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-}
+/* ====== YA NO EXISTEN features — Eliminado ======
+   Se removió completamente:
+   .features
+   .feature-card
+   .feature-card:hover
+   .feature-card::after
+   .feature-icon
+   .feature-title
+   .feature-description
+================================================ */
 
-.feature-card {
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.4s ease, color 0.4s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;   /* 🔹 centra íconos y texto */
-  justify-content: center; /* 🔹 centra verticalmente dentro de cada tarjeta */
-  text-align: center;
-}
-
-
-
-.feature-card:hover {
-  transform: translateY(-8px) scale(1.05);
-  color: #ffffff;
-}
-  
- .feature-card::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: 0%;
-  height: 3px;
-  background: linear-gradient(90deg, #667eea, #5a67d8);
-  transition: width 0.4s ease, left 0.4s ease;
-}
-
-.feature-card:hover::after {
-  width: 100%;
-  left: 0;
-}
-
-.feature-icon {
-  width: 48px;
-  height: 48px;
-  background: white;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 12px auto;
-  font-size: 24px;
-}
-
-.feature-icon.orange {
-  background: linear-gradient(135deg, #ff9a3c 0%, #ff7b00 100%);
-  color: white;
-}
-
-.feature-icon.cyan {
-  background: linear-gradient(135deg, #4fd1c5 0%, #38b2ac 100%);
-  color: white;
-}
-
-.feature-title {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.feature-description {
-  font-size: 12px;
-  opacity: 0.9;
-}
-
+/* ----- Tarjeta de Login ----- */
 .login-card {
   background: white;
   border-radius: 24px;
@@ -192,6 +138,7 @@ body {
   margin-bottom: 32px;
 }
 
+/* ----- Inputs ----- */
 .input-group {
   margin-bottom: 20px;
 }
@@ -211,18 +158,18 @@ body {
   border-radius: 10px;
   font-size: 15px;
   transition: all 0.3s ease;
-  outline: none;
 }
 
 .input-group input:focus {
   border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
 }
 
 .input-group input::placeholder {
   color: #a0aec0;
 }
 
+/* ----- Recordar y Olvidar ----- */
 .remember-forgot {
   display: flex;
   justify-content: space-between;
@@ -237,13 +184,11 @@ body {
   gap: 8px;
   color: #4a5568;
   cursor: pointer;
-  user-select: none;
 }
 
 .remember-me input[type="checkbox"] {
   width: 18px;
   height: 18px;
-  cursor: pointer;
   accent-color: #667eea;
 }
 
@@ -251,20 +196,9 @@ body {
   color: #667eea;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease;
-  border-radius: 4px;
-  padding: 2px 4px;
 }
 
-.forgot-password:hover {
-  color: #5a67d8;
-}
-
-.forgot-password:focus {
-  outline: 2px solid #667eea;
-  outline-offset: 2px;
-}
-
+/* ----- Botón Iniciar Sesión ----- */
 .btn-login {
   width: 100%;
   padding: 16px;
@@ -279,7 +213,6 @@ body {
   overflow: hidden;
   z-index: 1;
   transition: all 0.4s ease;
-  margin-bottom: 16px;
 }
 
 .btn-login::before {
@@ -291,7 +224,6 @@ body {
   height: 100%;
   background: linear-gradient(120deg, rgba(255,255,255,0.35), rgba(255,255,255,0));
   transition: all 0.6s ease;
-  z-index: 0;
 }
 
 .btn-login:hover::before {
@@ -300,18 +232,10 @@ body {
 
 .btn-login:hover {
   transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 12px 35px rgba(102,126,234,0.4);
 }
 
-.btn-login:active {
-  transform: translateY(0);
-}
-
-.btn-login:focus {
-  outline: 3px solid #667eea;
-  outline-offset: 2px;
-}
-
+/* ----- Divisor ----- */
 .divider {
   text-align: center;
   margin: 24px 0;
@@ -330,14 +254,10 @@ body {
   background: #e2e8f0;
 }
 
-.divider::before {
-  left: 0;
-}
+.divider::before { left: 0; }
+.divider::after { right: 0; }
 
-.divider::after {
-  right: 0;
-}
-
+/* ----- Botón Registro ----- */
 .btn-registro {
   width: 100%;
   padding: 16px;
@@ -350,43 +270,17 @@ body {
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  z-index: 1;
   transition: all 0.4s ease;
-}
-
-.btn-registro::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(120deg, rgba(102,126,234,0.15), rgba(90,103,216,0.05));
-  transition: all 0.5s ease;
-  z-index: 0;
-}
-
-.btn-registro:hover::after {
-  left: 100%;
 }
 
 .btn-registro:hover {
   transform: translateY(-3px) scale(1.03);
   border-color: #5a67d8;
   color: #5a67d8;
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 10px 30px rgba(102,126,234,0.25);
 }
 
-.btn-registro:active {
-  transform: translateY(0);
-  background: #edf2f7;
-}
-
-.btn-registro:focus {
-  outline: 3px solid #667eea;
-  outline-offset: 2px;
-}
-
+/* ----- Mensajes ----- */
 .error-message,
 .success-message {
   padding: 12px 16px;
