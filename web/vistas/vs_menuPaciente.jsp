@@ -1,36 +1,63 @@
-<%-- 
-    Document   : vs_menuPaciente
-    Created on : 29/10/2025, 7:26:27 p. m.
-    Author     : Anthony
---%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<!-- Vista menu del paciente -->
+<!-- Vista menú del paciente -->
 <html>
 <head>
     <title>Menú del Paciente</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/estilosMenus.css">
 </head>
 <body>
+    <video autoplay muted loop playsinline preload="auto" id="video-bg">
+        <source src="${pageContext.request.contextPath}/imagenes/menus.mp4" type="video/mp4">
+    </video>
+    
     <div class="menu-container">
-        <h1>Bienvenido, <%= session.getAttribute("usuario") %> 🦷</h1>
+        <header>
+            <div class="logo">
+                <img src="${pageContext.request.contextPath}/imagenes/logo.png" alt="Logo DentalUp">
+            </div>
+            <h1>
+                Bienvenido, 
+                <span class="usuario-nombre"><%= session.getAttribute("usuario") %></span> 🦷
+            </h1>
+            <h2>Tu salud dental es nuestra prioridad</h2>
+        </header>
+
         <h3>Seleccione una opción:</h3>
 
-        <!-- Opciones para el paciente -->
         <div class="menu-opciones">
-            <a href="../vistas/vs_agendarCita.jsp" class="boton">Agendar Cita</a>
-            <!-- Por el momento esta opcion no se encuentra funcional -->
-            <a href="${pageContext.request.contextPath}/HistoriaServlet?accion=verHistoriasPaciente" class="boton">
-                Ver Historia Clínica
+            <a href="../vistas/vs_agendarCita.jsp" class="boton boton-agendar">
+                <img class="icono-cita" alt="Agendar cita" src="${pageContext.request.contextPath}/imagenes/calendario.gif">
+                <span class="texto-agendar">Agendar cita</span>
             </a>
 
 
-            <a href="${pageContext.request.contextPath}/CitaServlet?accion=listar" class="boton">Ver mis Citas</a>
-            <!-- Boton para cerrar la sesion -->
-            <a href="logout.jsp" class="boton cancelar">Cerrar Sesión</a>
+            <a href="../vistas/vs_historiaClinica.jsp" class="boton boton-agendar">
+                <img class="icono-cita" alt="Ver historial Clínico" src="${pageContext.request.contextPath}/imagenes/historial.gif">
+                <span class="texto-agendar">Ver historia clínica</span>
+            </a>
+
+            <a href="../vistas/vs_listarCitasPaciente.jsp" class="boton boton-agendar">
+                <img class="icono-cita" alt="Ver mis Citas" src="${pageContext.request.contextPath}/imagenes/cita.gif">
+                <span class="texto-agendar">Mis citas</span>
+            </a>
+            
+            <div class="consejo-dia">
+                    <img class="icono-cita" alt="Recuerda cepillarte después de cada comida" src="${pageContext.request.contextPath}/imagenes/consejo.gif">
+                <strong>Consejo del día:</strong>
+                <span>💡 Recuerda cepillarte después de cada comida</span>
+            </div>
+
+            <a href="../vistas/logout.jsp" class="boton boton-agendar">
+                <img class="icono-cita" alt="Cerrar sesión" src="${pageContext.request.contextPath}/imagenes/cerrar_sesion.gif">
+                <span class="texto-agendar">Cerrar sesión</span>
+            </a>
+        </div>
+
+        <div class="ayuda">
+            <span>¿Necesitas ayuda?</span>
+            <a href="mailto:soporte@tudental.com" class="boton ayuda">Contacta con nosotros</a>
         </div>
     </div>
 </body>
 </html>
-
