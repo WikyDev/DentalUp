@@ -33,6 +33,9 @@ public class CitaServlet extends HttpServlet {
             case "listar":
                 listarCitasPaciente(request, response);
                 break;
+            case "listarOdontologo":
+                listarCitasOdontologo(request, response);
+                break;
             default:
                 response.sendRedirect("vistas/vs_menuPaciente.jsp");
                 break;
@@ -109,6 +112,31 @@ public class CitaServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("vistas/vs_listarCitasPaciente.jsp");
         rd.forward(request, response);
     }
+    
+    /*
+    Metodo que obtiene los datos de la cita para despues mostrarla 
+    (Para el odontologo que este logueado)
+    */
+    private void listarCitasOdontologo(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        Integer idOdontologo = (Integer) session.getAttribute("id_odontologo");
+
+        if (idOdontologo == null) {
+            request.setAttribute("mensaje", "⚠️ Debe iniciar sesión como odontólogo.");
+            request.getRequestDispatcher("vistas/vs_login.jsp").forward(request, response);
+            return;
+        }
+
+        ctOdonto ctrl = new ctOdonto();
+        ArrayList<mdCita> listaCitas = ctrl.obtenerCitasPorOdontologo(idOdontologo);
+
+        request.setAttribute("listaCitas", listaCitas);
+        RequestDispatcher rd = request.getRequestDispatcher("vistas/vs_citasOdontologo.jsp");
+        rd.forward(request, response);
+    }
+
 }
 
 

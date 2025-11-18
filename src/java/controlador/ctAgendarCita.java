@@ -41,7 +41,11 @@ public class ctAgendarCita {
     // Listar todas las citas de un paciente
     public ArrayList<mdCita> obtenerCitasPorPaciente(int idPaciente) {
         ArrayList<mdCita> lista = new ArrayList<>();
-        String sql = "SELECT * FROM citas WHERE id_paciente = ?";
+        String sql = "SELECT c.id_cita, c.id_paciente, c.id_odontologo, c.fecha_cita, c.motivo, c.estado, "
+               + "o.nombre_completo AS nombre_odontologo "
+               + "FROM citas c "
+               + "INNER JOIN odontologos o ON c.id_odontologo = o.id_odontologo "
+               + "WHERE c.id_paciente = ?";
         try (Connection con = conexion.getConexion();
             PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, idPaciente);
@@ -53,6 +57,8 @@ public class ctAgendarCita {
                 c.setIdOdontologo(rs.getInt("id_odontologo"));
                 c.setFechaCita(rs.getString("fecha_cita"));
                 c.setMotivo(rs.getString("motivo"));
+                c.setEstado(rs.getString("estado"));
+                c.setNombreOdontologo(rs.getString("nombre_odontologo"));
                 lista.add(c);
             }
         } catch (Exception e) {

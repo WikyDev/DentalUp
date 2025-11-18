@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package controlador;
 
 /**
@@ -11,6 +8,8 @@ package controlador;
 import util.conexion;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import modelo.mdCita;
+import java.sql.*;
 
 /**
  * Controlador para operaciones sobre odontólogos (esqueleto).
@@ -41,6 +40,35 @@ public class ctOdonto {
             }
         } catch (Exception e) {
             System.out.println("Error listando odontologos: " + e.getMessage());
+        }
+        return lista;
+    }
+    
+    // Listar todas las citas de un odontologo
+    public ArrayList<mdCita> obtenerCitasPorOdontologo(int idOdontologo) {
+        ArrayList<mdCita> lista = new ArrayList<>();
+        String sql = "SELECT c.id_cita, c.id_paciente, c.id_odontologo, c.fecha_cita, "
+               + "c.motivo, c.estado, p.nombre AS nombre_paciente "
+               + "FROM citas c "
+               + "INNER JOIN pacientes p ON c.id_paciente = p.id_paciente "
+               + "WHERE c.id_odontologo = ?";
+        try (Connection con = conexion.getConexion();
+            PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idOdontologo);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                mdCita c = new mdCita();
+                c.setIdCita(rs.getInt("id_cita"));
+                c.setIdPaciente(rs.getInt("id_paciente"));
+                c.setIdOdontologo(rs.getInt("id_odontologo"));
+                c.setFechaCita(rs.getString("fecha_cita"));
+                c.setMotivo(rs.getString("motivo"));
+                c.setEstado(rs.getString("estado"));
+                c.setNombrePaciente(rs.getString("nombre_paciente"));
+                lista.add(c);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al obtener citas: " + e.getMessage());
         }
         return lista;
     }
