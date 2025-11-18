@@ -13,6 +13,9 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
 </head>
 <body>
+    <video autoplay muted loop playsinline preload="auto" id="video-bg">
+        <source src="${pageContext.request.contextPath}/imagenes/login.mp4" type="video/mp4">
+    </video>
   <div class="login-wrapper">
 
   <!-- Izquierda -->
@@ -28,7 +31,8 @@
           </div>
       </div>
 
-      <h2 class="welcome-title">Bienvenido a tu clínica dental de confianza</h2>
+      <h2 class="welcome-title">Bienvenido a tu clínica</h2>
+      <h2 class="secondary-message">dental de confianza</h2>
 
       <p class="welcome-description">
         Accede a tu portal de pacientes para gestionar tus citas, ver tu historial médico y mantenerte conectado con nuestro equipo de profesionales.

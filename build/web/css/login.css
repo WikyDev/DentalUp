@@ -1,4 +1,3 @@
-/* ======= login.css optimizado ======= */
 * {
   margin: 0;
   padding: 0;
@@ -7,9 +6,7 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'DM Sans', Roboto, Arial, sans-serif;
-  background:
-    linear-gradient(135deg, rgba(102,126,234,0.3) 0%, rgba(90,103,216,0.3) 100%),
-    url('../imagenes/fondo.png') no-repeat center center fixed;
+  background: transparent;
   background-size: cover;
   min-height: 100vh;
   display: flex;
@@ -17,6 +14,19 @@ body {
   justify-content: center;
   padding: 20px;
   overflow: hidden;
+}
+
+#video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* Ajustes de grid */
@@ -95,7 +105,19 @@ body {
 .welcome-title {
   font-size: 44px;
   font-weight: 600;
-  margin: 40px 0 20px 0;
+  margin: 1px 0 1px 0;
+}
+
+.secondary-message{
+    font-size: 44px;
+    font-weight: 600;
+    margin: 0px 0 10px 0;
+    display: block;
+    background: linear-gradient(180deg, #fac74a, #f48b4a 60%, #ff8787);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
 .welcome-description {
@@ -104,17 +126,6 @@ body {
   opacity: 0.95;
   margin-bottom: 20px;
 }
-
-/* ====== YA NO EXISTEN features — Eliminado ======
-   Se removió completamente:
-   .features
-   .feature-card
-   .feature-card:hover
-   .feature-card::after
-   .feature-icon
-   .feature-title
-   .feature-description
-================================================ */
 
 /* ----- Tarjeta de Login ----- */
 .login-card {

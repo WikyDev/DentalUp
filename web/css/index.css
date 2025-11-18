@@ -1,306 +1,289 @@
-/* ===========================
-   RESET GENERAL
-=========================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: "DM Sans", Arial, sans-serif;
-    background: #f5f7fb;
-    color: #222;
-    line-height: 1.5;
+    background: transparent;
+    font-family: 'DM Sans', Arial, sans-serif;
+    font-size: 16px;
+    color: #0a1628;
+    margin: 0;
+    text-align: center;
+    padding-top: 74px; 
 }
 
-/* ===========================
-   LAYOUT GENERAL
-=========================== */
-.layout {
-    display: flex;
-    height: calc(100vh - 80px);
-    overflow: hidden;
+#video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
 }
 
-/* ===========================
-   HEADER
-=========================== */
-.header {
-    width: 100%;
-    background: #fff;
-    border-bottom: 1px solid #e5e5e5;
-    padding: 16px 32px;
-}
-
-.header__content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* ===========================
-   SIDEBAR
-=========================== */
-.sidebar {
-    width: 250px;
-    background: #f8f9fd;
-    border-right: 1px solid #e1e1e1;
-    padding: 24px 16px;
-    flex-shrink: 0;
-}
-
-.sidebar__logo h2 {
-    font-size: 22px;
-    color: #4d77ff;
-}
-
-.sidebar__logo p {
-    font-size: 14px;
-    color: #666;
-}
-
-.sidebar__nav {
-    margin-top: 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.nav-item {
-    text-decoration: none;
-    padding: 10px 14px;
-    border-radius: 8px;
-    color: #333;
-    font-weight: 500;
-    transition: 0.2s;
-}
-
-.nav-item:hover {
-    background: #e8edff;
-}
-
-.sidebar__contact {
-    margin-top: 40px;
-    font-size: 14px;
-}
-
-.sidebar__contact h3 {
-    margin-bottom: 10px;
-}
-
-/* ===========================
-   MAIN
-=========================== */
-.main {
-    flex: 1;
-    padding: 40px;
-    overflow-y: auto;
-}
-
-/* ===========================
-   HERO DIVIDIDO (IGUAL A LA IMAGEN)
-=========================== */
-.hero-split {
-    display: flex;
-    width: 100%;
-    height: 720px;
-    border-radius: 16px;
-    overflow: hidden;
-}
-
-/* COLUMNA IZQUIERDA */
-.hero-left {
-    width: 50%;
-    background: #4d77ff;
-    padding: 50px 60px;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-.badge {
-    display: inline-block;
-    background: rgba(255,255,255,0.2);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 14px;
-}
-
-.hero-sub {
-    width: 80%;
-    color: rgba(255,255,255,0.9);
-}
-
-/* TARJETA DE ACCESO */
-.hero-card {
-    width: 85%;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.25);
-    padding: 24px;
-    border-radius: 16px;
-}
-
-.hero-card-header {
+.navbar {
     display: flex;
     align-items: center;
     gap: 16px;
-}
-
-.hero-card-header h3 {
-    margin: 0;
-    font-size: 18px;
-}
-
-.hero-card-header p {
-    margin: 0;
-    font-size: 14px;
-    color: rgba(255,255,255,0.8);
-}
-
-.hero-list {
-    margin-top: 20px;
-    list-style: none;
-}
-
-.hero-list li {
-    margin-bottom: 12px;
-    padding-left: 16px;
-    position: relative;
-    font-size: 14px;
-}
-
-.hero-list li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: #ffd95e;
-}
-
-/* BOTÓN */
-.hero-btn {
-    margin-top: 20px;
-    padding: 16px 24px;
-    background: white;
-    color: #4d77ff;
-    font-size: 18px;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    width: 85%;
-}
-
-/* COLUMNA DERECHA */
-.hero-right {
-    width: 50%;
-    position: relative;
-}
-
-.hero-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* TARJETA FLOTANTE DERECHA */
-.hero-overlay {
-    position: absolute;
-    top: 35%;
-    left: 20%;
-    padding: 32px;
-    background: white;
-    border-radius: 16px;
-    width: 340px;
-    text-align: center;
-    box-shadow: 0px 25px 50px rgba(0,0,0,0.25);
-}
-
-.hero-overlay p {
-    color: #222;
-    font-size: 14px;
-    margin-top: 8px;
-}
-
-/* ===========================
-   SECCIONES GENERALES
-=========================== */
-.section {
-    margin: 60px 0;
-}
-
-.section h2 {
-    font-size: 24px;
-    margin-bottom: 8px;
-}
-
-.section p {
-    color: #666;
-}
-
-/* ===========================
-   CARDS (FIJAS SOLO ESCRITORIO)
-=========================== */
-.cards {
-    margin-top: 24px;
-    display: grid;
-    grid-template-columns: 250px 250px 250px 250px;
-    gap: 24px;
-}
-
-.card {
-    background: #fff;
-    padding: 24px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.05);
-    height: 220px;
-}
-
-.card h3 {
-    font-size: 18px;
-    margin-bottom: 8px;
-}
-
-.card p {
-    color: #666;
-    font-size: 14px;
-}
-
-/* ===========================
-   BENEFICIOS (FIJO)
-=========================== */
-.benefits {
-    margin-top: 24px;
-    display: grid;
-    grid-template-columns: 300px 300px 300px;
-    gap: 24px;
-}
-
-.benefit {
-    background: #fff;
-    padding: 24px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.05);
-    height: 150px;
-}
-
-.benefit h3 {
-    margin-bottom: 6px;
-}
-
-/* ===========================
-   CTA FINAL
-=========================== */
-.cta {
-    background: linear-gradient(135deg, #4d77ff, #647cf5);
+    background: transparent;
     color: #fff;
-    padding: 40px;
-    border-radius: 14px;
-    text-align: center;
+    height: 76px;
+    padding: 0 70px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
+    z-index: 1000;
 }
 
-.cta h2 {
-    font-size: 26px;
-    margin-bottom: 12px;
+.grupo-logo-nombre {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-right: 24px;
+}
+
+.logo img {
+    height: 65px;
+}
+
+.brand-name {
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: bold;
+    margin-right: 24px;
+}
+
+.nav-link {
+    color: #fff;
+    margin: 0 12px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.nav-link:hover {
+    color: #4d77ff;
+}
+
+/* HERO: imagen a la derecha, texto a la izquierda */
+.hero {
+  background: rgba(10,22,40,0.45); /* un azul oscuro traslúcido, ajusta el valor */
+  padding: 58px 0 58px 0;
+  min-height: 480px;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 90vw;
+  max-width: 1300px;
+  margin: 0 auto;
+  gap: 68px;
+}
+
+.hero-text {
+  flex: 1 1 0;
+  text-align: left;
+  color: #fff;
+  max-width: 540px;
+}
+.hero-text h1 {
+  font-size: 2.7rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+}
+.main-message {
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: block;
+}
+.secondary-message {
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: block;
+  background: linear-gradient(180deg, #fac74a, #f48b4a 60%, #ff8787);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 16px;
+}
+.intro-text {
+  margin: 24px 0 30px 0;
+  font-size: 1.08rem;
+  color: rgba(255,255,255,0.93);
+  max-width: 390px;
+}
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.main-btn {
+  background: linear-gradient(90deg, #fac74a, #fd9b66);
+  border: none;
+  border-radius: 10px;
+  padding: 13px 32px;
+  font-size: 1rem;
+  color: #232323;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 3px 18px -8px #555;
+  transition: background 0.2s, color 0.2s;
+}
+.main-btn:hover {
+  background: #f48b4a;
+  color: #fff;
+}
+.hero-image {
+  position: relative;
+  max-width: 480px; /* o el tamaño fijo que gustes */
+  margin: 0 auto;
+  border-radius: 25px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 8px 38px -10px rgba(36,60,134,0.13);
+  display: block;
+}
+.main-img {
+  width: 100%;
+  display: block;
+  border-radius: 20px;
+}
+
+.gif-corner {
+  position: absolute;
+  left: 9px;
+  bottom: 9px;
+  width: 60px;   /* Ajusta el tamaño del GIF aquí */
+  height: auto;
+  border-radius: 18px;
+  box-shadow: 0 2px 10px -2px rgba(60,60,60,0.10);
+  z-index: 2;
+  background: none;
+}
+
+.services {
+  background: rgba(10, 22, 40, 0.9); /* fondo oscuro traslúcido */
+  color: #fff;
+  padding: 52px 0 44px 0;
+}
+
+.services h2 {
+    color: #4d77ff;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+.section-desc {
+    color: #99a1af;
+    font-size: 1.08rem;
+    margin-bottom: 44px;
+}
+.service-card {
+    display: inline-block;
+    vertical-align: top;
+    background: rgba(255,255,255,0.02);
+    border-radius: 20px;
+    margin: 18px;
+    width: 260px;
+    box-shadow: 0 10px 28px -12px rgba(0,0,0,0.10);
+    text-align: center;
+    padding: 28px 15px 16px 15px;
+}
+.service-icon {
+    height: 62px;
+    margin-bottom: 9px;
+}
+.service-card h3 {
+    color: #647cf5;
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+}
+.service-desc {
+    color: #99a1af;
+    font-size: 1rem;
+    margin-bottom: 18px;
+}
+.service-link {
+    color: #4d77ff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.07rem;
+}
+
+.stats {
+    background: rgba(77, 119, 255, 0.85); /* más claro y traslúcido */
+    color: #fff;
+    font-size: 1.5em;
+    padding: 36px 0;
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+}
+.stat-card {
+    background: rgba(0,0,0,0.15);
+    border-radius: 15px;
+    padding: 18px 28px;
+    min-width: 150px;
+    text-align: center;
+}
+.stat-icon {
+    height: 38px;
+    display: block;
+    margin: 0 auto 9px auto;
+}
+.stat-number {
+    font-size: 2rem;
+    color: #fac74a;
+    font-weight: bold;
+}
+.stat-desc {
+    display: block;
+    color: #fff;
+    font-size: 1.05rem;
+}
+
+.ventajas {
+    background: rgba(10, 22, 40, 0.9);
+    color: #fff;
+    padding: 56px 0 54px 0;
+}
+.ventajas h2 {
+    color: #4d77ff;
+    font-size: 2.0rem;
+    margin-bottom: 10px;
+}
+.ventaja-card {
+    display: inline-block;
+    vertical-align: top;
+    background: rgba(255,255,255,0.03);
+    border-radius: 20px;
+    margin: 18px 22px;
+    width: 260px;
+    box-shadow: 0 10px 28px -12px rgba(0,0,0,0.07);
+    text-align: center;
+    padding: 24px 18px 15px 18px;
+}
+.ventaja-icon {
+    height: 56px;
+    margin-bottom: 8px;
+}
+.ventaja-card h3 {
+    color: #fac74a;
+    font-size: 1.18rem;
+    margin-bottom: 8px;
+}
+.ventaja-desc {
+    color: #99a1af;
+    font-size: 0.97rem;
+    margin-bottom: 14px;
+}
+.ventaja-link {
+    color: #fac74a;
+    text-decoration: none;
+    font-weight: 500;
 }

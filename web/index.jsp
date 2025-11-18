@@ -1,154 +1,124 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DentalUp - Inicio</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css">
+</head>
+<body>
+    <video autoplay muted loop playsinline preload="auto" id="video-bg">
+        <source src="${pageContext.request.contextPath}/imagenes/dashboard.mp4" type="video/mp4">
+    </video>
 
-        <title>DentalUp</title>
-
-        <!-- CSS del proyecto -->
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css">
-    </head>
-
-    <body>
-
-        <!-- HEADER -->
-        <header class="header">
-            <div class="header__content">
-                <div>
-                    <h1>Bienvenido a DentalUp</h1>
-                    <p>Sistema de gesti√≥n dental profesional</p>
-                </div>
-
-                <form action="${pageContext.request.contextPath}/login" method="get">
-                    <button class="btn btn-primary">Iniciar sesi√≥n</button>
-                </form>
+    <nav class="navbar">
+        <div class="grupo-logo-nombre">
+            <div class="logo">
+              <img src="${pageContext.request.contextPath}/imagenes/logo.png" alt="Logo DentalUp">
             </div>
-        </header>
-
-        <div class="layout">
-
-            <!-- SIDEBAR -->
-            <aside class="sidebar">
-
-                <div class="sidebar__logo">
-                    <h2>DentalUp</h2>
-                    <p>Tu sonrisa perfecta</p>
-                </div>
-
-                <nav class="sidebar__nav">
-                    <a class="nav-item" href="${pageContext.request.contextPath}/inicio">Inicio</a>
-                    <a class="nav-item" href="${pageContext.request.contextPath}/tratamientos">Tratamientos</a>
-                    <a class="nav-item" href="${pageContext.request.contextPath}/atencion">Atenci√≥n</a>
-                    <a class="nav-item" href="${pageContext.request.contextPath}/devs">Desarrolladores</a>
-                </nav>
-
-                <div class="sidebar__contact">
-                    <h3>Cont√°ctanos</h3>
-                    <p>(555) 123-4567</p>
-                    <p>info@dentalup.com</p>
-                    <p>Av. Principal 123</p>
-                </div>
-
-            </aside>
-
-            <!-- MAIN CONTENT -->
-            <main class="main">
-
-                <!-- HERO -->
-                <!-- HERO SUPERIOR DIVIDIDO -->
-            <section class="hero-split">
-
-                <!-- COLUMNA IZQUIERDA -->
-                <div class="hero-left">
-
-                    <span class="badge">
-                        ‚≠ê Sistema dental l√≠der
-                    </span>
-
-                    <h2>Bienvenido a DentalUp</h2>
-                    <p class="hero-sub">
-                        Plataforma integral para gestionar tu cl√≠nica dental 
-                        de manera profesional y eficiente.
-                    </p>
-
-                    <!-- Tarjeta de acceso restringido -->
-                    <div class="hero-card">
-                        <div class="hero-card-header">
-                            <img src="" alt="" class="hero-icon"> <!-- √çcono vac√≠o -->
-                            <div>
-                                <h3>Acceso restringido</h3>
-                                <p>Inicia sesi√≥n para acceder a todas las funcionalidades</p>
-                            </div>
-                        </div>
-
-                        <ul class="hero-list">
-                            <li>Gesti√≥n completa de citas y pacientes</li>
-                            <li>Expedientes m√©dicos digitales</li>
-                            <li>Reportes y an√°lisis en tiempo real</li>
-                            <li>Control financiero y pagos</li>
-                        </ul>
-                    </div>
-
-                    <button class="hero-btn">
-                        ‚Üí Iniciar sesi√≥n o registrarse ‚Üí
-                    </button>
-
-                </div>
-
-                <!-- COLUMNA DERECHA -->
-                <div class="hero-right">
-
-                    <!-- FOTO (vac√≠a, la puedes reemplazar) -->
-                    <img src="${pageContext.request.contextPath}/imagenes/acceso.jpg" 
-                         alt="Imagen hero" 
-                         class="hero-img">
-
-                    <!-- tarjeta flotante -->
-                    <div class="hero-overlay">
-                        <img src="" alt="" class="hero-lock"> <!-- √≠cono vac√≠o -->
-                        <p>Contenido disponible solo para usuarios registrados</p>
-                    </div>
-
-                </div>
-
-            </section>
-
-
-                <!-- BENEFICIOS -->
-                <section class="section">
-                    <h2>Simplifica la gesti√≥n de tu cl√≠nica</h2>
-
-                    <div class="benefits">
-
-                        <div class="benefit">
-                            <h3>Ahorra tiempo</h3>
-                            <p>Automatiza tareas y enf√≥cate en tus pacientes.</p>
-                        </div>
-
-                        <div class="benefit">
-                            <h3>Datos seguros</h3>
-                            <p>Protecci√≥n avanzada y respaldo autom√°tico.</p>
-                        </div>
-
-                        <div class="benefit">
-                            <h3>F√°cil de usar</h3>
-                            <p>Interfaz intuitiva sin capacitaci√≥n compleja.</p>
-                        </div>
-
-                    </div>
-                </section>
-
-                <!-- CTA FINAL -->
-                <section class="cta">
-                    <h2>¬øListo para transformar tu cl√≠nica?</h2>
-                    <p>√önete a cientos de dentistas que conf√≠an en DentalUp.</p>
-                </section>
-
-            </main>
-
+            <span class="brand-name">DentalUp</span>
         </div>
-
-    </body>
+        <span class="nav-link">Inicio</span>
+        <span class="nav-link">Servicios</span>
+        <span class="nav-link">Nosotros</span>
+        <span class="nav-link">Testimonios</span>
+        <span class="nav-link">Contacto</span>
+    </nav>
+    <header class="hero">
+        <div class="hero-content">
+        <div class="hero-text">
+          <h1>Bienvenido a DentalUp</h1>
+          <b class="main-message">Por favor, inicia sesiÛn</b>
+          <b class="secondary-message">o regÌstrate para acceder</b>
+          <p class="intro-text">TecnologÌa de vanguardia y un equipo de especialistas certificados para brindarte la mejor atenciÛn dental. Transformamos sonrisas, cambiamos vidas..</p>
+          <div class="hero-buttons">
+            <div class="hero-buttons">
+                <div class="hero-buttons">
+                    <a href="vistas/vs_login.jsp" class="main-btn">Iniciar SesiÛn</a>
+                    <a href="vistas/vs_registro_paciente.jsp" class="main-btn">Registrarse</a>
+                </div>
+            </div>
+          </div>
+        </div>
+            
+        <div class="hero-image">
+            <img src="${pageContext.request.contextPath}/imagenes/doc.jpg" alt="Foto de portada" class="main-img"/>
+            <img src="${pageContext.request.contextPath}/imagenes/sonrisa.gif" alt="Gif acceso" class="gif-corner" />
+        </div>
+    </header> 
+    
+    <section class="services">
+        <h2>Servicios Premium</h2>
+        <p class="section-desc">Ofrecemos una amplia gama de tratamientos dentales con tecnologÌa de vanguardia y un equipo altamente capacitado.</p>
+        <div class="service-card">
+            <h3>Ortodoncia</h3>
+            <img src="${pageContext.request.contextPath}/imagenes/icon-ortodoncia.png" alt="Icono Ortodoncia" class="service-icon">
+            <p class="service-desc">AlineaciÛn perfecta con tecnologÌa invisible. Resultados garantizados y seguimiento personalizado.</p>
+            <a href="#" class="service-link">Ver m·s ?</a>
+        </div>
+        <div class="service-card">
+            <h3>Blanqueamiento</h3>
+            <img src="${pageContext.request.contextPath}/imagenes/icon-blanqueamiento.png" alt="Icono Blanqueamiento" class="service-icon">
+            <p class="service-desc">Sonrisa m·s blanca en una sola sesiÛn. TecnologÌa LED avanzada sin sensibilidad.</p>
+            <a href="#" class="service-link">Ver m·s ?</a>
+        </div>
+        <div class="service-card">
+            <h3>Implantes</h3>
+            <img src="${pageContext.request.contextPath}/imagenes/icon-implantes.png" alt="Icono Implantes" class="service-icon">
+            <p class="service-desc">Soluciones permanentes con materiales de ˙ltima generaciÛn. Recupera tu sonrisa natural.</p>
+            <a href="#" class="service-link">Ver m·s ?</a>
+        </div>
+        <div class="service-card">
+            <h3>Limpieza Dental</h3>
+            <img src="${pageContext.request.contextPath}/imagenes/icon-limpieza.png" alt="Icono Limpieza" class="service-icon">
+            <p class="service-desc">PrevenciÛn y cuidado profesional. Equipos de ˙ltima tecnologÌa para tu salud bucal.</p>
+            <a href="#" class="service-link">Ver m·s ?</a>
+        </div>
+    </section>
+    <section class="stats">
+        <div class="stat-card">
+            <img src="${pageContext.request.contextPath}/imagenes/icon-pacientes.png" alt="Icono Pacientes Felices" class="stat-icon">
+            <b class="stat-number">+5.000</b>
+            <span class="stat-desc">Pacientes Felices</span>
+        </div>
+        <div class="stat-card">
+            <img src="${pageContext.request.contextPath}/imagenes/icon-experiencia.png" alt="Icono Experiencia" class="stat-icon">
+            <b class="stat-number">+15</b>
+            <span class="stat-desc">AÒos de Experiencia</span>
+        </div>
+        <div class="stat-card">
+            <img src="${pageContext.request.contextPath}/imagenes/icon-satisfaccion.png" alt="Icono SatisfacciÛn" class="stat-icon">
+            <b class="stat-number">98%</b>
+            <span class="stat-desc">SatisfacciÛn</span>
+        </div>
+        <div class="stat-card">
+            <img src="${pageContext.request.contextPath}/imagenes/icon-especialistas.png" alt="Icono Especialistas" class="stat-icon">
+            <b class="stat-number">+20</b>
+            <span class="stat-desc">Especialistas</span>
+        </div>
+    </section>
+    <section class="ventajas">
+        <h2>Ventajas Competitivas</h2>
+        <p class="section-desc">øPor quÈ elegirnos?</p>
+        <p class="section-desc">Combinamos tecnologÌa avanzada, experiencia profesional y un trato humano excepcional para ofrecerte la mejor atenciÛn dental.</p>
+        <div class="ventaja-card">
+            <h3>TecnologÌa de Punta</h3>
+            <img src="${pageContext.request.contextPath}/imagenes/icon-tecnologia.png" alt="Icono TecnologÌa" class="ventaja-icon">
+            <p class="ventaja-desc">Utilizamos equipos de ˙ltima generaciÛn para diagnÛsticos precisos y tratamientos efectivos. Rayos X digitales, scanners 3D y m·s.</p>
+            <a href="#" class="ventaja-link">Conoce m·s ?</a>
+        </div>
+        <div class="ventaja-card">
+            <h3>AtenciÛn Personalizada</h3>
+            <img src="${pageContext.request.contextPath}/imagenes/icon-atencion.png" alt="Icono AtenciÛn" class="ventaja-icon">
+            <p class="ventaja-desc">Cada paciente es ˙nico. Creamos planes de tratamiento personalizados adaptados a tus necesidades especÌficas y objetivos de sonrisa.</p>
+            <a href="#" class="ventaja-link">Conoce m·s ?</a>
+        </div>
+        <div class="ventaja-card">
+            <h3>Profesionales Certificados</h3>
+            <img src="${pageContext.request.contextPath}/imagenes/icon-certificados.png" alt="Icono Profesionales" class="ventaja-icon">
+            <p class="ventaja-desc">Nuestro equipo cuenta con especialistas certificados internacionalmente con aÒos de experiencia en odontologÌa moderna.</p>
+            <a href="#" class="ventaja-link">Conoce m·s ?</a>
+        </div>
+    </section>
+</body>
 </html>
