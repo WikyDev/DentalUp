@@ -1,4 +1,4 @@
-<%-- Vista limpia: sin lÃ³gica embebida --%>
+<%-- Vista limpia: sin logica embebida --%>
 
 <!DOCTYPE html>
 <html>
@@ -11,7 +11,9 @@
     <h1>Bienvenido, <%= session.getAttribute("usuario") %></h1>
     <h2>Rol: <%= session.getAttribute("rol") %></h2>
     <div class="menu menu-odontologo">
-        <a href="/control/ct_odonto.jsp?op=listarOdonto">Ver todas las citas</a><br>
+        <!-- Por el momento estas opciones no se encuentran funcionales, usan llamados de la version anterior
+        (se cambiaran usando servlets) -->
+        <a href="${pageContext.request.contextPath}/CitaServlet?accion=listarOdontologo">Ver mis Citas</a>
         
         <a href="/vista/vs_agendaOdontologo.jsp">Agenda por odontólogo</a><br>
         

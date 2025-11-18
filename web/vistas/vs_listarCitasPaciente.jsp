@@ -37,13 +37,15 @@
                 <th>Odontólogo</th>
                 <th>Fecha y Hora</th>
                 <th>Motivo</th>
+                <th>Estado</th>
             </tr>
             <% for (mdCita c : lista) { %>
                 <tr>
                     <td><%= c.getIdCita()%></td>
-                    <td><%= c.getIdOdontologo()%></td>
+                    <td><%= c.getNombreOdontologo()%></td>
                     <td><%= c.getFechaCita()%></td>
                     <td><%= c.getMotivo() %></td>
+                    <td><%= c.getEstado() %></td>
                 </tr>
             <% } %>
         </table>

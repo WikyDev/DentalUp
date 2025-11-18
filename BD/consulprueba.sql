@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-10-2025 a las 19:56:20
+-- Tiempo de generación: 18-11-2025 a las 07:13:54
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -52,17 +52,44 @@ CREATE TABLE `citas` (
   `id_paciente` int(11) NOT NULL,
   `id_odontologo` int(11) NOT NULL,
   `fecha_cita` datetime NOT NULL,
-  `motivo` text DEFAULT NULL
+  `motivo` text DEFAULT NULL,
+  `estado` varchar(20) NOT NULL DEFAULT 'PENDIENTE'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `citas`
 --
 
-INSERT INTO `citas` (`id_cita`, `id_paciente`, `id_odontologo`, `fecha_cita`, `motivo`) VALUES
-(33, 11, 1, '2025-11-05 14:00:00', 'dolor de muela '),
-(35, 123590, 1, '2025-11-04 16:30:00', 'dolor de muela'),
-(38, 123591, 2, '2025-11-03 16:30:00', 'dolor de diente');
+INSERT INTO `citas` (`id_cita`, `id_paciente`, `id_odontologo`, `fecha_cita`, `motivo`, `estado`) VALUES
+(33, 11, 1, '2025-11-05 14:00:00', 'dolor de muela ', 'ATENDIDA'),
+(35, 123590, 1, '2025-11-04 16:30:00', 'dolor de muela', 'PENDIENTE'),
+(38, 123591, 2, '2025-11-03 16:30:00', 'dolor de diente', 'ATENDIDA'),
+(39, 123591, 1, '2025-11-17 16:30:00', 'Limpieza', 'PENDIENTE');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `historias_clinicas`
+--
+
+CREATE TABLE `historias_clinicas` (
+  `id_historia` int(11) NOT NULL,
+  `id_paciente` int(11) NOT NULL,
+  `id_odontologo` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `motivoConsulta` varchar(255) DEFAULT NULL,
+  `diagnostico` text DEFAULT NULL,
+  `tratamiento` text DEFAULT NULL,
+  `observaciones` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `historias_clinicas`
+--
+
+INSERT INTO `historias_clinicas` (`id_historia`, `id_paciente`, `id_odontologo`, `fecha`, `motivoConsulta`, `diagnostico`, `tratamiento`, `observaciones`) VALUES
+(3, 123591, 2, '2025-11-03', 'dolor de diente', 'aaaaa', 'sssss', 'ddddd'),
+(4, 11, 1, '2025-11-05', 'dolor de muela ', 'rrrr', 'tttt', 'yyyy');
 
 -- --------------------------------------------------------
 
@@ -181,10 +208,10 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id_user`, `nombre_user`, `password`, `rol`) VALUES
 (1, 'admin', '123456', 'admin'),
-(4, 'secre2', '258369', 'odontologo'),
+(4, 'pabloT', '258369', 'odontologo'),
 (5, 'secretario333', 'abc123', 'secretario'),
-(6, 'odontoB', '235689', 'odontologo'),
-(7, 'odontoC', 'zxc123', 'odontologo'),
+(6, 'jose11', '235689', 'odontologo'),
+(7, 'camilopp', 'zxc123', 'odontologo'),
 (8, 'secretario444', 'qwe123', 'secretario'),
 (11, 'antonio', '142536', 'paciente'),
 (19, 'maria', '451245', 'paciente'),
@@ -208,6 +235,14 @@ ALTER TABLE `citas`
   ADD PRIMARY KEY (`id_cita`),
   ADD KEY `citas_ibfk_1` (`id_paciente`),
   ADD KEY `citas_ibfk_2` (`id_odontologo`);
+
+--
+-- Indices de la tabla `historias_clinicas`
+--
+ALTER TABLE `historias_clinicas`
+  ADD PRIMARY KEY (`id_historia`),
+  ADD KEY `id_paciente` (`id_paciente`),
+  ADD KEY `id_odontologo` (`id_odontologo`);
 
 --
 -- Indices de la tabla `odontologos`
@@ -257,7 +292,13 @@ ALTER TABLE `administradores`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
+-- AUTO_INCREMENT de la tabla `historias_clinicas`
+--
+ALTER TABLE `historias_clinicas`
+  MODIFY `id_historia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `odontologos`
@@ -299,6 +340,13 @@ ALTER TABLE `administradores`
 ALTER TABLE `citas`
   ADD CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`id_paciente`) REFERENCES `pacientes` (`id_paciente`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `citas_ibfk_2` FOREIGN KEY (`id_odontologo`) REFERENCES `odontologos` (`id_odontologo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `historias_clinicas`
+--
+ALTER TABLE `historias_clinicas`
+  ADD CONSTRAINT `historias_clinicas_ibfk_1` FOREIGN KEY (`id_paciente`) REFERENCES `pacientes` (`id_paciente`),
+  ADD CONSTRAINT `historias_clinicas_ibfk_2` FOREIGN KEY (`id_odontologo`) REFERENCES `odontologos` (`id_odontologo`);
 
 --
 -- Filtros para la tabla `odontologos`

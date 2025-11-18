@@ -28,6 +28,8 @@
                 break;
 
             case "odontologo":
+                int idOdonto = controlador.obtenerIdOdontologo(usuario);
+                session.setAttribute("id_odontologo", idOdonto);
                 response.sendRedirect("../vistas/vs_menuOdonto.jsp");
                 break;
 

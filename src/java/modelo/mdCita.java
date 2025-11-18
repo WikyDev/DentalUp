@@ -12,22 +12,30 @@ public class mdCita {
     private int idOdontologo;
     private String fechaCita;
     private String motivo;
+    private String estado;
+    private String nombrePaciente;
+    private String nombreOdontologo;
+    
+    public static final String ESTADO_PENDIENTE = "PENDIENTE";
+    public static final String ESTADO_ATENDIDA = "ATENDIDA";
 
     public mdCita() {}
 
-    public mdCita(int idPaciente, int idOdontologo, String fechaCita, String motivo) {
+    public mdCita(int idPaciente, int idOdontologo, String fechaCita, String motivo, String estado) {
         this.idPaciente = idPaciente;
         this.idOdontologo = idOdontologo;
         this.fechaCita = fechaCita;
         this.motivo = motivo;
+        this.estado = estado;
     }
 
-    public mdCita(int idCita, int idPaciente, int idOdontologo, String fechaCita, String motivo) {
+    public mdCita(int idCita, int idPaciente, int idOdontologo, String fechaCita, String motivo, String estado) {
         this.idCita = idCita;
         this.idPaciente = idPaciente;
         this.idOdontologo = idOdontologo;
         this.fechaCita = fechaCita;
         this.motivo = motivo;
+        this.estado = estado;
     }
 
     // Getters y Setters
@@ -45,6 +53,32 @@ public class mdCita {
 
     public String getMotivo() { return motivo; }
     public void setMotivo(String motivo) { this.motivo = motivo; }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    } 
+
+    public String getNombrePaciente() {
+        return nombrePaciente;
+    }
+
+    public void setNombrePaciente(String nombrePaciente) {
+        this.nombrePaciente = nombrePaciente;
+    }
+
+    public String getNombreOdontologo() {
+        return nombreOdontologo;
+    }
+
+    public void setNombreOdontologo(String nombreOdontologo) {
+        this.nombreOdontologo = nombreOdontologo;
+    }
+    
+    
 }
 
 
