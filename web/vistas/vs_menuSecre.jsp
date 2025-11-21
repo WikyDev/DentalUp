@@ -12,38 +12,74 @@
 --%>
 
 <!DOCTYPE html>
+<!-- Vista menú del secretario -->
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Menú Secretario</title>
-
-    <%-- Enlace al archivo CSS para dar estilo al menú --%>
-    <%-- "${pageContext.request.contextPath}" asegura que funcione sin importar la ruta del proyecto --%>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilosMenus.css">
+    <title>Menú del Secretario</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/estilosMenus.css">
 </head>
-
 <body>
-    <%-- Muestra el nombre del usuario guardado en la sesión actual --%>
-    <h1>Bienvenido, <%= session.getAttribute("usuario") %></h1>
+    <!-- Video de fondo, igual que en el menú del paciente -->
+    <video autoplay muted loop playsinline preload="auto" id="video-bg">
+        <source src="${pageContext.request.contextPath}/imagenes/menus.mp4" type="video/mp4">
+    </video>
 
-    <%-- Muestra el rol del usuario (en este caso debería ser ?Secretario?) --%>
-    <h2>Rol: <%= session.getAttribute("rol") %></h2>
+    <div class="menu-container">
+        <header>
+            <div class="logo">
+                <img src="${pageContext.request.contextPath}/imagenes/logo.png" alt="Logo DentalUp">
+            </div>
+            <h1>
+                Bienvenido, 
+                <span class="usuario-nombre"><%= session.getAttribute("usuario") %></span> ?
+            </h1>
+            <h2>Gestión administrativa de la clínica</h2>
+        </header>
 
-    <%-- Contenedor principal del menú --%>
-    <div class="menu menu-secre">
+        <h3>Seleccione una opción:</h3>
 
-        <%-- Enlace que redirige al servlet (controlador) para listar todas las citas --%>
-        <%-- La URL llama a /ctSecre con el parámetro op=listarCitas --%>
-        <a href="${pageContext.request.contextPath}/ctSecre?op=listarCitas">Ver todas las citas</a><br>
+        <div class="menu-opciones">
+            <!-- Ver todas las citas -->
+            <a href="${pageContext.request.contextPath}/ctSecre?op=listarCitas" class="boton boton-agendar">
+                <img class="icono-cita" alt="Ver todas las citas" 
+                     src="${pageContext.request.contextPath}/imagenes/cita.gif">
+                <span class="texto-agendar">Ver todas las citas</span>
+            </a>
 
-        <%-- Enlace que lleva directamente a una vista JSP donde se puede buscar una cita por ID --%>
-        <a href="${pageContext.request.contextPath}/vistas/vs_buscarCita.jsp">Buscar cita por ID</a><br>
+            <!-- Buscar cita por ID -->
+            <a href="${pageContext.request.contextPath}/vistas/vs_buscarCita.jsp" class="boton boton-agendar">
+                <img class="icono-cita" alt="Buscar cita por ID" 
+                     src="${pageContext.request.contextPath}/imagenes/calendario.gif">
+                <span class="texto-agendar">Buscar cita por ID</span>
+            </a>
 
-        <%-- Enlace que llama al servlet con la operación de generar reporte PDF (aún no implementada) --%>
-        <a href="${pageContext.request.contextPath}/ctSecre?op=generarReporteCitas">Generar reporte PDF</a><br>
+            <!-- Generar reporte PDF de citas -->
+            <a href="${pageContext.request.contextPath}/ctSecre?op=generarReporteCitas" class="boton boton-agendar">
+                <img class="icono-cita" alt="Generar reporte PDF" 
+                     src="${pageContext.request.contextPath}/imagenes/historial.gif">
+                <span class="texto-agendar">Generar reporte de citas (PDF)</span>
+            </a>
 
-        <%-- Enlace para cerrar sesión, normalmente limpia los atributos de sesión --%>
-        <a href="${pageContext.request.contextPath}/vistas/logout.jsp">Cerrar sesión</a>
+            <!-- Consejo del día (opcional, para mantener el mismo diseño) -->
+            <div class="consejo-dia">
+                <img class="icono-cita" alt="Consejo del día" 
+                     src="${pageContext.request.contextPath}/imagenes/consejo.gif">
+                <strong>Consejo del día:</strong>
+                <span>? Mantén la agenda al día para evitar cruces de citas.</span>
+            </div>
+
+            <!-- Cerrar sesión -->
+            <a href="${pageContext.request.contextPath}/vistas/logout.jsp" class="boton boton-agendar">
+                <img class="icono-cita" alt="Cerrar sesión" 
+                     src="${pageContext.request.contextPath}/imagenes/cerrar_sesion.gif">
+                <span class="texto-agendar">Cerrar sesión</span>
+            </a>
+        </div>
+
+        <div class="ayuda">
+            <span>¿Necesitas ayuda?</span>
+            <a href="mailto:soporte@tudental.com" class="boton ayuda">Contacta con nosotros</a>
+        </div>
     </div>
 </body>
 </html>
