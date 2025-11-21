@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilosMenus.css">
 </head>
 <body>
-    <h1>Bienvenido, <%= session.getAttribute("usuario") %></h1>
+    <h1>Bienvenido, <%= session.getAttribute("usuario") %> &#x200D;&#x2695;&#xFE0F;
+</h1>
     <h2>Rol: <%= session.getAttribute("rol") %></h2>
     <div class="menu menu-odontologo">
         <!-- Por el momento estas opciones no se encuentran funcionales, usan llamados de la version anterior

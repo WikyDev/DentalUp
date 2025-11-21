@@ -31,7 +31,7 @@
             </div>
             <h1>
                 Bienvenido, 
-                <span class="usuario-nombre"><%= session.getAttribute("usuario") %></span> ?
+                <span class="usuario-nombre"><%= session.getAttribute("usuario") %></span> &#x1F4BB
             </h1>
             <h2>Gestión administrativa de la clínica</h2>
         </header>
