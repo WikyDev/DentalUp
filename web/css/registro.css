@@ -1,26 +1,43 @@
-/* 
-    Created on : 28/10/2025, 12:12:25 p. m.
-    Author     : WikyLix
-*/
 /* ======== Estilos generales ======== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #e3f2fd, #ffffff);
     margin: 0;
     padding: 0;
+
+    /* 🟢 Mejor: evita que se corte el formulario si es más alto que 100vh */
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    align-items: flex-start;
+    padding-top: 40px;
+
+    /* Quitar min-height 100vh que con el video causa desplazamientos */
+    min-height: auto;
+}
+
+/* ======== Video de fondo ======== */
+#video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
 }
 
 /* ======== Contenedor del formulario ======== */
 .form-container {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(6px);
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     padding: 40px 50px;
-    width: 400px;
+
+    /* 🟢 Mejor responsivo */
+    width: 100%;
+    max-width: 400px;
     text-align: center;
 }
 
@@ -31,7 +48,7 @@ h2 {
     font-size: 22px;
 }
 
-/* ======== Campos del formulario ======== */
+/* ======== Formulario ======== */
 form {
     display: flex;
     flex-direction: column;
@@ -110,4 +127,3 @@ p.mensaje {
     color: #2e7d32;
     font-weight: bold;
 }
-

@@ -1,11 +1,12 @@
 body {
     background: transparent;
+    background-size: cover;
     font-family: 'DM Sans', Arial, sans-serif;
     font-size: 16px;
     color: #0a1628;
     margin: 0;
     text-align: center;
-    padding-top: 74px; 
+    padding-top: 74px;
 }
 
 #video-bg {
@@ -21,11 +22,32 @@ body {
   pointer-events: none;
 }
 
+#fondo-animado {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: url('../imagenes/dashboard.jpg') no-repeat center center;
+  background-size: cover;
+  animation: movimientoFondo 60s linear infinite, parpadeo 10s ease-in-out infinite alternate;
+  z-index: -1;
+}
+
+@keyframes movimientoFondo {
+  0% { background-position: center center; }
+  50% { background-position: center 10%; }
+  100% { background-position: center center; }
+}
+
+@keyframes parpadeo {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
 .navbar {
     display: flex;
     align-items: center;
     gap: 16px;
-    background: transparent;
+    background: rgba(10,22,40,0.45);
     color: #fff;
     height: 76px;
     padding: 0 70px;
@@ -41,12 +63,12 @@ body {
 .grupo-logo-nombre {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
     margin-right: 24px;
 }
 
 .logo img {
-    height: 65px;
+    height: 75px;
 }
 
 .brand-name {
@@ -68,7 +90,7 @@ body {
 
 /* HERO: imagen a la derecha, texto a la izquierda */
 .hero {
-  background: rgba(10,22,40,0.45); /* un azul oscuro traslúcido, ajusta el valor */
+  background: transparent;
   padding: 58px 0 58px 0;
   min-height: 480px;
 }
@@ -149,6 +171,18 @@ body {
   box-shadow: 0 8px 38px -10px rgba(36,60,134,0.13);
   display: block;
 }
+
+.hero-image::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, rgba(77,119,255,0.22) 0%, rgba(10,22,40,0.15) 100%);
+  border-radius: 20px;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .main-img {
   width: 100%;
   display: block;
