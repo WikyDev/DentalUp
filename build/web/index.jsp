@@ -10,7 +10,6 @@
     <video autoplay muted loop playsinline preload="auto" id="video-bg">
         <source src="${pageContext.request.contextPath}/imagenes/dashboard.mp4" type="video/mp4">
     </video>
-
     <nav class="navbar">
         <div class="grupo-logo-nombre">
             <div class="logo">
