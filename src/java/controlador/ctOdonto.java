@@ -6,6 +6,7 @@ package controlador;
  * @author Anthony
  */
 import util.conexion;
+import modelo.mdOdontologo;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import modelo.mdCita;
@@ -17,11 +18,11 @@ import java.sql.*;
  */
 public class ctOdonto {
 
-    public boolean insertarOdontologo(String id, String nombre, String apellido, String especialidad, String telefono, String email) {
+    public boolean insertarOdontologo(String id, String nombre, String apellido, String especialidad, String email) {
         try {
             conexion c = new conexion();
-            String sql = "INSERT INTO odontologos (id_odontologo, nombre, apellido, especialidad, telefono, email) VALUES ('"
-                    + id + "','" + nombre + "','" + apellido + "','" + especialidad + "','" + telefono + "','" + email + "')";
+            String sql = "INSERT INTO odontologos (id_odontologo, nombre, apellido, especialidad, email) VALUES ('"
+                    + id + "','" + nombre + "','" + apellido + "','" + especialidad + "','" + email + "')";
             return c.st.executeUpdate(sql) > 0;
         } catch (Exception e) {
             System.out.println("Error insertando odontologo: " + e.getMessage());
@@ -70,6 +71,29 @@ public class ctOdonto {
         } catch (Exception e) {
             System.out.println("Error al obtener citas: " + e.getMessage());
         }
+        return lista;
+    }
+    
+    public ArrayList<mdOdontologo> obtenerTodos() {
+        ArrayList<mdOdontologo> lista = new ArrayList<>();
+        String sql = "SELECT id_odontologo, CONCAT(nombre_completo) AS nombre_completo, especialidad, correo FROM odontologos";
+
+        try (Connection con = conexion.getConexion(); PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                mdOdontologo o = new mdOdontologo(
+                        rs.getInt("id_odontologo"),
+                        rs.getString("nombre_completo"),
+                        rs.getString("especialidad"),
+                        rs.getString("correo")
+                );
+                lista.add(o);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error listando odontólogos: " + e.getMessage());
+        }
+
         return lista;
     }
 }

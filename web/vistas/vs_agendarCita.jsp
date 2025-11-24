@@ -5,6 +5,8 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="modelo.mdOdontologo" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,9 +36,16 @@
         <label>Seleccione un odontólogo:</label>
         <select name="id_odontologo" required>
             <option value="">-- Seleccione --</option>
-            <option value="1">Dr. Juan Pérez</option>
-            <option value="2">Dra. María Gómez</option>
-            <option value="3">Dr. Luis Ramírez</option>
+            <%
+                List<mdOdontologo> listaO = (List<mdOdontologo>) request.getAttribute("listaOdontologos");
+                if (listaO != null) {
+                    for (mdOdontologo o : listaO) {
+            %>
+            <option value="<%= o.getIdOdonto()%>"><%= o.getNombreCompleto()%></option>
+            <%
+                    }
+                }
+            %>
         </select>
 
         <label>Fecha y hora de la cita:</label>

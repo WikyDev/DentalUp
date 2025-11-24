@@ -26,18 +26,18 @@
         <h3>Seleccione una opción:</h3>
 
         <div class="menu-opciones">
-            <a href="../vistas/vs_agendarCita.jsp" class="boton boton-agendar">
+            <a href="${pageContext.request.contextPath}/CitaServlet?accion=agendar" class="boton boton-agendar">
                 <img class="icono-cita" alt="Agendar cita" src="${pageContext.request.contextPath}/imagenes/calendario.gif">
                 <span class="texto-agendar">Agendar cita</span>
             </a>
 
 
-            <a href="../vistas/vs_historiaClinica.jsp" class="boton boton-agendar">
+            <a href="${pageContext.request.contextPath}/HistoriaServlet?accion=verHistoriasPaciente" class="boton boton-agendar">
                 <img class="icono-cita" alt="Ver historial Clínico" src="${pageContext.request.contextPath}/imagenes/historial.gif">
                 <span class="texto-agendar">Ver historia clínica</span>
             </a>
 
-            <a href="../vistas/vs_listarCitasPaciente.jsp" class="boton boton-agendar">
+            <a href="${pageContext.request.contextPath}/CitaServlet?accion=listar" class="boton boton-agendar">
                 <img class="icono-cita" alt="Ver mis Citas" src="${pageContext.request.contextPath}/imagenes/cita.gif">
                 <span class="texto-agendar">Mis citas</span>
             </a>
