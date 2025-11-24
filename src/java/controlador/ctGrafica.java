@@ -21,19 +21,21 @@ import java.util.Map;
  */
 public class ctGrafica {
 
-    public Map<String, Integer> conteoCitasPorMes() {
-        Map<String, Integer> mapa = new HashMap<>();
-        try {
-            conexion c = new conexion();
-            String sql = "SELECT DATE_FORMAT(fecha_cita, '%Y-%m') as mes, COUNT(*) as total FROM citas GROUP BY mes";
-            ResultSet rs = c.st.executeQuery(sql);
-            while (rs.next()) {
-                mapa.put(rs.getString("mes"), rs.getInt("total"));
-            }
-        } catch (Exception e) {
-            System.out.println("Error en ControladorGrafica: " + e.getMessage());
+    public Map<String, Integer> conteoCitasPorMotivo() {
+    Map<String, Integer> mapa = new HashMap<>();
+    try {
+        conexion c = new conexion();
+        String sql = "SELECT motivo, COUNT(*) AS total FROM citas GROUP BY motivo";
+        ResultSet rs = c.st.executeQuery(sql);
+        while (rs.next()) {
+            mapa.put(rs.getString("motivo"), rs.getInt("total"));
         }
-        return mapa;
+    } catch (Exception e) {
+        System.out.println("Error en conteoCitasPorMotivo: " + e.getMessage());
     }
+    return mapa;
+}
+
+
 }
 

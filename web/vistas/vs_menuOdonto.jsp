@@ -1,4 +1,4 @@
-<%-- Vista limpia: sin logica embebida --%>
+<%-- Vista limpia: sin lógica embebida (solo lectura de sesión) --%>
 
 <!DOCTYPE html>
 <html>
@@ -8,19 +8,36 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilosMenus.css">
 </head>
 <body>
-    <h1>Bienvenido, <%= session.getAttribute("usuario") %> &#x200D;&#x2695;&#xFE0F;
-</h1>
+
+    <h1>
+        Bienvenido, <%= session.getAttribute("usuario") %> &#x200D;&#x2695;&#xFE0F;
+    </h1>
+
     <h2>Rol: <%= session.getAttribute("rol") %></h2>
+
     <div class="menu menu-odontologo">
-        <!-- Por el momento estas opciones no se encuentran funcionales, usan llamados de la version anterior
-        (se cambiaran usando servlets) -->
-        <a href="${pageContext.request.contextPath}/CitaServlet?accion=listarOdontologo">Ver mis Citas</a>
-        
-        <a href="/vista/vs_agendaOdontologo.jsp">Agenda por odontólogo</a><br>
-        
-        <a href="/control/ct_grafica.jsp">Gráfica por Motivo</a><br>
-        
-        <a href="logout.jsp">Cerrar sesión</a>
+
+        <!-- Ver citas del odontólogo -->
+        <a href="${pageContext.request.contextPath}/CitaServlet?accion=listarOdontologo">
+            Ver mis Citas
+        </a>
+
+        <!-- Agenda -->
+        <a href="${pageContext.request.contextPath}/vistas/vs_agendaOdontologo.jsp">
+            Agenda por odontólogo
+        </a>
+
+        <!-- Gráfica conectada al Servlet correcto -->
+<a href="${pageContext.request.contextPath}/vistas/vs_grafica.jsp">
+    Gráfica por Motivo
+</a>
+
+
+        <!-- Logout -->
+        <a href="${pageContext.request.contextPath}/vistas/logout.jsp">
+            Cerrar sesión
+        </a>
     </div>
+
 </body>
 </html>

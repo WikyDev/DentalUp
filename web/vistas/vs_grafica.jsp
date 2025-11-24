@@ -1,84 +1,47 @@
-<%@ page import="controlador.ControladorGrafica, java.util.Map" %>
-<%
-    ControladorGrafica ctrl = new ControladorGrafica();
-    Map<String,Integer> datos = ctrl.conteoCitasPorMes();
-    request.setAttribute("datosGrafica", datos);
-%>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Motivos por Odont√≥logo</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        .contenedor-graficas {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 100px;
-            padding: 20px;
-        }
+<div style="width:400px;margin:auto;">
+    <canvas id="graficaMotivos"></canvas>
+</div>
 
-        .grafica {
-            width: 250px;
-            text-align: center;
-        }
+<script>
+let chart;
 
-        canvas {
-            width: 300px !important;
-            height: 300px !important;
-        }
-    </style>
-</head>
-<body>
-    <h2 style="text-align:center;">GR√ÅFICA POR MOTIVO DE PACIENTE</h2>
+// FunciÛn para cargar datos desde el servlet
+async function cargarDatos() {
+    const resp = await fetch("${pageContext.request.contextPath}/datosMotivo");
 
-    <div class="contenedor-graficas">
-    
-        <div class="grafica">
-            <h4>Odont√≥logo: </h4>
-            <canvas id=""></canvas>
-        </div>
+    const data = await resp.json();
 
-        <script>
-    const ctx = document.getElementById('').getContext('2d');
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: [],
-            datasets: [{
-                data: [],
-                backgroundColor: [
-                    'rgba(48,140,236)',     // azul
-                    'rgba(244,116,20)',     // naranja
-                    'rgba(54,162,235,0.6)', // azul claro
-                    'rgba(255,159,64,0.6)', // naranja claro
-                    'rgba(54,162,235,0.6)',
-                    'rgba(255,159,64,0.6)'
-                ]
-            }]
-        },
-        options: {
-            responsive: false,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'bottom'
-                },
-                title: {
-                    display: false
-                }
+    if (!chart) {
+        // Crear la gr·fica por primera vez
+        const ctx = document.getElementById("graficaMotivos").getContext("2d");
+
+        chart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: data.labels,
+                datasets: [{
+                    data: data.values
+                }]
+            },
+            options: {
+                responsive: false,
+                maintainAspectRatio: false
             }
-        }
-    });
-</script>
+        });
 
-    
-    </div>
-    
-    <div>
-        <br>
-        <a href="/vista/vs_menuOdonto.jsp">Volver al men√∫</a>
-    </div>
-</body>
-</html>
+    } else {
+        // Actualizar gr·fica existente
+        chart.data.labels = data.labels;
+        chart.data.datasets[0].data = data.values;
+        chart.update();
+    }
+}
+
+// Carga inicial
+cargarDatos();
+
+// ? Actualizar cada 5 segundos
+setInterval(cargarDatos, 8000);
+</script>
