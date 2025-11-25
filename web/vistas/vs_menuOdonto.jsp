@@ -22,10 +22,7 @@
             Ver mis Citas
         </a>
 
-        <!-- Agenda -->
-        <a href="${pageContext.request.contextPath}/vistas/vs_agendaOdontologo.jsp"><br>
-            Agenda por odontólogo
-        </a>
+        
 
         <!-- Gráfica conectada al Servlet correcto -->
         <a href="${pageContext.request.contextPath}/vistas/vs_grafica.jsp"><br>
