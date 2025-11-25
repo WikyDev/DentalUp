@@ -18,23 +18,28 @@
     <div class="menu menu-odontologo">
 
         <!-- Ver citas del odontólogo -->
-        <a href="${pageContext.request.contextPath}/CitaServlet?accion=listarOdontologo">
+        <a href="${pageContext.request.contextPath}/CitaServlet?accion=listarOdontologo"><br>
             Ver mis Citas
         </a>
 
         <!-- Agenda -->
-        <a href="${pageContext.request.contextPath}/vistas/vs_agendaOdontologo.jsp">
+        <a href="${pageContext.request.contextPath}/vistas/vs_agendaOdontologo.jsp"><br>
             Agenda por odontólogo
         </a>
 
         <!-- Gráfica conectada al Servlet correcto -->
-<a href="${pageContext.request.contextPath}/vistas/vs_grafica.jsp">
-    Gráfica por Motivo
-</a>
+        <a href="${pageContext.request.contextPath}/vistas/vs_grafica.jsp"><br>
+            Gráfica por Motivo
+        </a>
+        <!-- historia clinica -->    
+        <a class="botonMenu" href="${pageContext.request.contextPath}/ctHistoriaOdontologo?id_paciente="><br>
+         Gestionar Historia Clínica
+        </a>
+
 
 
         <!-- Logout -->
-        <a href="${pageContext.request.contextPath}/vistas/logout.jsp">
+        <a href="${pageContext.request.contextPath}/vistas/logout.jsp"><br>
             Cerrar sesión
         </a>
     </div>

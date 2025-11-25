@@ -108,36 +108,57 @@ public class HistoriaClinicaDAO {
 
         return lista;
     }
-    
-    /*public ArrayList<mdHistoriaClinica> listarPorPaciente(int idPaciente) {
-        ArrayList<mdHistoriaClinica> lista = new ArrayList<>();
-        String sql = "SELECT * FROM historias_clinicas WHERE id_paciente = ?";
+    public mdHistoriaClinica obtenerPorId(int idHistoria) {
+    String sql = "SELECT * FROM historias_clinicas WHERE id_historia = ?";
+    mdHistoriaClinica h = null;
 
-        try (Connection con = conexion.getConexion();
-             PreparedStatement ps = con.prepareStatement(sql)){
-            
-            ps.setInt(1, idPaciente);
-            ResultSet rs = ps.executeQuery();
+    try (Connection con = conexion.getConexion();
+         PreparedStatement ps = con.prepareStatement(sql)) {
 
-            while (rs.next()) {
-                mdHistoriaClinica h = new mdHistoriaClinica();
-                h.setIdHistoria(rs.getInt("id_historia"));
-                h.setIdPaciente(rs.getInt("id_paciente"));
-                h.setIdOdontologo(rs.getInt("id_odontologo"));
-                h.setFecha(rs.getDate("fecha_registro"));
-                h.setDiagnostico(rs.getString("diagnostico"));
-                h.setTratamiento(rs.getString("tratamiento"));
-                h.setObservaciones(rs.getString("observaciones"));
+        ps.setInt(1, idHistoria);
+        ResultSet rs = ps.executeQuery();
 
-                lista.add(h);
-            }
-
-        } catch (Exception e) {
-            System.out.println("Error listar historias: " + e);
+        if (rs.next()) {
+            h = new mdHistoriaClinica();
+            h.setIdHistoria(rs.getInt("id_historia"));
+            h.setIdPaciente(rs.getInt("id_paciente"));
+            h.setIdOdontologo(rs.getInt("id_odontologo"));
+            h.setFecha(rs.getDate("fecha"));
+            h.setMotivoConsulta(rs.getString("motivoConsulta"));
+            h.setDiagnostico(rs.getString("diagnostico"));
+            h.setTratamiento(rs.getString("tratamiento"));
+            h.setObservaciones(rs.getString("observaciones"));
         }
 
-        return lista;
-    }*/
+    } catch (Exception e) {
+        System.out.println("Error obtener historia: " + e.getMessage());
+    }
+
+    return h;
+}
+public boolean actualizar(mdHistoriaClinica h) {
+
+    String sql = "UPDATE historias_clinicas SET motivoConsulta=?, diagnostico=?, tratamiento=?, observaciones=? "
+               + "WHERE id_historia=?";
+
+    try (Connection con = conexion.getConexion();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+        ps.setString(1, h.getMotivoConsulta());
+        ps.setString(2, h.getDiagnostico());
+        ps.setString(3, h.getTratamiento());
+        ps.setString(4, h.getObservaciones());
+        ps.setInt(5, h.getIdHistoria());
+
+        return ps.executeUpdate() > 0;
+
+    } catch (Exception e) {
+        System.out.println("Error al actualizar historia clínica: " + e.getMessage());
+        return false;
+    }
+}
+
+    
 
     
 }

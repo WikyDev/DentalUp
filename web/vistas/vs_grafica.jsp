@@ -42,6 +42,12 @@ async function cargarDatos() {
 // Carga inicial
 cargarDatos();
 
-// ? Actualizar cada 5 segundos
+// ? Actualizar cada 8 segundos
 setInterval(cargarDatos, 8000);
+
+
 </script>
+<div>
+        <br>
+        < <a href="${pageContext.request.contextPath}/vistas/vs_menuOdonto.jsp">Volver al menú</a>
+    </div>
