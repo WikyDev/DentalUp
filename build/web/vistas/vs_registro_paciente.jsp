@@ -73,7 +73,7 @@
             <input type="email" name="email" required>
 
             <button type="submit" class="btn">Registrar</button>
-            <a href="${pageContext.request.contextPath}/index.jsp" class="btn cancelar">Volver</a>
+            <a href="logout.jsp" class="btn cancelar">Volver</a>
         </form>
     </div>
 </body>

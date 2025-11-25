@@ -31,15 +31,10 @@
           <b class="secondary-message">o regístrate para acceder</b>
           <p class="intro-text">Tecnología de vanguardia y un equipo de especialistas certificados para brindarte la mejor atención dental. Transformamos sonrisas, cambiamos vidas..</p>
           <div class="hero-buttons">
-            <div class="hero-buttons">
-                <div class="hero-buttons">
                     <a href="vistas/vs_login.jsp" class="main-btn">Iniciar Sesión</a>
                     <a href="vistas/vs_registro_paciente.jsp" class="main-btn">Registrarse</a>
-                </div>
-            </div>
           </div>
-        </div>
-            
+        </div>          
         <div class="hero-image">
             <img src="${pageContext.request.contextPath}/imagenes/doc.jpg" alt="Foto de portada" class="main-img"/>
             <img src="${pageContext.request.contextPath}/imagenes/sonrisa.gif" alt="Gif acceso" class="gif-corner" />

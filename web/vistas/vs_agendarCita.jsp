@@ -37,15 +37,6 @@
             <label>ID del Paciente:</label>
             <input type="text" name="id_paciente" value="<%= session.getAttribute("id_paciente") != null ? session.getAttribute("id_paciente") : "" %>" readonly>
 
-            <label>Seleccione un odontólogo:</label>
-            <select name="id_odontologo" required>
-                <option value="">-- Seleccione --</option>
-                <option value="1">Dr. Juan Pérez</option>
-                <option value="2">Dra. María Gómez</option>
-                <option value="3">Dr. Luis Ramírez</option>
-            </select>
-
-<<<<<<< HEAD
         <label>Seleccione un odontólogo:</label>
         <select name="id_odontologo" required>
             <option value="">-- Seleccione --</option>
@@ -60,10 +51,8 @@
                 }
             %>
         </select>
-=======
             <label>Fecha y hora de la cita:</label>
             <input type="datetime-local" name="fecha_cita" required>
->>>>>>> c1c2e70c24a70b79a8c54604e4774e431b8ba2c2
 
             <label>Motivo de la cita:</label>
             <textarea name="motivo" placeholder="Describa brevemente el motivo de su consulta" required></textarea>

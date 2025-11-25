@@ -119,12 +119,12 @@ body {
   letter-spacing: -0.5px;
 }
 .main-message {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: 700;
   display: block;
 }
 .secondary-message {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: 700;
   display: block;
   background: linear-gradient(180deg, #fac74a, #f48b4a 60%, #ff8787);
@@ -132,7 +132,7 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 .intro-text {
   margin: 24px 0 30px 0;
@@ -146,21 +146,24 @@ body {
   margin-bottom: 20px;
 }
 .main-btn {
-  background: linear-gradient(90deg, #fac74a, #fd9b66);
+  background: linear-gradient(90deg, #F4C74A, #fd9b66);
   border: none;
   border-radius: 10px;
   padding: 13px 32px;
   font-size: 1rem;
   color: #232323;
-  font-weight: bold;
+  font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 3px 18px -8px #555;
-  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 4px 18px -6px rgba(0,0,0,0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
 }
+
 .main-btn:hover {
-  background: #f48b4a;
-  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px -6px rgba(0,0,0,0.35);
 }
+
 .hero-image {
   position: relative;
   max-width: 480px; /* o el tamaño fijo que gustes */
