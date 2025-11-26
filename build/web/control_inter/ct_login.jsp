@@ -28,14 +28,14 @@
                 break;
 
             case "odontologo":
-                int idOdonto = controlador.obtenerIdOdontologo(usuario);
-                session.setAttribute("id_odontologo", idOdonto);
+                int cedulaOdontologo = controlador.obtenerIdOdontologo(usuario);
+                session.setAttribute("cedula_odontologo", cedulaOdontologo);
                 response.sendRedirect("../vistas/vs_menuOdonto.jsp");
                 break;
 
             case "paciente":
-                int idPaciente = controlador.obtenerIdPaciente(usuario);
-                session.setAttribute("id_paciente", idPaciente);
+                int cedulaPaciente = controlador.obtenerIdPaciente(usuario);
+                session.setAttribute("cedula_paciente", cedulaPaciente);
                 response.sendRedirect("../vistas/vs_menuPaciente.jsp");
                 break;
 

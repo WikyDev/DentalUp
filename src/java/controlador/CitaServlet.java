@@ -79,18 +79,24 @@ public class CitaServlet extends HttpServlet {
     */
     private void registrarCita(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int idPaciente = Integer.parseInt(request.getParameter("id_paciente"));
-        int idOdontologo = Integer.parseInt(request.getParameter("id_odontologo"));
+        String cedulaStr = request.getParameter("cedula_paciente");
+        if (cedulaStr == null || cedulaStr.trim().isEmpty()) {
+            request.setAttribute("mensaje", "❌ Error: no se recibió la cédula del paciente.");
+            request.getRequestDispatcher("vistas/vs_agendarCita.jsp").forward(request, response);
+            return;
+        }
+        int cedulaPaciente = Integer.parseInt(cedulaStr);
+        int cedulaOdontologo = Integer.parseInt(request.getParameter("cedula_odontologo"));
         String fechaCita = request.getParameter("fecha_cita");
         String motivo = request.getParameter("motivo");
 
-        String sql = "INSERT INTO citas (id_paciente, id_odontologo, fecha_cita, motivo) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO citas (cedula_paciente, cedula_odontologo, fecha_cita, motivo) VALUES (?, ?, ?, ?)";
 
         try (Connection con = conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, idPaciente);
-            ps.setInt(2, idOdontologo);
+            ps.setInt(1, cedulaPaciente);
+            ps.setInt(2, cedulaOdontologo);
             ps.setString(3, fechaCita);
             ps.setString(4, motivo);
             ps.executeUpdate();
@@ -128,16 +134,16 @@ public class CitaServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        Integer idPaciente = (Integer) session.getAttribute("id_paciente");
+        Integer cedulaPaciente = (Integer) session.getAttribute("cedula_paciente");
 
-        if (idPaciente == null) {
+        if (cedulaPaciente == null) {
             request.setAttribute("mensaje", "⚠️ Debe iniciar sesión para ver sus citas.");
             request.getRequestDispatcher("vistas/vs_login.jsp").forward(request, response);
             return;
         }
 
         ctAgendarCita ctrl = new ctAgendarCita();
-        ArrayList<mdCita> listaCitas = ctrl.obtenerCitasPorPaciente(idPaciente);
+        ArrayList<mdCita> listaCitas = ctrl.obtenerCitasPorPaciente(cedulaPaciente);
 
         request.setAttribute("listaCitas", listaCitas);
         RequestDispatcher rd = request.getRequestDispatcher("vistas/vs_listarCitasPaciente.jsp");
@@ -152,16 +158,16 @@ public class CitaServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        Integer idOdontologo = (Integer) session.getAttribute("id_odontologo");
+        Integer cedulaOdontologo = (Integer) session.getAttribute("cedula_odontologo");
 
-        if (idOdontologo == null) {
+        if (cedulaOdontologo == null) {
             request.setAttribute("mensaje", "⚠️ Debe iniciar sesión como odontólogo.");
             request.getRequestDispatcher("vistas/vs_login.jsp").forward(request, response);
             return;
         }
 
         ctOdonto ctrl = new ctOdonto();
-        ArrayList<mdCita> listaCitas = ctrl.obtenerCitasPorOdontologo(idOdontologo);
+        ArrayList<mdCita> listaCitas = ctrl.obtenerCitasPorOdontologo(cedulaOdontologo);
 
         request.setAttribute("listaCitas", listaCitas);
         RequestDispatcher rd = request.getRequestDispatcher("vistas/vs_citasOdontologo.jsp");
@@ -173,7 +179,7 @@ public class CitaServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        Integer idPacienteSesion = (Integer) session.getAttribute("id_paciente");
+        Integer idPacienteSesion = (Integer) session.getAttribute("cedula_paciente");
 
         String idStr = request.getParameter("id");
         if (idStr == null) {
@@ -192,7 +198,7 @@ public class CitaServlet extends HttpServlet {
         }
 
         // Verificar que el paciente en sesión sea el dueño de la cita
-        if (idPacienteSesion == null || idPacienteSesion != cita.getIdPaciente()) {
+        if (idPacienteSesion == null || idPacienteSesion != cita.getCedulaPaciente()) {
             request.setAttribute("mensaje", "No tienes permiso para editar esta cita."); 
             listarCitasPaciente(request, response);
             return;
@@ -207,13 +213,13 @@ public class CitaServlet extends HttpServlet {
 
         // Obtener lista de odontólogos (id, nombre) para el select
         Map<Integer, String> odontologos = new LinkedHashMap<>();
-        String sql = "SELECT id_odontologo, nombre_completo FROM odontologos ORDER BY nombre_completo ASC";
+        String sql = "SELECT cedula_odontologo, nombre_completo FROM odontologos ORDER BY nombre_completo ASC";
         try (Connection con = conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                odontologos.put(rs.getInt("id_odontologo"), rs.getString("nombre_completo"));
+                odontologos.put(rs.getInt("cedula_odontologo"), rs.getString("nombre_completo"));
             }
 
         } catch (SQLException e) {
@@ -231,11 +237,11 @@ public class CitaServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        Integer idPacienteSesion = (Integer) session.getAttribute("id_paciente");
+        Integer idPacienteSesion = (Integer) session.getAttribute("cedula_paciente");
 
         try {
             int idCita = Integer.parseInt(request.getParameter("id_cita"));
-            int idOdontologo = Integer.parseInt(request.getParameter("id_odontologo"));
+            int cedulaOdontologo = Integer.parseInt(request.getParameter("cedula_odontologo"));
             String fecha = request.getParameter("fecha"); // yyyy-MM-dd
             String hora = request.getParameter("hora");   // HH:mm
             String motivo = request.getParameter("motivo");
@@ -251,7 +257,7 @@ public class CitaServlet extends HttpServlet {
             }
 
             // Verificar permisos
-            if (idPacienteSesion == null || idPacienteSesion != citaExistente.getIdPaciente()) {
+            if (idPacienteSesion == null || idPacienteSesion != citaExistente.getCedulaPaciente()) {
                 request.setAttribute("mensaje", "No tienes permiso para actualizar esta cita.");
                 listarCitasPaciente(request, response);
                 return;
@@ -266,8 +272,8 @@ public class CitaServlet extends HttpServlet {
 
             mdCita nueva = new mdCita();
             nueva.setIdCita(idCita);
-            nueva.setIdPaciente(citaExistente.getIdPaciente());
-            nueva.setIdOdontologo(idOdontologo);
+            nueva.setCedulaPaciente(citaExistente.getCedulaPaciente());
+            nueva.setCedulaOdontologo(cedulaOdontologo);
             nueva.setFechaCita(fechaCita);
             nueva.setMotivo(motivo);
             nueva.setEstado(citaExistente.getEstado());
@@ -291,7 +297,7 @@ public class CitaServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        Integer idPacienteSesion = (Integer) session.getAttribute("id_paciente");
+        Integer idPacienteSesion = (Integer) session.getAttribute("cedula_paciente");
 
         String idStr = request.getParameter("id");
         if (idStr == null) {
@@ -309,7 +315,7 @@ public class CitaServlet extends HttpServlet {
         }
 
         // Verificar que el paciente en sesión sea el dueño
-        if (idPacienteSesion == null || idPacienteSesion != cita.getIdPaciente()) {
+        if (idPacienteSesion == null || idPacienteSesion != cita.getCedulaPaciente()) {
             request.setAttribute("mensaje", "No tienes permiso para eliminar esta cita.");
             listarCitasPaciente(request, response);
             return;

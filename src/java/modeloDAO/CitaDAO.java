@@ -13,21 +13,21 @@ import java.util.ArrayList;
 public class CitaDAO {
 
     // Obtener citas por paciente
-    public ArrayList<mdCita> obtenerCitasPorPaciente(int idPaciente) {
+    public ArrayList<mdCita> obtenerCitasPorPaciente(int cedulaPaciente) {
         ArrayList<mdCita> lista = new ArrayList<>();
-        String sql = "SELECT * FROM citas WHERE id_paciente = ? ORDER BY fecha_cita DESC";
+        String sql = "SELECT * FROM citas WHERE cedula_paciente = ? ORDER BY fecha_cita DESC";
 
         try (Connection con = conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, idPaciente);
+            ps.setInt(1, cedulaPaciente);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 mdCita c = new mdCita(
                         rs.getInt("id_cita"),
-                        rs.getInt("id_paciente"),
-                        rs.getInt("id_odontologo"),
+                        rs.getInt("cedula_paciente"),
+                        rs.getInt("cedula_odontologo"),
                         rs.getString("fecha_cita"),
                         rs.getString("motivo"),
                         rs.getString("estado")
@@ -43,21 +43,21 @@ public class CitaDAO {
     }
 
     // Obtener citas por odontólogo
-    public ArrayList<mdCita> obtenerCitasPorOdontologo(int idOdontologo) {
+    public ArrayList<mdCita> obtenerCitasPorOdontologo(int cedulaOdontologo) {
         ArrayList<mdCita> lista = new ArrayList<>();
-        String sql = "SELECT * FROM citas WHERE id_odontologo = ? ORDER BY fecha_cita ASC";
+        String sql = "SELECT * FROM citas WHERE cedula_odontologo = ? ORDER BY fecha_cita ASC";
 
         try (Connection con = conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, idOdontologo);
+            ps.setInt(1, cedulaOdontologo);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 mdCita c = new mdCita(
                         rs.getInt("id_cita"),
-                        rs.getInt("id_paciente"),
-                        rs.getInt("id_odontologo"),
+                        rs.getInt("cedula_paciente"),
+                        rs.getInt("cedula_odontologo"),
                         rs.getString("fecha_cita"),
                         rs.getString("motivo"),
                         rs.getString("estado")
@@ -86,8 +86,8 @@ public class CitaDAO {
             if (rs.next()) {
                 cita = new mdCita(
                         rs.getInt("id_cita"),
-                        rs.getInt("id_paciente"),
-                        rs.getInt("id_odontologo"),
+                        rs.getInt("cedula_paciente"),
+                        rs.getInt("cedula_odontologo"),
                         rs.getString("fecha_cita"),
                         rs.getString("motivo"),
                         rs.getString("estado")
@@ -120,13 +120,13 @@ public class CitaDAO {
         }
     }
     
-    // Actualizar una cita (fecha, motivo, id_odontologo)
+    // Actualizar una cita (fecha, motivo, cedula_odontologo)
     public boolean actualizar(mdCita cita) {
-        String sql = "UPDATE citas SET id_odontologo = ?, fecha_cita = ?, motivo = ? WHERE id_cita = ?";
+        String sql = "UPDATE citas SET cedula_odontologo = ?, fecha_cita = ?, motivo = ? WHERE id_cita = ?";
         try (Connection con = conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, cita.getIdOdontologo());
+            ps.setInt(1, cita.getCedulaOdontologo());
             ps.setString(2, cita.getFechaCita()); // formato: "YYYY-MM-DD HH:MM"
             ps.setString(3, cita.getMotivo());
             ps.setInt(4, cita.getIdCita());
