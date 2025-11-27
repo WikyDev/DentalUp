@@ -113,7 +113,7 @@ body {
     font-weight: 600;
     margin: 0px 0 10px 0;
     display: block;
-    background: linear-gradient(180deg, #fac74a, #f48b4a 60%, #ff8787);
+    background: linear-gradient(135deg, #e6efff 0%, #76B4FF 50%, #5F8CFF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

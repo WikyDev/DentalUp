@@ -74,11 +74,7 @@
             <input type="email" name="email" required>
 
             <button type="submit" class="btn">Registrar</button>
-<<<<<<< HEAD
             <a href="${pageContext.request.contextPath}/vistas/vs_login.jsp" class="btn cancelar">Volver</a>
-=======
-            <a href="${pageContext.request.contextPath}/vistas/logout.jsp" class="btn cancelar">Volver</a>
->>>>>>> 25cade29fdd35b0b1024f5654c864de413f6cb51
         </form>
     </div>
 </body>

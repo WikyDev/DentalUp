@@ -16,6 +16,9 @@
 <body>
     <div id="img-fondo"></div>
       <div class="container">
+        <div class="logo-container">
+            <img src="${pageContext.request.contextPath}/imagenes/logo.png" alt="Logo DentalUp">
+        </div>
         <h2>Agendar Nueva Cita</h2>
 
         <!-- Mensaje del controlador -->
