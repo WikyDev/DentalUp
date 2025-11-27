@@ -7,9 +7,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css">
 </head>
 <body>
-    <video autoplay muted loop playsinline preload="auto" id="video-bg">
-        <source src="${pageContext.request.contextPath}/imagenes/dashboard.mp4" type="video/mp4">
-    </video>
+    <div id="img-fondo"></div>
     <nav class="navbar">
         <div class="grupo-logo-nombre">
             <div class="logo">
@@ -19,7 +17,7 @@
         </div>
         <span class="nav-link">Inicio</span>
         <span class="nav-link">Servicios</span>
-        <span class="nav-link">Nosotros</span>
+        <span class="nav-link">Desarroladores</span>
         <span class="nav-link">Testimonios</span>
         <span class="nav-link">Contacto</span>
     </nav>
@@ -30,14 +28,8 @@
           <b class="main-message">Por favor, inicia sesión</b>
           <b class="secondary-message">o regístrate para acceder</b>
           <p class="intro-text">Tecnología de vanguardia y un equipo de especialistas certificados para brindarte la mejor atención dental. Transformamos sonrisas, cambiamos vidas..</p>
-          <div class="hero-buttons">
-            <div class="hero-buttons">
-                <div class="hero-buttons">
-                    <a href="vistas/vs_login.jsp" class="main-btn">Iniciar Sesión</a>
-                    <a href="vistas/vs_registro_paciente.jsp" class="main-btn">Registrarse</a>
-                </div>
-            </div>
-          </div>
+          <a href="${pageContext.request.contextPath}/vistas/vs_login.jsp" class="cita-btn-unico">Agenda tu Cita</a>
+
         </div>
             
         <div class="hero-image">

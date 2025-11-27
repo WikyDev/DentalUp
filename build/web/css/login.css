@@ -312,3 +312,37 @@ body {
   color: #22543d;
   border-left: 4px solid #22543d;
 }
+
+/* Contenedor del enlace */
+.volver-inicio {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #667eea;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+/* Cambio de color al pasar el mouse */
+.volver-inicio:hover {
+  color: #5a67d8;
+}
+
+/* Icono */
+.icono-volver {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  opacity: 0.9;
+}
+
+/* Animación suave del ícono */
+.volver-inicio:hover .icono-volver {
+  transform: translateX(-4px);
+  opacity: 1;
+}

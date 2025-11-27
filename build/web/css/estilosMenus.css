@@ -1,3 +1,4 @@
+/* Fondo general */
 body {
   background: linear-gradient(180deg, #f5f7fa, #fff 50%, #edf4ff);
   font-family: 'DM Sans', Arial, sans-serif;
@@ -6,83 +7,109 @@ body {
   min-height: 100vh;
 }
 
-#video-bg {
+/* Imagen de fondo fija */
+#img-fondo {
   position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 100vw;
-  min-height: 100vh;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('${pageContext.request.contextPath}/imagenes/menu.jpeg');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.90);
   z-index: -1;
-  pointer-events: none;
 }
 
+/* Layout principal: info + menú a la derecha */
+.top-layout {
+  display: flex;               /* dos columnas */
+  justify-content: flex-start; /* izquierda → derecha */
+  align-items: flex-start;     /* alineados arriba */
+  gap: 220px;                   /* espacio entre tarjetas */
+  max-width: 1400px;           /* ancho total del bloque */
+  margin: 50px 0 50px 150px;    /* mueve todo el grupo desde el borde izq */
+}
+
+/* Nombre con color degradado */
 .usuario-nombre {
   font-size: 30px;
-  font-weight: 600;
-  margin: 0px 0 10px 0;
+  font-weight: 700;
   background: linear-gradient(180deg, #fac74a, #f48b4a 60%, #ff8787);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-
+/* Tarjetas base */
 .menu-container {
-  max-width: 480px;
-  margin: 10px auto 0 auto;
-  background: #fff;
-  border-radius: 32px;
-  box-shadow: 0 4px 32px rgba(77, 119, 255, .08);
-  padding: 32px 24px;
-  position: relative;
+  background: rgba(255,255,255,0.86);
+  backdrop-filter: blur(12px);
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.40);
+  box-shadow: 0 4px 26px rgba(0,0,0,0.10);
+  padding: 25px 25px;
 }
 
+/* Contenedor izquierdo (información) */
+.info-container {
+  flex: 1;              /* ocupa todo el espacio restante */
+  min-height: 620px;    /* hero principal más alto */
+}
+
+/* Contenedor derecho (menú) INDEPENDIENTE */
+.menu-container {
+  flex: 50 0 auto;       /* NO crece ni se estira, tamaño propio */
+  width: 500px;         /* ancho fijo, cámbialo a gusto */
+  min-height: 400px;    /* alto mínimo */
+  max-width: 600px;
+
+  /* Aquí lo mueves “a gusto” sin tocar la izquierda */
+  margin-top: 0px;      /* súbelo o bájalo */
+  margin-right: 40px;   /* separa del borde derecho del top-layout */
+}
+
+/* Encabezado del menú */
 .menu-container header {
   text-align: center;
-  margin-bottom: 5px;
+  margin-bottom: 12px;
 }
 
 .menu-container .logo {
-  width: 150px;
-  height: 80px;
-  border-radius: 24px;
+  width: 120px;
+  height: 70px;
+  border-radius: 20px;
   background: #f5f7fa;
-  margin: 0 auto 8px auto;
+  margin: 0 auto 6px auto;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .menu-container .logo img {
-  width: 70px;
-  height: 70px;
+  width: 58px;
+  height: 58px;
   object-fit: contain;
-  border-radius: 18px;
-  display: block;
-  background: transparent;
 }
 
 .menu-container h1 {
-  margin: 12px 0 2px 0;
-  font-size: 1.6em;
+  margin: 8px 0 2px 0;
+  font-size: 1.45em;
   font-weight: 700;
 }
 
 .menu-container h2 {
-  margin: 0 0 16px 0;
+  margin: 0 0 12px 0;
   color: #666;
   font-weight: 500;
-  font-size: 1.1em;
+  font-size: 1.05em;
 }
 
 .menu-container h3 {
-  margin: 18px 0 22px 0;
-  font-size: 1.12em;
+  margin: 12px 0 18px 0;
+  font-size: 1.08em;
   color: #445;
 }
 
+/* Opciones de menú */
 .menu-opciones {
   display: flex;
   flex-direction: column;
@@ -92,90 +119,111 @@ body {
 .menu-opciones .boton {
   display: flex;
   align-items: center;
-  gap: 16px;
-  background: #fff;
-  border: 1.3px solid #f3f4f6;
-  border-radius: 20px;
-  box-shadow: 0 2px 24px -8px rgba(115, 166, 242, 0.1);
-  padding: 18px 22px;
-  font-size: 1em;
+  gap: 14px;
+  background: rgba(255,255,255,0.9);
+  border: 1.3px solid #f1f2f5;
+  border-radius: 18px;
+  box-shadow: 0 2px 18px -8px rgba(115, 166, 242, 0.10);
+  padding: 16px 18px;
+  font-size: 0.97em;
   color: #1a1a1a;
   text-decoration: none;
-  transition: box-shadow 0.2s, border-color 0.2s;
+  transition: all 0.2s ease;
 }
 
 .menu-opciones .boton:hover {
   border-color: #4d77ff;
-  box-shadow: 0 6px 32px -10px rgba(77, 119, 255, .16);
+  box-shadow: 0 6px 26px -10px rgba(77, 119, 255, .18);
+  transform: translateY(-2px);
 }
 
-.icono-cita{
-  width: 70px;
-  height: 70px;
-  border-radius: 12px;
-  object-fit: cover;
+/* Iconos */
+.icono-cita {
+  width: 58px;
+  height: 58px;
+  border-radius: 10px;
   background: #f0f4fa;
+  object-fit: cover;
 }
 
 .boton-agendar .texto-agendar {
-  font-size: 1.2em; /* Ajusta a tu gusto */
-  font-weight: 600; /* Opcional: más destacado */
+  font-size: 1.08em;
+  font-weight: 600;
 }
 
-.menu-opciones .cancelar {
-  color: #ff8787;
-  border: 1.3px solid #ffdede;
-  background: #fff6f6;
-}
-
-.menu-opciones .cancelar:hover {
-  border-color: #ff6b6b;
-  background: #ffeaea;
-}
-
+/* Consejo del día */
 .consejo-dia {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: linear-gradient(90deg, rgba(244,199,74,0.08), rgba(244,139,74,0.09) 50%, rgba(244,199,74,0.06));
-  border: 1.2px solid rgba(244,199,74,0.18);
-  border-radius: 15px;
-  padding: 14px 18px;
-  margin: 28px 0 6px 0;
-  font-size: 0.97em;
+  background: rgba(244,199,74,0.08);
+  border: 1.2px solid rgba(244,199,74,0.22);
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin: 20px 0 6px 0;
+  font-size: 0.95em;
   color: #b36b1e;
 }
 
 .consejo-dia .icono-cita {
-  width: 55px;
-  height: 55px;
+  width: 48px;
+  height: 48px;
   border-radius: 8px;
   background: #fff4ce;
 }
 
-.ayuda {
-  text-align: center;
-  margin-top: 28px;
-  font-size: 0.98em;
-  color: #999;
+/* Título del container izquierdo */
+.info-title {
+  font-size: 1.55em;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: #1a1a1a;
 }
 
-.ayuda .boton.ayuda {
-  display: inline-block;
-  margin-top: 0px;
-  padding: 10px 26px;
-  background: #eaf0ff;
+/* Descripción */
+.info-text {
+  font-size: 1.05em;
+  line-height: 1.5;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+/* Lista de items */
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.9);
+  border: 1.3px solid #f1f2f5;
+}
+
+.info-item:hover {
+  border-color: #4d77ff;
+  box-shadow: 0 6px 22px -10px rgba(77,119,255,0.18);
+}
+
+.info-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  background: #f8f9ff;
+  border-radius: 12px;
+}
+
+/* Frase inspiracional */
+.frase-inspiracion {
+  margin-top: 12px;
+  padding-top: 12px;
+  font-style: italic;
+  font-size: 1.05em;
   color: #4d77ff;
-  border-radius: 32px;
-  text-decoration: none;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-  font-size: 1em;
-  box-shadow: 0 2px 8px -3px rgba(77,119,255,0.10);
-  transition: background .18s;
-}
-
-.ayuda .boton.ayuda:hover {
-  background: #d5e2fb;
+  border-top: 1px solid rgba(0,0,0,0.08);
 }

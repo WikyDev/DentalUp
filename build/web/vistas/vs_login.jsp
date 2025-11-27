@@ -41,6 +41,11 @@
 
   <!-- Derecha: Login -->
   <div class="login-card">
+      <a href="${pageContext.request.contextPath}/index.jsp" class="volver-inicio">
+            <img src="${pageContext.request.contextPath}/imagenes/inicio.png" 
+                 alt="Volver" class="icono-volver">Volver a inicio
+      </a>
+
       <h2 class="login-title">Portal de Inicio</h2>
 
       <% 

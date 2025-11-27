@@ -1,3 +1,6 @@
+/* ============================
+   AJUSTES GENERALES
+============================ */
 body {
     background: transparent;
     background-size: cover;
@@ -9,40 +12,19 @@ body {
     padding-top: 74px;
 }
 
-#video-bg {
+/* Fondo estático */
+#img-fondo {
   position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 100vw;
-  min-height: 100vh;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -1;
-  pointer-events: none;
-}
-
-#fondo-animado {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: url('../imagenes/dashboard.jpg') no-repeat center center;
-  background-size: cover;
-  animation: movimientoFondo 60s linear infinite, parpadeo 10s ease-in-out infinite alternate;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../imagenes/landing.jpeg') center center / cover no-repeat;
   z-index: -1;
 }
 
-@keyframes movimientoFondo {
-  0% { background-position: center center; }
-  50% { background-position: center 10%; }
-  100% { background-position: center center; }
-}
-
-@keyframes parpadeo {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; }
-}
-
+/* ============================
+   NAVBAR
+============================ */
 .navbar {
     display: flex;
     align-items: center;
@@ -88,16 +70,16 @@ body {
     color: #4d77ff;
 }
 
-/* HERO: imagen a la derecha, texto a la izquierda */
+/* ============================
+   HERO
+============================ */
 .hero {
-  background: transparent;
-  padding: 58px 0 58px 0;
+  padding: 58px 0;
   min-height: 480px;
 }
 
 .hero-content {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
   width: 90vw;
@@ -107,217 +89,186 @@ body {
 }
 
 .hero-text {
-  flex: 1 1 0;
+  flex: 1;
   text-align: left;
   color: #fff;
-  max-width: 540px;
+  max-width: 700px;
 }
+
 .hero-text h1 {
   font-size: 2.7rem;
   font-weight: bold;
   margin-bottom: 10px;
+  text-shadow: 0 0 8px rgba(0,0,0,0.55);
   letter-spacing: -0.5px;
 }
+
+.main-message,
+.intro-text {
+  text-shadow: 0 0 8px rgba(0,0,0,0.55);
+}
+
 .main-message {
   font-size: 1.5rem;
   font-weight: 700;
-  display: block;
 }
+
 .secondary-message {
-  font-size: 1.5rem;
-  font-weight: 700;
-  display: block;
-  background: linear-gradient(180deg, #fac74a, #f48b4a 60%, #ff8787);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-  margin-bottom: 16px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    display: block;
+
+    /* Degradado más fuerte y más oscuro para mayor lectura */
+    background: linear-gradient(
+        180deg,
+        #e6efff 0%,
+        #b4cbff 45%,
+        #6fa1ff 100%
+    );
+    
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    /* Sombra más profunda y más amplia */
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.75));
+
+    margin-bottom: 18px;
 }
+
+
 .intro-text {
-  margin: 24px 0 30px 0;
+  margin: 24px 0 30px;
   font-size: 1.08rem;
-  color: rgba(255,255,255,0.93);
+  color: #F5F7FF;
   max-width: 390px;
 }
+
+/* BOTÓN ÚNICO */
 .hero-buttons {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
 }
-.main-btn {
-  background: linear-gradient(90deg, #fac74a, #fd9b66);
-  border: none;
-  border-radius: 10px;
-  padding: 13px 32px;
-  font-size: 1rem;
-  color: #232323;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 3px 18px -8px #555;
-  transition: background 0.2s, color 0.2s;
+
+.cita-btn-unico {
+    background: linear-gradient(135deg, #5F8CFF, #76B4FF);
+    padding: 16px 46px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border-radius: 14px;
+    text-decoration: none;
+    display: inline-block;
+
+    /* Mucho más suave */
+    box-shadow: 0 6px 20px rgba(70, 120, 255, 0.32);
+
+    /* Bordes casi invisibles */
+    border: 1px solid rgba(255,255,255,0.08);
+
+    /* Efecto de suavidad */
+    backdrop-filter: blur(3px);
+
+    transition: 
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        background 0.3s ease;
+    
+    letter-spacing: 0.5px;
 }
-.main-btn:hover {
-  background: #f48b4a;
-  color: #fff;
+.cita-btn-unico:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(80, 140, 255, 0.42);
+    background: linear-gradient(135deg, #76B4FF, #5F8CFF);
 }
+
+
+/* ============================
+   HERO IMAGE
+============================ */
 .hero-image {
   position: relative;
-  max-width: 480px; /* o el tamaño fijo que gustes */
-  margin: 0 auto;
+  max-width: 480px;
   border-radius: 25px;
   overflow: hidden;
-  background: #fff;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(4px);
   box-shadow: 0 8px 38px -10px rgba(36,60,134,0.13);
-  display: block;
 }
 
 .hero-image::after {
   content: '';
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: linear-gradient(135deg, rgba(77,119,255,0.22) 0%, rgba(10,22,40,0.15) 100%);
-  border-radius: 20px;
-  pointer-events: none;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,22,40,0.45) 0%, rgba(50,100,170,0.28) 100%);
   z-index: 1;
 }
 
 .main-img {
-  width: 100%;
-  display: block;
-  border-radius: 20px;
+    width: 100%;
+    display: block;
+    border-radius: 20px;
+    filter: brightness(0.92) saturate(0.85) blur(0.3px);
 }
 
 .gif-corner {
   position: absolute;
   left: 9px;
   bottom: 9px;
-  width: 60px;   /* Ajusta el tamaño del GIF aquí */
-  height: auto;
+  width: 60px;
   border-radius: 18px;
-  box-shadow: 0 2px 10px -2px rgba(60,60,60,0.10);
   z-index: 2;
-  background: none;
 }
 
+/* ============================
+   SERVICES
+============================ */
 .services {
-  background: rgba(10, 22, 40, 0.9); /* fondo oscuro traslúcido */
+  background: rgba(10, 22, 40, 0.9);
   color: #fff;
-  padding: 52px 0 44px 0;
+  padding: 52px 0 44px;
 }
 
 .services h2 {
     color: #4d77ff;
     font-size: 2.2rem;
-    margin-bottom: 10px;
 }
+
 .section-desc {
     color: #99a1af;
     font-size: 1.08rem;
     margin-bottom: 44px;
 }
+
 .service-card {
     display: inline-block;
-    vertical-align: top;
     background: rgba(255,255,255,0.02);
     border-radius: 20px;
     margin: 18px;
     width: 260px;
+    padding: 28px 15px 16px;
     box-shadow: 0 10px 28px -12px rgba(0,0,0,0.10);
-    text-align: center;
-    padding: 28px 15px 16px 15px;
-}
-.service-icon {
-    height: 62px;
-    margin-bottom: 9px;
-}
-.service-card h3 {
-    color: #647cf5;
-    font-size: 1.25rem;
-    margin-bottom: 8px;
-}
-.service-desc {
-    color: #99a1af;
-    font-size: 1rem;
-    margin-bottom: 18px;
-}
-.service-link {
-    color: #4d77ff;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1.07rem;
 }
 
+/* ============================
+   STATS
+============================ */
 .stats {
-    background: rgba(77, 119, 255, 0.85); /* más claro y traslúcido */
+    background: rgba(77, 119, 255, 0.85);
     color: #fff;
-    font-size: 1.5em;
     padding: 36px 0;
     display: flex;
     justify-content: center;
     gap: 36px;
 }
-.stat-card {
-    background: rgba(0,0,0,0.15);
-    border-radius: 15px;
-    padding: 18px 28px;
-    min-width: 150px;
-    text-align: center;
-}
-.stat-icon {
-    height: 38px;
-    display: block;
-    margin: 0 auto 9px auto;
-}
-.stat-number {
-    font-size: 2rem;
-    color: #fac74a;
-    font-weight: bold;
-}
-.stat-desc {
-    display: block;
-    color: #fff;
-    font-size: 1.05rem;
-}
 
+/* ============================
+   VENTAJAS
+============================ */
 .ventajas {
     background: rgba(10, 22, 40, 0.9);
     color: #fff;
-    padding: 56px 0 54px 0;
-}
-.ventajas h2 {
-    color: #4d77ff;
-    font-size: 2.0rem;
-    margin-bottom: 10px;
-}
-.ventaja-card {
-    display: inline-block;
-    vertical-align: top;
-    background: rgba(255,255,255,0.03);
-    border-radius: 20px;
-    margin: 18px 22px;
-    width: 260px;
-    box-shadow: 0 10px 28px -12px rgba(0,0,0,0.07);
-    text-align: center;
-    padding: 24px 18px 15px 18px;
-}
-.ventaja-icon {
-    height: 56px;
-    margin-bottom: 8px;
-}
-.ventaja-card h3 {
-    color: #fac74a;
-    font-size: 1.18rem;
-    margin-bottom: 8px;
-}
-.ventaja-desc {
-    color: #99a1af;
-    font-size: 0.97rem;
-    margin-bottom: 14px;
-}
-.ventaja-link {
-    color: #fac74a;
-    text-decoration: none;
-    font-weight: 500;
+    padding: 56px 0 54px;
 }

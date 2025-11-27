@@ -17,9 +17,7 @@
 
 </head>
 <body>
-    <video autoplay muted loop playsinline preload="auto" id="video-bg">
-        <source src="${pageContext.request.contextPath}/imagenes/registro.mp4" type="video/mp4">
-    </video>
+    <div id="img-fondo"></div>
     <div class="form-container">
         <h2>Registro de Paciente</h2>
 
@@ -73,7 +71,7 @@
             <input type="email" name="email" required>
 
             <button type="submit" class="btn">Registrar</button>
-            <a href="${pageContext.request.contextPath}/index.jsp" class="btn cancelar">Volver</a>
+            <a href="${pageContext.request.contextPath}/vistas/vs_login.jsp" class="btn cancelar">Volver</a>
         </form>
     </div>
 </body>
