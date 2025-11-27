@@ -28,10 +28,18 @@
           <b class="main-message">Por favor, inicia sesión</b>
           <b class="secondary-message">o regístrate para acceder</b>
           <p class="intro-text">Tecnología de vanguardia y un equipo de especialistas certificados para brindarte la mejor atención dental. Transformamos sonrisas, cambiamos vidas..</p>
+<<<<<<< HEAD
           <a href="${pageContext.request.contextPath}/vistas/vs_login.jsp" class="cita-btn-unico">Agenda tu Cita</a>
 
         </div>
             
+=======
+          <div class="hero-buttons">
+                    <a href="vistas/vs_login.jsp" class="main-btn">Iniciar Sesión</a>
+                    <a href="vistas/vs_registro_paciente.jsp" class="main-btn">Registrarse</a>
+          </div>
+        </div>          
+>>>>>>> 25cade29fdd35b0b1024f5654c864de413f6cb51
         <div class="hero-image">
             <img src="${pageContext.request.contextPath}/imagenes/doc.jpg" alt="Foto de portada" class="main-img"/>
             <img src="${pageContext.request.contextPath}/imagenes/sonrisa.gif" alt="Gif acceso" class="gif-corner" />

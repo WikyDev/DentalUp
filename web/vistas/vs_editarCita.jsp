@@ -42,16 +42,16 @@
         <input type="hidden" name="id_cita" value="<%= cita.getIdCita() %>">
 
         <label for="odontologo">Odontólogo:</label><br>
-        <select id="odontologo" name="id_odontologo" required>
+        <select id="odontologo" name="cedula_odontologo" required>
             <% if (odontologos != null && !odontologos.isEmpty()) {
                    for (Map.Entry<Integer, String> e : odontologos.entrySet()) {
                        int oid = e.getKey();
                        String oname = e.getValue();
             %>
-                <option value="<%= oid %>" <%= (oid == cita.getIdOdontologo() ? "seleccione" : "") %>><%= oname %></option>
+                <option value="<%= oid %>" <%= (oid == cita.getCedulaOdontologo()? "seleccione" : "") %>><%= oname %></option>
             <%     }
                } else { %>
-                <option value="<%= cita.getIdOdontologo() %>">ID: <%= cita.getIdOdontologo() %></option>
+                <option value="<%= cita.getCedulaOdontologo()%>">ID: <%= cita.getCedulaOdontologo()%></option>
             <% } %>
         </select>
         <br><br>

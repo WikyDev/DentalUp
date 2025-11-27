@@ -6,32 +6,34 @@ package modelo;
  * @author Anthony
  */
 public class mdOdontologo {
-    private int idOdonto;
+    private int cedula_odontologo;
     private String nombreCompleto;
     private String especialidad;
     private String correo;
+    private int idUser;
     
     public mdOdontologo(){
         
     }
     
-    public mdOdontologo(int idOdonto, String nombreCompleto, String especialidad, String correo){
-        this.idOdonto = idOdonto;
+    public mdOdontologo(int cedula_odontologo, String nombreCompleto, String especialidad, String correo, int idUser){
+        this.cedula_odontologo = cedula_odontologo;
         this.nombreCompleto = nombreCompleto;
         this.especialidad = especialidad;
         this.correo = correo;
+        this.idUser = idUser;
     }
     
     //Getters y Setters
 
-    public int getIdOdonto() {
-        return idOdonto;
+    public int getCedulaOdontologo() {
+        return cedula_odontologo;
     }
 
-    public void setIdOdonto(int idOdonto) {
-        this.idOdonto = idOdonto;
+    public void setCedulaOdontologo(int cedula_odontologo) {
+        this.cedula_odontologo = cedula_odontologo;
     }
-
+    
     public String getNombreCompleto() {
         return nombreCompleto;
     }
@@ -56,6 +58,12 @@ public class mdOdontologo {
         this.correo = correo;
     }
     
-    
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
     
 }

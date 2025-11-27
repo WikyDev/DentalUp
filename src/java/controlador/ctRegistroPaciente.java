@@ -20,7 +20,7 @@ public class ctRegistroPaciente {
     boolean ok = false;
 
     String sqlUsuario = "INSERT INTO usuarios (nombre_user, password, rol) VALUES (?, ?, 'paciente')";
-    String sqlPaciente = "INSERT INTO pacientes (nombre, apellido, edad, telefono, fecha_nac, tiene_OS, tipo_sangre, email, id_user) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    String sqlPaciente = "INSERT INTO pacientes (cedula_paciente, nombre, apellido, edad, telefono, fecha_nac, tiene_OS, tipo_sangre, email, id_user) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     try (Connection con = conexion.getConexion();
          PreparedStatement psUser = con.prepareStatement(sqlUsuario, Statement.RETURN_GENERATED_KEYS);
@@ -47,15 +47,16 @@ public class ctRegistroPaciente {
         }
 
         // Crear paciente vinculado
-        psPaciente.setString(1, paciente.getNombre());
-        psPaciente.setString(2, paciente.getApellido());
-        psPaciente.setInt(3, paciente.getEdad());
-        psPaciente.setString(4, paciente.getTelefono());
-        psPaciente.setString(5, paciente.getFechaNac());
-        psPaciente.setString(6, paciente.getTieneOS());
-        psPaciente.setString(7, paciente.getTipoSangre());
-        psPaciente.setString(8, paciente.getEmail());
-        psPaciente.setInt(9, idUser);
+        psPaciente.setInt(1, paciente.getCedulaPaciente());
+        psPaciente.setString(2, paciente.getNombre());
+        psPaciente.setString(3, paciente.getApellido());
+        psPaciente.setInt(4, paciente.getEdad());
+        psPaciente.setString(5, paciente.getTelefono());
+        psPaciente.setString(6, paciente.getFechaNac());
+        psPaciente.setString(7, paciente.getTieneOS());
+        psPaciente.setString(8, paciente.getTipoSangre());
+        psPaciente.setString(9, paciente.getEmail());
+        psPaciente.setInt(10, idUser);
 
         int filas = psPaciente.executeUpdate();
         ok = filas > 0;

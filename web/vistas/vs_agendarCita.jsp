@@ -31,17 +31,17 @@
 
             <!-- Toma el id del paciente logueado y lo pone en el campo automaticamente-->
             <label>ID del Paciente:</label>
-            <input type="text" name="id_paciente" value="<%= session.getAttribute("id_paciente") != null ? session.getAttribute("id_paciente") : "" %>" readonly>
+            <input type="text" name="cedula_paciente" value="<%= session.getAttribute("cedula_paciente") != null ? session.getAttribute("cedula_paciente").toString() : "" %>" readonly>
 
         <label>Seleccione un odontólogo:</label>
-        <select name="id_odontologo" required>
+        <select name="cedula_odontologo" required>
             <option value="">-- Seleccione --</option>
             <%
                 List<mdOdontologo> listaO = (List<mdOdontologo>) request.getAttribute("listaOdontologos");
                 if (listaO != null) {
                     for (mdOdontologo o : listaO) {
             %>
-            <option value="<%= o.getIdOdonto()%>"><%= o.getNombreCompleto()%></option>
+            <option value="<%= o.getCedulaOdontologo()%>"><%= o.getNombreCompleto()%></option>
             <%
                     }
                 }

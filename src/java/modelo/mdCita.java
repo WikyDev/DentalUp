@@ -8,8 +8,8 @@ package modelo;
 
 public class mdCita {
     private int idCita;
-    private int idPaciente;
-    private int idOdontologo;
+    private int cedulaPaciente;
+    private int cedulaOdontologo;
     private String fechaCita;
     private String motivo;
     private String estado;
@@ -21,38 +21,63 @@ public class mdCita {
 
     public mdCita() {}
 
-    public mdCita(int idPaciente, int idOdontologo, String fechaCita, String motivo, String estado) {
-        this.idPaciente = idPaciente;
-        this.idOdontologo = idOdontologo;
+    public mdCita(int cedulaPaciente, int cedulaOdontologo, String fechaCita, String motivo, String estado) {
+        this.cedulaPaciente = cedulaPaciente;
+        this.cedulaOdontologo = cedulaOdontologo;
         this.fechaCita = fechaCita;
         this.motivo = motivo;
         this.estado = estado;
     }
 
-    public mdCita(int idCita, int idPaciente, int idOdontologo, String fechaCita, String motivo, String estado) {
+    public mdCita(int idCita, int cedulaPaciente, int cedulaOdontologo, String fechaCita, String motivo, String estado) {
         this.idCita = idCita;
-        this.idPaciente = idPaciente;
-        this.idOdontologo = idOdontologo;
+        this.cedulaPaciente = cedulaPaciente;
+        this.cedulaOdontologo = cedulaOdontologo;
         this.fechaCita = fechaCita;
         this.motivo = motivo;
         this.estado = estado;
     }
 
     // Getters y Setters
-    public int getIdCita() { return idCita; }
-    public void setIdCita(int idCita) { this.idCita = idCita; }
+    public int getIdCita() {
+        return idCita;
+    }
 
-    public int getIdPaciente() { return idPaciente; }
-    public void setIdPaciente(int idPaciente) { this.idPaciente = idPaciente; }
+    public void setIdCita(int idCita) {
+        this.idCita = idCita;
+    }
 
-    public int getIdOdontologo() { return idOdontologo; }
-    public void setIdOdontologo(int idOdontologo) { this.idOdontologo = idOdontologo; }
+    public int getCedulaPaciente() {
+        return cedulaPaciente;
+    }
 
-    public String getFechaCita() { return fechaCita; }
-    public void setFechaCita(String fechaCita) { this.fechaCita = fechaCita; }
+    public void setCedulaPaciente(int cedulaPaciente) {
+        this.cedulaPaciente = cedulaPaciente;
+    }
 
-    public String getMotivo() { return motivo; }
-    public void setMotivo(String motivo) { this.motivo = motivo; }
+    public int getCedulaOdontologo() {
+        return cedulaOdontologo;
+    }
+
+    public void setCedulaOdontologo(int cedulaOdontologo) {
+        this.cedulaOdontologo = cedulaOdontologo;
+    }
+
+    public String getFechaCita() {
+        return fechaCita;
+    }
+
+    public void setFechaCita(String fechaCita) {
+        this.fechaCita = fechaCita;
+    }
+
+    public String getMotivo() {
+        return motivo;
+    }
+
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
+    }
 
     public String getEstado() {
         return estado;
@@ -60,7 +85,7 @@ public class mdCita {
 
     public void setEstado(String estado) {
         this.estado = estado;
-    } 
+    }
 
     public String getNombrePaciente() {
         return nombrePaciente;
