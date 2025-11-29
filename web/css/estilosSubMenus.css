@@ -11,8 +11,16 @@ body, html {
     inset: 0;
     width: 100%;
     height: 100%;
-    background: url('../imagenes/submenu.jpeg') center / cover no-repeat;
+    background: url('../imagenes/landing.jpeg') center center / cover no-repeat;
     z-index: -1;
+}
+
+#img-fondo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,22,40,0.75) 0%, rgba(20,35,60,0.85) 100%);
+    z-index: 1;
 }
 
 /* Contenedor centrado */
@@ -60,7 +68,7 @@ body, html {
     object-fit: contain;
     padding: 16px;
     border-radius: 50%;
-    box-shadow: 0 8px 24px rgba(100, 124, 245, 0.4);
+    box-shadow: 0 8px 24px rgba(200, 150, 250, 0.4);
     animation: float 3s ease-in-out infinite;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -87,7 +95,7 @@ h2 {
     padding-bottom: 20px;
     font-size: 2em;
     font-weight: 700;
-    color: linear-gradient(135deg, #73A6F2 0%, #647CF5 100%);
+    color: #e2e8f0;
     border-bottom: 2px solid #e2e8f0;
 }
 

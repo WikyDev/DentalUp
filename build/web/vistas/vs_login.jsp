@@ -13,9 +13,7 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
 </head>
 <body>
-    <video autoplay muted loop playsinline preload="auto" id="video-bg">
-        <source src="${pageContext.request.contextPath}/imagenes/login.mp4" type="video/mp4">
-    </video>
+  <div id="img-fondo"></div>
   <div class="login-wrapper">
 
   <!-- Izquierda -->
