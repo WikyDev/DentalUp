@@ -13,7 +13,9 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
 </head>
 <body>
-  <div id="img-fondo"></div>
+    <video autoplay muted loop playsinline preload="auto" id="video-bg">
+        <source src="${pageContext.request.contextPath}/imagenes/login.mp4" type="video/mp4">
+    </video>
   <div class="login-wrapper">
 
   <!-- Izquierda -->
@@ -39,11 +41,6 @@
 
   <!-- Derecha: Login -->
   <div class="login-card">
-      <a href="${pageContext.request.contextPath}/index.jsp" class="volver-inicio">
-            <img src="${pageContext.request.contextPath}/imagenes/inicio.png" 
-                 alt="Volver" class="icono-volver">Volver a inicio
-      </a>
-
       <h2 class="login-title">Portal de Inicio</h2>
 
       <% 

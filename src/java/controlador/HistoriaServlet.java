@@ -43,15 +43,15 @@ public class HistoriaServlet extends HttpServlet {
             // VER HISTORIAS DEL PACIENTE LOGUEADO
             // --------------------------------------------------------------------
             case "verHistoriasPaciente":
-                Integer cedulaPaciente = (Integer) session.getAttribute("cedula_paciente");
+                Integer idPaciente = (Integer) session.getAttribute("id_paciente");
 
-                if (cedulaPaciente == null) {
+                if (idPaciente == null) {
                     response.sendRedirect("vistas/vs_login.jsp");
                     return;
                 }
 
-                request.setAttribute("listaHistorias", dao.obtenerPorPaciente(cedulaPaciente));
-                System.out.println("Historias encontradas: " + dao.obtenerPorPaciente(cedulaPaciente).size());
+                request.setAttribute("listaHistorias", dao.obtenerPorPaciente(idPaciente));
+                System.out.println("Historias encontradas: " + dao.obtenerPorPaciente(idPaciente).size());
 
                 rd = request.getRequestDispatcher("vistas/vs_historiaClinica.jsp");
                 rd.forward(request, response);
@@ -62,8 +62,8 @@ public class HistoriaServlet extends HttpServlet {
             // --------------------------------------------------------------------
             case "cargarDesdeCita":
                 request.setAttribute("id_cita", request.getParameter("id_cita"));
-                request.setAttribute("cedula_paciente", request.getParameter("cedula_paciente"));
-                request.setAttribute("cedula_odontologo", request.getParameter("cedula_odontologo"));
+                request.setAttribute("id_paciente", request.getParameter("id_paciente"));
+                request.setAttribute("id_odontologo", request.getParameter("id_odontologo"));
                 request.setAttribute("fecha", request.getParameter("fecha"));
                 request.setAttribute("motivo", request.getParameter("motivo"));
                 rd = request.getRequestDispatcher("vistas/vs_registrarHistoria.jsp");
@@ -94,8 +94,8 @@ public class HistoriaServlet extends HttpServlet {
         if ("registrar".equals(accion)) {
 
             int idCita = Integer.parseInt(request.getParameter("id_cita"));
-            int cedulaPaciente = Integer.parseInt(request.getParameter("cedula_paciente"));
-            int cedulaOdontologo = Integer.parseInt(request.getParameter("cedula_odontologo"));
+            int idPaciente = Integer.parseInt(request.getParameter("id_paciente"));
+            int idOdonto = Integer.parseInt(request.getParameter("id_odontologo"));
             String fechaStr = request.getParameter("fecha");
             String motivo = request.getParameter("motivoConsulta");
             String diagnostico = request.getParameter("diagnostico");
@@ -120,8 +120,8 @@ public class HistoriaServlet extends HttpServlet {
             }
 
             mdHistoriaClinica h = new mdHistoriaClinica();
-            h.setCedulaPaciente(cedulaPaciente);
-            h.setCedulaOdontologo(cedulaOdontologo);
+            h.setIdPaciente(idPaciente);
+            h.setIdOdontologo(idOdonto);
             h.setFecha(fechaSQL);
             h.setMotivoConsulta(motivo);
             h.setDiagnostico(diagnostico);
@@ -152,15 +152,15 @@ public class HistoriaServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        Integer cedulaPaciente = (Integer) session.getAttribute("cedula_paciente");
+        Integer idPaciente = (Integer) session.getAttribute("id_paciente");
 
-        if (cedulaPaciente == null) {
+        if (idPaciente == null) {
             request.setAttribute("error", "Debe iniciar sesión.");
             request.getRequestDispatcher("vistas/vs_login.jsp").forward(request, response);
             return;
         }
 
-        ArrayList<mdHistoriaClinica> lista = dao.obtenerPorPaciente(cedulaPaciente);
+        ArrayList<mdHistoriaClinica> lista = dao.obtenerPorPaciente(idPaciente);
 
         request.setAttribute("listaHistorias", lista);
         request.getRequestDispatcher("vistas/vs_historiaClinica.jsp").forward(request, response);

@@ -3,7 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/D:/DentalUp/web/vistas/vs_buscarCita.jsp</file>
             <file>file:/D:/DentalUp/src/java/modelo/mdCita.java</file>
             <file>file:/D:/DentalUp/src/java/modeloDAO/CitaDAO.java</file>
@@ -13,12 +12,6 @@
             <file>file:/D:/DentalUp/web/vistas/vs_listarCitas.jsp</file>
             <file>file:/D:/DentalUp/web/vistas/vs_listarCitasPaciente.jsp</file>
             <file>file:/D:/DentalUp/src/java/util/conexion.java</file>
-=======
-            <file>file:/C:/Users/WikyLix/Desktop/DentalUp/web/index.jsp</file>
-            <file>file:/C:/Users/WikyLix/Desktop/DentalUp/web/css/index.css</file>
-            <file>file:/C:/Users/WikyLix/Desktop/DentalUp/web/vistas/vs_login.jsp</file>
-            <file>file:/C:/Users/WikyLix/Desktop/DentalUp/web/css/login.css</file>
->>>>>>> 6102a44899e5a5eda78dcef8f79dca99af319913
         </group>
     </open-files>
 </project-private>

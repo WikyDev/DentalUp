@@ -5,8 +5,11 @@ package controlador;
  *
  * @author Anthony
  */
+import modelo.mdPaciente;
+import modelo.mdResponsable;
 import modelo.mdCita;
 import util.conexion;
+import java.sql.Statement;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -21,11 +24,11 @@ public class ctAgendarCita {
     //Registra una nueva cita 
     public boolean registrarCita(mdCita c) {
         boolean exito = false;
-        String sql = "INSERT INTO citas (cedula_paciente, cedula_odontologo, fecha_cita, motivo) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO citas (id_paciente, id_odontologo, fecha_cita, motivo) VALUES (?, ?, ?, ?)";
         try (Connection con = conexion.getConexion();
             PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, c.getCedulaPaciente());
-            ps.setInt(2, c.getCedulaOdontologo());
+            ps.setInt(1, c.getIdPaciente());
+            ps.setInt(2, c.getIdOdontologo());
             ps.setString(3, c.getFechaCita());
             ps.setString(4, c.getMotivo());
             exito = ps.executeUpdate() > 0;
@@ -38,11 +41,11 @@ public class ctAgendarCita {
     // Listar todas las citas de un paciente
     public ArrayList<mdCita> obtenerCitasPorPaciente(int idPaciente) {
         ArrayList<mdCita> lista = new ArrayList<>();
-        String sql = "SELECT c.id_cita, c.cedula_paciente, c.cedula_odontologo, c.fecha_cita, c.motivo, c.estado, "
+        String sql = "SELECT c.id_cita, c.id_paciente, c.id_odontologo, c.fecha_cita, c.motivo, c.estado, "
                + "o.nombre_completo AS nombre_odontologo "
                + "FROM citas c "
-               + "INNER JOIN odontologos o ON c.cedula_odontologo = o.cedula_odontologo "
-               + "WHERE c.cedula_paciente = ?";
+               + "INNER JOIN odontologos o ON c.id_odontologo = o.id_odontologo "
+               + "WHERE c.id_paciente = ?";
         try (Connection con = conexion.getConexion();
             PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, idPaciente);
@@ -50,8 +53,8 @@ public class ctAgendarCita {
             while (rs.next()) {
                 mdCita c = new mdCita();
                 c.setIdCita(rs.getInt("id_cita"));
-                c.setCedulaPaciente(rs.getInt("cedula_paciente"));
-                c.setCedulaOdontologo(rs.getInt("cedula_odontologo"));
+                c.setIdPaciente(rs.getInt("id_paciente"));
+                c.setIdOdontologo(rs.getInt("id_odontologo"));
                 c.setFechaCita(rs.getString("fecha_cita"));
                 c.setMotivo(rs.getString("motivo"));
                 c.setEstado(rs.getString("estado"));

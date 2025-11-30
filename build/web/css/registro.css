@@ -1,20 +1,7 @@
-/* ======== Variables CSS ======== */
-:root {
-    --primary-color: #007acc;
-    --primary-dark: #005b9e;
-    --primary-light: #e3f2fd;
-    --success-color: #2e7d32;
-    --success-bg: #e8f5e9;
-    --error-color: #d32f2f;
-    --error-bg: #ffebee;
-    --text-dark: #333;
-    --text-light: #666;
-    --border-color: #ccc;
-    --white: #ffffff;
-    --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.2);
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
+/* 
+    Created on : 28/10/2025, 12:12:25 p. m.
+    Author     : WikyLix
+*/
 /* ======== Estilos generales ======== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -23,111 +10,39 @@ body {
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    align-items: center;
     min-height: 100vh;
-}
-
-#img-fondo {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background: url('../imagenes/registro.jpeg') center center / cover no-repeat;
-    z-index: -1;
-}
-
-#img-fondo::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(0, 122, 204, 0.1), rgba(255, 255, 255, 0.3));
 }
 
 /* ======== Contenedor del formulario ======== */
 .form-container {
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(12px) saturate(180%);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    box-shadow: var(--shadow-lg);
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     padding: 40px 50px;
-    width: 100%;
-    max-width: 450px;
+    width: 400px;
     text-align: center;
-    animation: slideIn 0.6s ease-out;
-    position: relative;
-    overflow: hidden;
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 200% 50%; }
 }
 
 /* ======== Encabezado ======== */
 h2 {
-    color: var(--primary-color);
-    margin-bottom: 12px;
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    position: relative;
-    display: inline-block;
+    color: #007acc;
+    margin-bottom: 25px;
+    font-size: 22px;
 }
 
-h3 {
-    color: var(--text-dark);
-    font-size: 16px;
-    font-weight: 600;
-    text-align: left;
-    margin: 25px 0 15px 0;
-    padding-left: 12px;
-    border-left: 4px solid var(--primary-color);
-    background: rgba(0, 122, 204, 0.05);
-    padding: 10px 12px;
-    border-radius: 6px;
-}
-
-/* ======== Formulario ======== */
+/* ======== Campos del formulario ======== */
 form {
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    margin-top: 25px;
-}
-
-.input-group {
-    position: relative;
-    text-align: left;
+    gap: 15px;
 }
 
 label {
-    display: flex;
-    gap: 0px;
     text-align: left;
     font-weight: 600;
-    color: var(--text-dark);
+    color: #333;
     font-size: 14px;
-    margin-bottom: 1px;
-    transition: color 0.3s ease;
-}
-
-.input-group:focus-within label::before {
-    opacity: 1;
-    transform: scale(1.1);
 }
 
 input[type="text"],
@@ -135,200 +50,64 @@ input[type="password"],
 input[type="email"],
 input[type="number"],
 input[type="date"],
-input[type="tel"],
 select,
 textarea {
-    padding: 12px 16px;
-    border: 2px solid var(--border-color);
-    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
     font-size: 14px;
     width: 100%;
     box-sizing: border-box;
-    transition: var(--transition);
-    background: rgba(255, 255, 255, 0.9);
-    font-family: inherit;
+    transition: border-color 0.3s ease;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
     outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 4px rgba(0, 122, 204, 0.1);
-    background: var(--white);
-    transform: translateY(-2px);
+    border-color: #007acc;
+    box-shadow: 0 0 4px rgba(0, 122, 204, 0.4);
 }
 
-input:hover,
-select:hover,
-textarea:hover {
-    border-color: var(--primary-light);
-}
-
-/* Estados de validación */
-.input-error {
-    border-color: var(--error-color) !important;
-    animation: shake 0.5s;
-}
-
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
-}
-
-.error-text {
-    color: var(--error-color);
-    font-size: 12px;
-    margin-top: 6px;
-    display: none;
-    padding-left: 8px;
-    font-weight: 500;
-}
-
-.error-text::before {
-    content: '⚠ ';
-    font-weight: bold;
-}
-
-/* Requisitos de contraseña */
-.password-requirements {
-    font-size: 12px;
-    color: var(--text-light);
-    margin-top: 6px;
-    padding: 8px 12px;
-    background: rgba(0, 122, 204, 0.05);
+/* ======== Botones ======== */
+.btn {
+    background-color: #007acc;
+    color: white;
+    border: none;
+    padding: 12px;
     border-radius: 6px;
-    border-left: 3px solid var(--primary-color);
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
 }
 
-.password-requirements::before {
-    content: '💡 ';
+.btn:hover {
+    background-color: #005b9e;
+}
+
+.btn.cancelar {
+    background-color: #9e9e9e;
+}
+
+.btn.cancelar:hover {
+    background-color: #757575;
 }
 
 /* ======== Mensajes ======== */
-.error-message,
-.success-message {
-    padding: 14px 18px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    animation: slideDown 0.4s ease-out;
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.error-message {
-    color: var(--error-color);
-    background: var(--error-bg);
-    border-left: 4px solid var(--error-color);
-}
-
-.error-message::before {
-    content: '❌';
-    font-size: 18px;
-}
-
-.success-message {
-    color: var(--success-color);
-    background: var(--success-bg);
-    border-left: 4px solid var(--success-color);
-}
-
-.success-message::before {
-    content: '✅';
-    font-size: 18px;
-}
-
 p {
     margin: 10px 0;
     font-size: 14px;
 }
 
 p.error {
-    color: var(--error-color);
+    color: #d32f2f;
     font-weight: bold;
 }
 
 p.mensaje {
-    color: var(--success-color);
+    color: #2e7d32;
     font-weight: bold;
 }
 
-/* ======== Botones ======== */
-.btn {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-    color: white;
-    border: none;
-    padding: 14px 24px;
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 15px;
-    transition: var(--transition);
-    text-decoration: none;
-    display: inline-block;
-    box-shadow: 0 4px 12px rgba(0, 122, 204, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-}
-
-.btn:hover::before {
-    width: 300px;
-    height: 300px;
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 122, 204, 0.4);
-}
-
-.btn:active {
-    transform: translateY(-1px);
-}
-
-.btn.cancelar {
-    background: linear-gradient(135deg, #9e9e9e, #757575);
-    box-shadow: 0 4px 12px rgba(158, 158, 158, 0.3);
-    margin-top: 8px;
-}
-
-.btn.cancelar:hover {
-    box-shadow: 0 6px 20px rgba(158, 158, 158, 0.4);
-}
-
-/* ======== Select personalizado ======== */
-select {
-    cursor: pointer;
-    appearance: none;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path fill="%23333" d="M6 9L1 4h10z"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    padding-right: 35px;
-}

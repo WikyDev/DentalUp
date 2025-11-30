@@ -8,13 +8,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilosMenus.css">
 </head>
 <body>
-    <h1>Bienvenido, <%= session.getAttribute("usuario") %> &#x200D;&#x2695;&#xFE0F;
-</h1>
+    <h1>Bienvenido, <%= session.getAttribute("usuario") %></h1>
     <h2>Rol: <%= session.getAttribute("rol") %></h2>
     <div class="menu menu-odontologo">
-        <!-- Por el momento las opciones de agenda por odontologo y grafica por motivo no se encuentran funcionales 
-        usan llamados de la version anterior
-        (se cambiaran usando servlets como lo está haciendo la opción de Ver mis citas) -->
+        <!-- Por el momento estas opciones no se encuentran funcionales, usan llamados de la version anterior
+        (se cambiaran usando servlets) -->
         <a href="${pageContext.request.contextPath}/CitaServlet?accion=listarOdontologo">Ver mis Citas</a>
         
         <a href="/vista/vs_agendaOdontologo.jsp">Agenda por odontólogo</a><br>

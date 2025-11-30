@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-11-2025 a las 08:06:59
+-- Tiempo de generación: 18-11-2025 a las 07:13:54
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -28,18 +28,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `administradores` (
-  `cedula_admin` int(11) NOT NULL,
+  `id_admin` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   `nombre_completo` varchar(100) DEFAULT NULL,
-  `correo` varchar(100) DEFAULT NULL,
-  `id_user` int(11) DEFAULT NULL
+  `correo` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `administradores`
 --
 
-INSERT INTO `administradores` (`cedula_admin`, `nombre_completo`, `correo`, `id_user`) VALUES
-(2000000001, 'jorge martinez', 'jorge99@gmail.com', 1);
+INSERT INTO `administradores` (`id_admin`, `id_usuario`, `nombre_completo`, `correo`) VALUES
+(1, 1, 'jorge martinez', 'jorge99@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -49,8 +49,8 @@ INSERT INTO `administradores` (`cedula_admin`, `nombre_completo`, `correo`, `id_
 
 CREATE TABLE `citas` (
   `id_cita` int(11) NOT NULL,
-  `cedula_paciente` int(11) NOT NULL,
-  `cedula_odontologo` int(11) NOT NULL,
+  `id_paciente` int(11) NOT NULL,
+  `id_odontologo` int(11) NOT NULL,
   `fecha_cita` datetime NOT NULL,
   `motivo` text DEFAULT NULL,
   `estado` varchar(20) NOT NULL DEFAULT 'PENDIENTE'
@@ -60,8 +60,11 @@ CREATE TABLE `citas` (
 -- Volcado de datos para la tabla `citas`
 --
 
-INSERT INTO `citas` (`id_cita`, `cedula_paciente`, `cedula_odontologo`, `fecha_cita`, `motivo`, `estado`) VALUES
-(43, 13131313, 2147483647, '2025-11-20 10:00:00', 'limpieza', 'ATENDIDA');
+INSERT INTO `citas` (`id_cita`, `id_paciente`, `id_odontologo`, `fecha_cita`, `motivo`, `estado`) VALUES
+(33, 11, 1, '2025-11-05 14:00:00', 'dolor de muela ', 'ATENDIDA'),
+(35, 123590, 1, '2025-11-04 16:30:00', 'dolor de muela', 'PENDIENTE'),
+(38, 123591, 2, '2025-11-03 16:30:00', 'dolor de diente', 'ATENDIDA'),
+(39, 123591, 1, '2025-11-17 16:30:00', 'Limpieza', 'PENDIENTE');
 
 -- --------------------------------------------------------
 
@@ -71,21 +74,22 @@ INSERT INTO `citas` (`id_cita`, `cedula_paciente`, `cedula_odontologo`, `fecha_c
 
 CREATE TABLE `historias_clinicas` (
   `id_historia` int(11) NOT NULL,
+  `id_paciente` int(11) NOT NULL,
+  `id_odontologo` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `motivoConsulta` varchar(255) DEFAULT NULL,
   `diagnostico` text DEFAULT NULL,
   `tratamiento` text DEFAULT NULL,
-  `observaciones` text DEFAULT NULL,
-  `cedula_paciente` int(11) NOT NULL,
-  `cedula_odontologo` int(11) NOT NULL
+  `observaciones` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `historias_clinicas`
 --
 
-INSERT INTO `historias_clinicas` (`id_historia`, `fecha`, `motivoConsulta`, `diagnostico`, `tratamiento`, `observaciones`, `cedula_paciente`, `cedula_odontologo`) VALUES
-(7, '2025-11-20', 'limpieza', 'aaaaaaa', 'bbbbbbb', 'cccccc', 13131313, 2147483647);
+INSERT INTO `historias_clinicas` (`id_historia`, `id_paciente`, `id_odontologo`, `fecha`, `motivoConsulta`, `diagnostico`, `tratamiento`, `observaciones`) VALUES
+(3, 123591, 2, '2025-11-03', 'dolor de diente', 'aaaaa', 'sssss', 'ddddd'),
+(4, 11, 1, '2025-11-05', 'dolor de muela ', 'rrrr', 'tttt', 'yyyy');
 
 -- --------------------------------------------------------
 
@@ -94,21 +98,21 @@ INSERT INTO `historias_clinicas` (`id_historia`, `fecha`, `motivoConsulta`, `dia
 --
 
 CREATE TABLE `odontologos` (
-  `cedula_odontologo` int(11) NOT NULL,
+  `id_odontologo` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   `nombre_completo` varchar(100) DEFAULT NULL,
   `especialidad` varchar(100) DEFAULT NULL,
-  `correo` varchar(200) DEFAULT NULL,
-  `id_user` int(11) DEFAULT NULL
+  `correo` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `odontologos`
 --
 
-INSERT INTO `odontologos` (`cedula_odontologo`, `nombre_completo`, `especialidad`, `correo`, `id_user`) VALUES
-(300000006, 'pablo torre', 'dentista de limpieza', 'pablo44@gmail.com', 4),
-(300000007, 'camilo perez', 'dentista estetico', 'camilo44@gmail.com', 5),
-(2147483647, 'jose perez', 'dentista estetico', 'joserr@gmail.com', 2);
+INSERT INTO `odontologos` (`id_odontologo`, `id_usuario`, `nombre_completo`, `especialidad`, `correo`) VALUES
+(1, 4, 'jose perez', 'dentista estetico', 'joserr@gmail.com'),
+(2, 6, 'pablo torre', 'dentista de limpieza', 'pablo44@gmail.com'),
+(3, 7, 'camilo perez', 'dentista estetico', 'camilo44@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -117,7 +121,7 @@ INSERT INTO `odontologos` (`cedula_odontologo`, `nombre_completo`, `especialidad
 --
 
 CREATE TABLE `pacientes` (
-  `cedula_paciente` int(11) NOT NULL,
+  `id_paciente` int(11) NOT NULL,
   `nombre` varchar(40) DEFAULT NULL,
   `apellido` varchar(40) DEFAULT NULL,
   `edad` int(11) DEFAULT NULL,
@@ -134,8 +138,10 @@ CREATE TABLE `pacientes` (
 -- Volcado de datos para la tabla `pacientes`
 --
 
-INSERT INTO `pacientes` (`cedula_paciente`, `nombre`, `apellido`, `edad`, `telefono`, `fecha_nac`, `tiene_OS`, `tipo_sangre`, `email`, `cedula_responsable`, `id_user`) VALUES
-(13131313, 'dasa', 'fsda', 23, '31245621', '2025-11-13', NULL, 'A+', 'dadoM@email.com', NULL, 16);
+INSERT INTO `pacientes` (`id_paciente`, `nombre`, `apellido`, `edad`, `telefono`, `fecha_nac`, `tiene_OS`, `tipo_sangre`, `email`, `cedula_responsable`, `id_user`) VALUES
+(11, 'antonio', 'sanchez', 25, '324556', '2000-03-09', 'SI', 'A+', 'carlosk554@gmail.com', NULL, 11),
+(123590, 'Maria', 'perez', 20, '31245867', '2025-10-13', NULL, 'A+', 'maria4@gmail.com', NULL, 19),
+(123591, 'Jose', 'perez', 25, '31245889', '2000-06-13', NULL, 'B+', 'jose99@gmail.com', NULL, 20);
 
 -- --------------------------------------------------------
 
@@ -168,19 +174,20 @@ INSERT INTO `responsables` (`cedula_responsable`, `nombre`, `apellido`, `edad`, 
 --
 
 CREATE TABLE `secretarios` (
-  `cedula_secretario` int(11) NOT NULL,
+  `id_secretario` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   `nombre_completo` varchar(100) DEFAULT NULL,
   `telefono` varchar(20) DEFAULT NULL,
-  `correo` varchar(200) DEFAULT NULL,
-  `id_user` int(11) DEFAULT NULL
+  `correo` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `secretarios`
 --
 
-INSERT INTO `secretarios` (`cedula_secretario`, `nombre_completo`, `telefono`, `correo`, `id_user`) VALUES
-(400000005, 'camila lopez', '31425678', 'camila00@gmail.com', 3);
+INSERT INTO `secretarios` (`id_secretario`, `id_usuario`, `nombre_completo`, `telefono`, `correo`) VALUES
+(1, 5, 'camila lopez', '31425678', 'camila00@gmail.com'),
+(2, 8, 'sofia marquez', '3154215', 'sofi88@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -201,11 +208,14 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id_user`, `nombre_user`, `password`, `rol`) VALUES
 (1, 'admin', '123456', 'admin'),
-(2, 'pabloT', '258369', 'odontologo'),
-(3, 'secretario333', 'abc123', 'secretario'),
-(4, 'jose11', '235689', 'odontologo'),
-(5, 'camilopp', 'zxc123', 'odontologo'),
-(16, 'dado', '5555', 'paciente');
+(4, 'pabloT', '258369', 'odontologo'),
+(5, 'secretario333', 'abc123', 'secretario'),
+(6, 'jose11', '235689', 'odontologo'),
+(7, 'camilopp', 'zxc123', 'odontologo'),
+(8, 'secretario444', 'qwe123', 'secretario'),
+(11, 'antonio', '142536', 'paciente'),
+(19, 'maria', '451245', 'paciente'),
+(20, 'jose', '0000', 'paciente');
 
 --
 -- Índices para tablas volcadas
@@ -215,37 +225,37 @@ INSERT INTO `usuarios` (`id_user`, `nombre_user`, `password`, `rol`) VALUES
 -- Indices de la tabla `administradores`
 --
 ALTER TABLE `administradores`
-  ADD PRIMARY KEY (`cedula_admin`),
-  ADD KEY `fk_admin_usuario` (`id_user`);
+  ADD PRIMARY KEY (`id_admin`),
+  ADD UNIQUE KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `citas`
 --
 ALTER TABLE `citas`
   ADD PRIMARY KEY (`id_cita`),
-  ADD KEY `cedula_paciente` (`cedula_paciente`,`cedula_odontologo`),
-  ADD KEY `fk_cita_odontologo` (`cedula_odontologo`);
+  ADD KEY `citas_ibfk_1` (`id_paciente`),
+  ADD KEY `citas_ibfk_2` (`id_odontologo`);
 
 --
 -- Indices de la tabla `historias_clinicas`
 --
 ALTER TABLE `historias_clinicas`
   ADD PRIMARY KEY (`id_historia`),
-  ADD KEY `cedula_paciente` (`cedula_paciente`,`cedula_odontologo`),
-  ADD KEY `fk_historia_odontologo` (`cedula_odontologo`);
+  ADD KEY `id_paciente` (`id_paciente`),
+  ADD KEY `id_odontologo` (`id_odontologo`);
 
 --
 -- Indices de la tabla `odontologos`
 --
 ALTER TABLE `odontologos`
-  ADD PRIMARY KEY (`cedula_odontologo`),
-  ADD KEY `fk_odontologo_usuario` (`id_user`);
+  ADD PRIMARY KEY (`id_odontologo`),
+  ADD UNIQUE KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `pacientes`
 --
 ALTER TABLE `pacientes`
-  ADD PRIMARY KEY (`cedula_paciente`),
+  ADD PRIMARY KEY (`id_paciente`),
   ADD UNIQUE KEY `cedula_responsable` (`cedula_responsable`),
   ADD KEY `fk_paciente_usuario` (`id_user`);
 
@@ -259,8 +269,8 @@ ALTER TABLE `responsables`
 -- Indices de la tabla `secretarios`
 --
 ALTER TABLE `secretarios`
-  ADD PRIMARY KEY (`cedula_secretario`),
-  ADD KEY `fk_secretario_usuario` (`id_user`);
+  ADD PRIMARY KEY (`id_secretario`),
+  ADD UNIQUE KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -273,22 +283,46 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `administradores`
+--
+ALTER TABLE `administradores`
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `historias_clinicas`
 --
 ALTER TABLE `historias_clinicas`
-  MODIFY `id_historia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_historia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `odontologos`
+--
+ALTER TABLE `odontologos`
+  MODIFY `id_odontologo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `pacientes`
+--
+ALTER TABLE `pacientes`
+  MODIFY `id_paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123592;
+
+--
+-- AUTO_INCREMENT de la tabla `secretarios`
+--
+ALTER TABLE `secretarios`
+  MODIFY `id_secretario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Restricciones para tablas volcadas
@@ -298,40 +332,40 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `administradores`
 --
 ALTER TABLE `administradores`
-  ADD CONSTRAINT `fk_admin_usuario` FOREIGN KEY (`id_user`) REFERENCES `usuarios` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `administradores_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_user`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `citas`
 --
 ALTER TABLE `citas`
-  ADD CONSTRAINT `fk_cita_odontologo` FOREIGN KEY (`cedula_odontologo`) REFERENCES `odontologos` (`cedula_odontologo`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_cita_paciente` FOREIGN KEY (`cedula_paciente`) REFERENCES `pacientes` (`cedula_paciente`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`id_paciente`) REFERENCES `pacientes` (`id_paciente`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `citas_ibfk_2` FOREIGN KEY (`id_odontologo`) REFERENCES `odontologos` (`id_odontologo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `historias_clinicas`
 --
 ALTER TABLE `historias_clinicas`
-  ADD CONSTRAINT `fk_historia_odontologo` FOREIGN KEY (`cedula_odontologo`) REFERENCES `odontologos` (`cedula_odontologo`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_historia_paciente` FOREIGN KEY (`cedula_paciente`) REFERENCES `pacientes` (`cedula_paciente`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `historias_clinicas_ibfk_1` FOREIGN KEY (`id_paciente`) REFERENCES `pacientes` (`id_paciente`),
+  ADD CONSTRAINT `historias_clinicas_ibfk_2` FOREIGN KEY (`id_odontologo`) REFERENCES `odontologos` (`id_odontologo`);
 
 --
 -- Filtros para la tabla `odontologos`
 --
 ALTER TABLE `odontologos`
-  ADD CONSTRAINT `fk_odontologo_usuario` FOREIGN KEY (`id_user`) REFERENCES `usuarios` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `odontologos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_user`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `pacientes`
 --
 ALTER TABLE `pacientes`
   ADD CONSTRAINT `FK_pacientes_responsables` FOREIGN KEY (`cedula_responsable`) REFERENCES `responsables` (`cedula_responsable`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_paciente_usuario` FOREIGN KEY (`id_user`) REFERENCES `usuarios` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_paciente_usuario` FOREIGN KEY (`id_user`) REFERENCES `usuarios` (`id_user`);
 
 --
 -- Filtros para la tabla `secretarios`
 --
 ALTER TABLE `secretarios`
-  ADD CONSTRAINT `fk_secretario_usuario` FOREIGN KEY (`id_user`) REFERENCES `usuarios` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `secretarios_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_user`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
