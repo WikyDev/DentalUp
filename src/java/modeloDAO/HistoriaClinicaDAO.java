@@ -15,14 +15,14 @@ public class HistoriaClinicaDAO {
     // INSERTAR NUEVA HISTORIA CLÍNICA
     public boolean insertar(mdHistoriaClinica h) {
         String sql = "INSERT INTO historias_clinicas " +
-                     "(id_paciente, id_odontologo, fecha, motivoConsulta, diagnostico, tratamiento, observaciones) " +
+                     "(cedula_paciente, cedula_odontologo, fecha, motivoConsulta, diagnostico, tratamiento, observaciones) " +
                      "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection con = conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, h.getIdPaciente());
-            ps.setInt(2, h.getIdOdontologo());
+            ps.setInt(1, h.getCedulaPaciente());
+            ps.setInt(2, h.getCedulaOdontologo());
             ps.setDate(3, h.getFecha());
             ps.setString(4, h.getMotivoConsulta());
             ps.setString(5, h.getDiagnostico());
@@ -39,27 +39,27 @@ public class HistoriaClinicaDAO {
     }
 
     // OBTENER HISTORIAS DE UN PACIENTE
-    public ArrayList<mdHistoriaClinica> obtenerPorPaciente(int idPaciente) {
+    public ArrayList<mdHistoriaClinica> obtenerPorPaciente(int cedulaPaciente) {
         ArrayList<mdHistoriaClinica> lista = new ArrayList<>();
-        String sql = "SELECT h.id_historia, h.id_paciente, h.id_odontologo, h.fecha, "
+        String sql = "SELECT h.id_historia, h.cedula_paciente, h.cedula_odontologo, h.fecha, "
            + "h.motivoConsulta, h.diagnostico, h.tratamiento, h.observaciones, "
            + "o.nombre_completo AS nombre_odontologo "
            + "FROM historias_clinicas h "
-           + "INNER JOIN odontologos o ON h.id_odontologo = o.id_odontologo "
-           + "WHERE h.id_paciente = ? "
+           + "INNER JOIN odontologos o ON h.cedula_odontologo = o.cedula_odontologo "
+           + "WHERE h.cedula_paciente = ? "
            + "ORDER BY h.fecha DESC";
 
         try (Connection con = conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, idPaciente);
+            ps.setInt(1, cedulaPaciente);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 mdHistoriaClinica h = new mdHistoriaClinica();
                 h.setIdHistoria(rs.getInt("id_historia"));
-                h.setIdPaciente(rs.getInt("id_paciente"));
-                h.setIdOdontologo(rs.getInt("id_odontologo"));
+                h.setCedulaPaciente(rs.getInt("cedula_paciente"));
+                h.setCedulaOdontologo(rs.getInt("cedula_odontologo"));
                 h.setFecha(rs.getDate("fecha"));
                 h.setMotivoConsulta(rs.getString("motivoConsulta"));
                 h.setDiagnostico(rs.getString("diagnostico"));
@@ -78,21 +78,21 @@ public class HistoriaClinicaDAO {
     }
 
     // (OPCIONAL) OBTENER HISTORIAS REGISTRADAS POR UN ODONTÓLOGO
-    public ArrayList<mdHistoriaClinica> obtenerPorOdontologo(int idOdonto) {
+    public ArrayList<mdHistoriaClinica> obtenerPorOdontologo(int cedulaOdontologo) {
         ArrayList<mdHistoriaClinica> lista = new ArrayList<>();
-        String sql = "SELECT * FROM historias_clinicas WHERE id_odontologo = ? ORDER BY fecha DESC";
+        String sql = "SELECT * FROM historias_clinicas WHERE cedula_odontologo = ? ORDER BY fecha DESC";
 
         try (Connection con = conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, idOdonto);
+            ps.setInt(1, cedulaOdontologo);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 mdHistoriaClinica h = new mdHistoriaClinica();
                 h.setIdHistoria(rs.getInt("id_historia"));
-                h.setIdPaciente(rs.getInt("id_paciente"));
-                h.setIdOdontologo(rs.getInt("id_odontologo"));
+                h.setCedulaPaciente(rs.getInt("cedula_paciente"));
+                h.setCedulaOdontologo(rs.getInt("cedula_odontologo"));
                 h.setFecha(rs.getDate("fecha"));
                 h.setMotivoConsulta(rs.getString("motivoConsulta"));
                 h.setDiagnostico(rs.getString("diagnostico"));
@@ -108,36 +108,5 @@ public class HistoriaClinicaDAO {
 
         return lista;
     }
-    
-    /*public ArrayList<mdHistoriaClinica> listarPorPaciente(int idPaciente) {
-        ArrayList<mdHistoriaClinica> lista = new ArrayList<>();
-        String sql = "SELECT * FROM historias_clinicas WHERE id_paciente = ?";
-
-        try (Connection con = conexion.getConexion();
-             PreparedStatement ps = con.prepareStatement(sql)){
-            
-            ps.setInt(1, idPaciente);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                mdHistoriaClinica h = new mdHistoriaClinica();
-                h.setIdHistoria(rs.getInt("id_historia"));
-                h.setIdPaciente(rs.getInt("id_paciente"));
-                h.setIdOdontologo(rs.getInt("id_odontologo"));
-                h.setFecha(rs.getDate("fecha_registro"));
-                h.setDiagnostico(rs.getString("diagnostico"));
-                h.setTratamiento(rs.getString("tratamiento"));
-                h.setObservaciones(rs.getString("observaciones"));
-
-                lista.add(h);
-            }
-
-        } catch (Exception e) {
-            System.out.println("Error listar historias: " + e);
-        }
-
-        return lista;
-    }*/
-
-    
+  
 }

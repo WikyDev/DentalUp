@@ -25,7 +25,8 @@
 
 <!-- muestra el nombre_user y rol que este en la base de datos -->
 <body>
-    <h1>Bienvenido, <%= session.getAttribute("usuario") %></h1>
+    <h1>Bienvenido, <%= session.getAttribute("usuario") %> &#x1F9D1;&#x200D;&#x2695;&#xFE0F;
+ </h1>
     <h2>Rol: <%= session.getAttribute("rol") %></h2>
 
     <a href="logout.jsp">Cerrar sesión</a>

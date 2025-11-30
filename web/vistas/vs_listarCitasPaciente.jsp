@@ -38,6 +38,7 @@
                 <th>Fecha y Hora</th>
                 <th>Motivo</th>
                 <th>Estado</th>
+                <th>Acciones</th>
             </tr>
             <% for (mdCita c : lista) { %>
                 <tr>
@@ -46,6 +47,15 @@
                     <td><%= c.getFechaCita()%></td>
                     <td><%= c.getMotivo() %></td>
                     <td><%= c.getEstado() %></td>
+                    <td>
+                        <% if (!"ATENDIDA".equalsIgnoreCase(c.getEstado())) { %>
+                            <a href="${pageContext.request.contextPath}/CitaServlet?accion=editar&id=<%= c.getIdCita() %>" class="btn-edit">Editar</a>
+                            <a href="${pageContext.request.contextPath}/CitaServlet?accion=eliminar&id=<%= c.getIdCita() %>"
+                               onclick="return confirm('¿Seguro que deseas eliminar esta cita?');" class="btn-delete">Eliminar</a>
+                        <% } else { %>
+                            <span style="color:gray;">No disponible</span>
+                        <% } %>
+                    </td>
                 </tr>
             <% } %>
         </table>
@@ -54,8 +64,6 @@
     <% } %>
 
     <div style="text-align:center; margin-top:20px;">
-        <!-- Actualiza la lista, la llama nuevamente -->
-        <a href="${pageContext.request.contextPath}/CitaServlet?accion=listar" class="btn">Actualizar</a>
         <!-- Boton para volver al menu-->
         <a href="${pageContext.request.contextPath}/vistas/vs_menuPaciente.jsp" class="btn" style="background-color:#9e9e9e;">Volver al Menú</a>
     </div>

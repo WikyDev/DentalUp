@@ -51,9 +51,49 @@
                 <img src="${pageContext.request.contextPath}/imagenes/icon_registrar_cita.png"
                      alt="Registrar cita">
             </div>
+<<<<<<< HEAD
             <div class="secre-card-body">
                 <h2>Registrar cita</h2>
                 <p>Agenda una nueva cita para un paciente.</p>
+=======
+            <h1>
+                Bienvenido, 
+                <span class="usuario-nombre"><%= session.getAttribute("usuario") %></span> &#x1F4BB
+            </h1>
+            <h2>Gestión administrativa de la clínica</h2>
+        </header>
+
+        <h3>Seleccione una opción:</h3>
+
+        <div class="menu-opciones">
+            <!-- Ver todas las citas -->
+            <a href="${pageContext.request.contextPath}/ctSecre?op=listarCitas" class="boton boton-agendar">
+                <img class="icono-cita" alt="Ver todas las citas" 
+                     src="${pageContext.request.contextPath}/imagenes/cita.gif">
+                <span class="texto-agendar">Ver todas las citas</span>
+            </a>
+
+            <!-- Buscar cita por ID -->
+            <a href="${pageContext.request.contextPath}/vistas/vs_buscarCita.jsp" class="boton boton-agendar">
+                <img class="icono-cita" alt="Buscar cita por ID" 
+                     src="${pageContext.request.contextPath}/imagenes/calendario.gif">
+                <span class="texto-agendar">Buscar cita por ID</span>
+            </a>
+
+            <!-- Generar reporte PDF de citas -->
+            <a href="${pageContext.request.contextPath}/ctSecre?op=generarReporteCitas" class="boton boton-agendar">
+                <img class="icono-cita" alt="Generar reporte PDF" 
+                     src="${pageContext.request.contextPath}/imagenes/historial.gif">
+                <span class="texto-agendar">Generar reporte de citas (PDF)</span>
+            </a>
+
+            <!-- Consejo del día (opcional, para mantener el mismo diseño) -->
+            <div class="consejo-dia">
+                <img class="icono-cita" alt="Consejo del día" 
+                     src="${pageContext.request.contextPath}/imagenes/consejo.gif">
+                <strong>Consejo del día:</strong>
+                <span>? Mantén la agenda al día para evitar cruces de citas.</span>
+>>>>>>> 6102a44899e5a5eda78dcef8f79dca99af319913
             </div>
             <div class="secre-card-arrow">?</div>
         </a>
