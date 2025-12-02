@@ -117,19 +117,13 @@ body {
 }
 
 .info-item::before {
-  content: "✓";
-  font-size: 1.4em;
-  font-weight: bold;
-  color: #F48B4A;
-  margin-right: 15px;
-  background: rgba(255, 255, 255, 0.9);
+  content: "";
   width: 32px;
   height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: url('../imagenes/check.png') center center / contain no-repeat;
+  margin-right: 15px;
   flex-shrink: 0;
+  display: inline-block;
 }
 
 /* Frase inspiracional */
