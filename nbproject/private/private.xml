@@ -2,16 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/DentalUp/web/vistas/vs_buscarCita.jsp</file>
-            <file>file:/D:/DentalUp/src/java/modelo/mdCita.java</file>
-            <file>file:/D:/DentalUp/src/java/modeloDAO/CitaDAO.java</file>
-            <file>file:/D:/DentalUp/src/java/controlador/ctSecre.java</file>
-            <file>file:/D:/DentalUp/web/vistas/vs_menuSecre.jsp</file>
-            <file>file:/D:/DentalUp/web/css/estilosBuscarCita.css</file>
-            <file>file:/D:/DentalUp/web/vistas/vs_listarCitas.jsp</file>
-            <file>file:/D:/DentalUp/web/vistas/vs_listarCitasPaciente.jsp</file>
-            <file>file:/D:/DentalUp/src/java/util/conexion.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
