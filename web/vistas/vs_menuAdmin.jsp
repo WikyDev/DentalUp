@@ -25,8 +25,13 @@
 
 <!-- muestra el nombre_user y rol que este en la base de datos -->
 <body>
+<<<<<<< HEAD
     
     <div id="img-fondo" style="background-image: url('${pageContext.request.contextPath}/imagenes/menu.jpeg');"></div>
+=======
+    <h1>Bienvenido, <%= session.getAttribute("usuario") %></h1>
+    <h2>Rol: <%= session.getAttribute("rol") %></h2>
+>>>>>>> fd03fe203541775932b193068ec514f770e08e71
 
     <div class="top-layout">
 

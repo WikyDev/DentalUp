@@ -17,7 +17,6 @@
 
 </head>
 <body>
-    <div id="img-fondo"></div>
     <div class="form-container">
         <h2>Registro de Paciente</h2>
 
@@ -27,16 +26,13 @@
         <% } %>
 
         <!-- Formulario que pide los datos necesarios para almacenar un paciente -->
-        <form action="${pageContext.request.contextPath}/RegistroPacienteServlet" method="post">
+        <form action="../RegistroPacienteServlet" method="post">
             <label>Usuario:</label>
             <input type="text" name="usuario" placeholder="Cree nombre de usuario" required >
 
             <label>Contraseña:</label>
             <input type="password" name="password" placeholder="Cree una contraseña" required>
-            
-            <label>Documento de identidad:</label>
-            <input type="text" name="cedula_paciente" placeholder="Ingrese su número de documento" required>
-                
+
             <label>Nombre:</label>
             <input type="text" name="nombre" required>
 
@@ -74,8 +70,11 @@
             <input type="email" name="email" required>
 
             <button type="submit" class="btn">Registrar</button>
-            <a href="${pageContext.request.contextPath}/vistas/vs_login.jsp" class="btn cancelar">Volver</a>
+            <a href="logout.jsp" class="btn" style="background:#ccc;">Volver</a>
         </form>
     </div>
 </body>
 </html>
+
+
+

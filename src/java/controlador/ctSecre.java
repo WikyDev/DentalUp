@@ -1,62 +1,43 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador;
 
-/**
- *
- * @author Anthony
- */
-import util.conexion;
-import java.sql.ResultSet;
+import modeloDAO.CitaDAO;
+import modelo.mdCita;
 import java.util.ArrayList;
 
 /**
- * Controlador para las funcionalidades del secretario (agenda, búsqueda de citas, reportes).
- * Métodos básicos: listarCitas, buscarCitasPorPaciente, eliminarCita.
+ * Controlador para funcionalidades del secretario:
+ * - Buscar citas por paciente (cédula)
+ * - Listar citas (si luego lo necesitas)
+ * - Eliminar / marcar atendida (si se requiere)
  */
 public class ctSecre {
 
-    public ArrayList<String> listarCitas() {
-        ArrayList<String> lista = new ArrayList<>();
-        try {
-            conexion c = new conexion();
-            String sql = "SELECT id_cita, id_paciente, id_odontologo, fecha_cita FROM citas ORDER BY fecha_cita";
-            ResultSet rs = c.st.executeQuery(sql);
-            while (rs.next()) {
-                lista.add(rs.getInt("id_cita") + "," + rs.getString("id_paciente") + "," + rs.getString("id_odontologo") + "," + rs.getString("fecha_cita"));
-            }
-        } catch (Exception e) {
-            System.out.println("Error listando citas: " + e.getMessage());
-        }
-        return lista;
+    private final CitaDAO citaDAO = new CitaDAO();
+
+    /**
+     * Lista todas las citas de un paciente por su cédula.
+     * Esto es lo que va a usar vs_buscarCita.jsp.
+     */
+    public ArrayList<mdCita> buscarCitasPorPaciente(int cedulaPaciente) {
+        return citaDAO.obtenerCitasPorPaciente(cedulaPaciente);
     }
 
-    public ArrayList<String> buscarCitasPorPaciente(String idPaciente) {
-        ArrayList<String> lista = new ArrayList<>();
-        try {
-            conexion c = new conexion();
-            String sql = "SELECT id_cita, id_odontologo, fecha_cita FROM citas WHERE id_paciente = '" + idPaciente + "'";
-            ResultSet rs = c.st.executeQuery(sql);
-            while (rs.next()) {
-                lista.add(rs.getInt("id_cita") + "," + rs.getString("id_odontologo") + "," + rs.getString("fecha_cita"));
-            }
-        } catch (Exception e) {
-            System.out.println("Error buscando citas por paciente: " + e.getMessage());
-        }
-        return lista;
+    /**
+     * (Opcional) si luego quieres listar todas las citas del sistema
+     * podríamos agregar un método en CitaDAO para eso y llamarlo aquí.
+     */
+    // public ArrayList<mdCita> listarTodasLasCitas() { ... }
+
+    /**
+     * (Opcional) marcar cita como atendida desde el módulo de secretario.
+     */
+    public boolean marcarCitaComoAtendida(int idCita) {
+        return citaDAO.marcarComoAtendida(idCita);
     }
 
-    public boolean eliminarCita(String idCita) {
-        try {
-            conexion c = new conexion();
-            String sql = "DELETE FROM citas WHERE id_cita = '" + idCita + "'";
-            return c.st.executeUpdate(sql) > 0;
-        } catch (Exception e) {
-            System.out.println("Error eliminando cita: " + e.getMessage());
-            return false;
-        }
-    }
+    /**
+     * (Opcional) si decides permitir eliminación física de citas.
+     * Para eso habría que crear en CitaDAO un método eliminar(int idCita).
+     */
+    // public boolean eliminarCita(int idCita) { ... }
 }
-

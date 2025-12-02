@@ -1,0 +1,58 @@
+/* 
+    Created on : 15/05/2025, 11:58:29 p. m.
+    Author     : Anthony
+*/
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(135deg, #f7f7f7, #e1f5fe);
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 800px;
+    background: #fff;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+h2 {
+    text-align: center;
+    color: #2196F3;
+}
+form label {
+    font-weight: 600;
+    display: block;
+    margin-top: 10px;
+}
+form input, form select, form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+.btn {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: #1976D2;
+}
+.mensaje {
+    text-align: center;
+    font-weight: bold;
+    color: green;
+}
+.error {
+    text-align: center;
+    font-weight: bold;
+    color: red;
+}
+
+

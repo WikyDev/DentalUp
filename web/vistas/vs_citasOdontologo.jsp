@@ -52,7 +52,7 @@
             </td>
             <td>
                 <% if (mdCita.ESTADO_PENDIENTE.equalsIgnoreCase(c.getEstado())) { %>
-                <a href="${pageContext.request.contextPath}/HistoriaServlet?accion=cargarDesdeCita&id_cita=<%= c.getIdCita() %>&cedula_paciente=<%= c.getCedulaPaciente()%>&cedula_odontologo=<%= c.getCedulaOdontologo()%>&fecha=<%= java.net.URLEncoder.encode(c.getFechaCita(), "UTF-8")%>&motivo=<%= java.net.URLEncoder.encode(c.getMotivo(), "UTF-8")%>"
+                <a href="${pageContext.request.contextPath}/HistoriaServlet?accion=cargarDesdeCita&id_cita=<%= c.getIdCita() %>&id_paciente=<%= c.getIdPaciente()%>&id_odontologo=<%= c.getIdOdontologo()%>&fecha=<%= java.net.URLEncoder.encode(c.getFechaCita(), "UTF-8")%>&motivo=<%= java.net.URLEncoder.encode(c.getMotivo(), "UTF-8")%>"
                    class="btn">
                     Registrar Historia
                 </a>
