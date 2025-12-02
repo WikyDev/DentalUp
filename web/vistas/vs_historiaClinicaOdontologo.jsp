@@ -7,14 +7,14 @@
 <%@ page import="java.util.*, modelo.mdHistoriaClinica" %>
 
 <%
-    // Recuperar atributos enviados desde el controlador
+    // Recuperar atributos del controlador
     ArrayList<mdHistoriaClinica> lista = 
         (ArrayList<mdHistoriaClinica>) request.getAttribute("listaHistorias");
 
     mdHistoriaClinica seleccionada = 
         (mdHistoriaClinica) request.getAttribute("historiaSeleccionada");
 
-    // Recuperar el ID del paciente desde atributos (mejor que getParameter)
+    // ID del paciente enviado desde el servlet
     String idPaciente = (request.getAttribute("id_paciente") != null)
             ? request.getAttribute("id_paciente").toString()
             : "";
@@ -51,6 +51,8 @@
             <th>Fecha</th>
             <th>Motivo</th>
             <th>Diagnóstico</th>
+            <th>Tratamiento</th>
+            <th>Odontólogo</th>
             <th>Acción</th>
         </tr>
 
@@ -60,6 +62,8 @@
                 <td><%= h.getFecha() %></td>
                 <td><%= h.getMotivoConsulta() %></td>
                 <td><%= h.getDiagnostico() %></td>
+                <td><%= h.getTratamiento() %></td>
+                <td><%= h.getNombreOdontologo() %></td>
                 <td>
                     <a href="ctHistoriaOdontologo?accion=editar&id_historia=<%= h.getIdHistoria() %>&id_paciente=<%= idPaciente %>">
                         Editar
@@ -69,7 +73,7 @@
         <% } %>
     </table>
 
-<% } else if (idPaciente != null && !idPaciente.equals("")) { %>
+<% } else if (!idPaciente.equals("")) { %>
 
     <p>No se encontraron historias para este paciente.</p>
 
@@ -77,7 +81,7 @@
 
 <br><hr><br>
 
-<!-- Formulario para editar -->
+<!-- Formulario para editar una historia -->
 <% if (seleccionada != null) { %>
 
     <h3>Editar historia clínica</h3>
@@ -104,9 +108,9 @@
     </form>
 
 <% } %>
-<div>
-        <br>
-        < <a href="${pageContext.request.contextPath}/vistas/vs_menuOdonto.jsp">Volver al menú</a>
-    </div>
+
+<br>
+<a href="${pageContext.request.contextPath}/vistas/vs_menuOdonto.jsp">Volver al menú</a>
+
 </body>
 </html>

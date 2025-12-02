@@ -109,7 +109,10 @@ public class HistoriaClinicaDAO {
         return lista;
     }
     public mdHistoriaClinica obtenerPorId(int idHistoria) {
-    String sql = "SELECT * FROM historias_clinicas WHERE id_historia = ?";
+    String sql = "SELECT id_historia, id_paciente, id_odontologo, fecha, "
+               + "motivoConsulta, diagnostico, tratamiento, observaciones "
+               + "FROM historias_clinicas WHERE id_historia = ?";
+
     mdHistoriaClinica h = null;
 
     try (Connection con = conexion.getConexion();
@@ -126,7 +129,7 @@ public class HistoriaClinicaDAO {
             h.setFecha(rs.getDate("fecha"));
             h.setMotivoConsulta(rs.getString("motivoConsulta"));
             h.setDiagnostico(rs.getString("diagnostico"));
-            h.setTratamiento(rs.getString("tratamiento"));
+            h.setTratamiento(rs.getString("tratamiento"));  // ✔ ahora sí trae el valor
             h.setObservaciones(rs.getString("observaciones"));
         }
 
@@ -136,6 +139,7 @@ public class HistoriaClinicaDAO {
 
     return h;
 }
+
 public boolean actualizar(mdHistoriaClinica h) {
 
     String sql = "UPDATE historias_clinicas SET motivoConsulta=?, diagnostico=?, tratamiento=?, observaciones=? "
