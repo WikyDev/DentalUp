@@ -20,6 +20,7 @@ public class RegistroPacienteServlet extends HttpServlet {
             throws ServletException, IOException {
 
         // Parámetros desde el formulario
+        String cedulaStr = request.getParameter("cedula_paciente");
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
         String edadStr = request.getParameter("edad");
@@ -30,7 +31,22 @@ public class RegistroPacienteServlet extends HttpServlet {
         String email = request.getParameter("email");
         String nombre_user = request.getParameter("usuario");
         String password = request.getParameter("password");
-
+        
+        int cedula = 0;
+        try {
+            cedula = Integer.parseInt(cedulaStr);
+        } catch (Exception e) {
+            cedula = 0;
+        }
+        
+        // Validar cédula obligatoria y mayor a cero
+        if (cedula <= 0) {
+            request.setAttribute("mensaje", "❌ La cédula no es válida. Por favor ingresa un número correcto.");
+            RequestDispatcher rd = request.getRequestDispatcher("/vistas/vs_registro_paciente.jsp");
+            rd.forward(request, response);
+            return; // Detiene la ejecución del servlet
+        }
+        
         int edad = 0;
         try {
             edad = Integer.parseInt(edadStr);
@@ -40,6 +56,7 @@ public class RegistroPacienteServlet extends HttpServlet {
 
         // Crear el objeto paciente (modelo)
         mdPaciente paciente = new mdPaciente();
+        paciente.setCedulaPaciente(cedula);
         paciente.setNombre(nombre);
         paciente.setApellido(apellido);
         paciente.setEdad(edad);
