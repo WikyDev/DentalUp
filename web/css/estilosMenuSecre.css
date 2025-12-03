@@ -9,7 +9,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 
 /* =========================
    Reset básico
-   ========================= 
+   ========================= */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -24,7 +24,6 @@ html, body {
 /* =========================
    Fondo general tipo Figma
    ========================= */
-
 body {
     background: radial-gradient(circle at top, #eef5ff 0%, #f6f7fb 40%, #fdfdfd 100%);
     color: #0f172a;

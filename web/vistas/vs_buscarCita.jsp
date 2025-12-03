@@ -1,4 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<<<<<<< HEAD
+=======
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="modelo.mdCita" %>
+<%@ page import="controlador.ctSecre" %>
+
+>>>>>>> e7982b1657723aac761bfe7fd6e665250e9c1561
 <!DOCTYPE html>
 <html>
 <head>
