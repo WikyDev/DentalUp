@@ -1,8 +1,21 @@
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<div style="width:400px;margin:auto;">
-    <canvas id="graficaMotivos"></canvas>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agendar Cita</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/estilosSubMenus.css">
+</head>
+
+<div id="img-fondo"></div>
+      <div class="container">
+        <div class="logo-container">
+            <img src="${pageContext.request.contextPath}/imagenes/logo.png" alt="Logo DentalUp">
+        </div>
+        <div style="width:400px;margin:auto;">
+            <canvas id="graficaMotivos"></canvas>
+        </div>
 
 <script>
 let chart;
@@ -49,5 +62,5 @@ setInterval(cargarDatos, 8000);
 </script>
 <div>
         <br>
-        < <a href="${pageContext.request.contextPath}/vistas/vs_menuOdonto.jsp">Volver al menú</a>
+        <a href="${pageContext.request.contextPath}/vistas/vs_menuOdonto.jsp">Volver al menú</a>
     </div>
