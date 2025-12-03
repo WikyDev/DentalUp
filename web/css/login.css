@@ -16,17 +16,21 @@ body {
   overflow: hidden;
 }
 
-#video-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 100vw;
-  min-height: 100vh;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -1;
-  pointer-events: none;
+#img-fondo {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../imagenes/registro.jpeg') center center / cover no-repeat;
+    z-index: -1;
+}
+
+#img-fondo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,22,40,0.75) 0%, rgba(20,35,60,0.85) 100%);
+    z-index: 1;
 }
 
 /* Ajustes de grid */
@@ -113,7 +117,7 @@ body {
     font-weight: 600;
     margin: 0px 0 10px 0;
     display: block;
-    background: linear-gradient(180deg, #fac74a, #f48b4a 60%, #ff8787);
+    background: linear-gradient(135deg, #e6efff 0%, #76B4FF 50%, #5F8CFF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -311,4 +315,38 @@ body {
   background: #c6f6d5;
   color: #22543d;
   border-left: 4px solid #22543d;
+}
+
+/* Contenedor del enlace */
+.volver-inicio {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #667eea;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+/* Cambio de color al pasar el mouse */
+.volver-inicio:hover {
+  color: #5a67d8;
+}
+
+/* Icono */
+.icono-volver {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  opacity: 0.9;
+}
+
+/* Animación suave del ícono */
+.volver-inicio:hover .icono-volver {
+  transform: translateX(-4px);
+  opacity: 1;
 }

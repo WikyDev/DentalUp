@@ -18,11 +18,9 @@
     <div class="menu menu-odontologo">
 
         <!-- Ver citas del odontólogo -->
-        <a href="${pageContext.request.contextPath}/CitaServlet?accion=listarOdontologo"><br>
-            Ver mis Citas
-        </a>
+        <a href="${pageContext.request.contextPath}/CitaServlet?accion=listarOdontologo">Ver mis Citas</a>
 
-        
+      
 
         <!-- Gráfica conectada al Servlet correcto -->
         <a href="${pageContext.request.contextPath}/vistas/vs_grafica.jsp"><br>

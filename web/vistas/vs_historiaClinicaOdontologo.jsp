@@ -15,8 +15,8 @@
         (mdHistoriaClinica) request.getAttribute("historiaSeleccionada");
 
     // ID del paciente enviado desde el servlet
-    String idPaciente = (request.getAttribute("id_paciente") != null)
-            ? request.getAttribute("id_paciente").toString()
+    String idPaciente = (request.getAttribute("cedula_paciente") != null)
+            ? request.getAttribute("cedula_paciente").toString()
             : "";
 %>
 
@@ -34,7 +34,7 @@
 <!-- Buscar por ID de paciente -->
 <form method="get" action="ctHistoriaOdontologo">
     <label>ID Paciente:</label>
-    <input type="number" name="id_paciente" required value="<%= idPaciente %>">
+    <input type="number" name="cedula_paciente" required value="<%= idPaciente %>">
     <button type="submit">Buscar</button>
 </form>
 
@@ -53,6 +53,7 @@
             <th>Diagnóstico</th>
             <th>Tratamiento</th>
             <th>Odontólogo</th>
+            <th>observaciones</th>
             <th>Acción</th>
         </tr>
 
@@ -60,12 +61,13 @@
             <tr>
                 <td><%= h.getIdHistoria() %></td>
                 <td><%= h.getFecha() %></td>
-                <td><%= h.getMotivoConsulta() %></td>
-                <td><%= h.getDiagnostico() %></td>
-                <td><%= h.getTratamiento() %></td>
-                <td><%= h.getNombreOdontologo() %></td>
+                <td><%= h.getMotivoConsulta()%></td>
+                <td><%= h.getDiagnostico()%></td>
+                <td><%= h.getTratamiento()%></td>
+                <td><%= h.getNombreOdontologo()%></td>
+                <td><%= h.getObservaciones()%></td>
                 <td>
-                    <a href="ctHistoriaOdontologo?accion=editar&id_historia=<%= h.getIdHistoria() %>&id_paciente=<%= idPaciente %>">
+                    <a href="ctHistoriaOdontologo?accion=editar&id_historia=<%= h.getIdHistoria() %>&cedula_paciente=<%= idPaciente %>">
                         Editar
                     </a>
                 </td>
@@ -90,10 +92,10 @@
 
         <input type="hidden" name="accion" value="actualizar">
         <input type="hidden" name="id_historia" value="<%= seleccionada.getIdHistoria() %>">
-        <input type="hidden" name="id_paciente" value="<%= seleccionada.getIdPaciente() %>">
+        <input type="hidden" name="cedula_paciente" value="<%= seleccionada.getCedulaPaciente()%>">
 
         <label>Motivo de consulta:</label><br>
-        <textarea name="motivo" rows="2" cols="40"><%= seleccionada.getMotivoConsulta() %></textarea><br><br>
+        <textarea name="motivoConsulta" rows="2" cols="40"><%= seleccionada.getMotivoConsulta() %></textarea><br><br>
 
         <label>Diagnóstico:</label><br>
         <textarea name="diagnostico" rows="2" cols="40"><%= seleccionada.getDiagnostico() %></textarea><br><br>

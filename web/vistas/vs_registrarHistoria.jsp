@@ -10,8 +10,8 @@
 <%
     // Parámetros enviados desde HistoriaServlet
     String idCita = (String) request.getParameter("id_cita");
-    String idPaciente = request.getParameter("id_paciente");
-    String idOdontologo = request.getParameter("id_odontologo");
+    String cedulaPaciente = request.getParameter("cedula_paciente");
+    String cedulaOdontologo = request.getParameter("cedula_odontologo");
     String fecha = request.getParameter("fecha");
     String motivoConsulta = request.getParameter("motivo");
 
@@ -39,8 +39,8 @@
     <!-- Hidden inputs para enviar IDs -->
     <input type="hidden" name="accion" value="registrar">
     <input type="hidden" name="id_cita" value="<%= idCita %>">
-    <input type="hidden" name="id_paciente" value="<%= idPaciente %>">
-    <input type="hidden" name="id_odontologo" value="<%= idOdontologo %>">
+    <input type="hidden" name="cedula_paciente" value="<%= cedulaPaciente %>">
+    <input type="hidden" name="cedula_odontologo" value="<%= cedulaOdontologo %>">
     <input type="hidden" name="fecha" value="<%= fecha %>">
     <input type="hidden" name="motivoConsulta" value="<%= motivoConsulta %>">
 

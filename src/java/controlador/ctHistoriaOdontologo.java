@@ -26,7 +26,7 @@ public class ctHistoriaOdontologo extends HttpServlet {
 protected void doGet(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
 
-    String idPacienteParam = req.getParameter("id_paciente");
+    String idPacienteParam = req.getParameter("cedula_paciente");
     String accion = req.getParameter("accion");
 
     // Cargar la vista por defecto sin errores
@@ -56,7 +56,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp)
         req.setAttribute("listaHistorias", dao.obtenerPorPaciente(idPaciente));
     }
 
-    req.setAttribute("id_paciente", idPaciente);
+    req.setAttribute("cedula_paciente", idPaciente);
     req.getRequestDispatcher("/vistas/vs_historiaClinicaOdontologo.jsp").forward(req, resp);
 }
 
@@ -75,7 +75,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             mdHistoriaClinica h = new mdHistoriaClinica();
 
             h.setIdHistoria(Integer.parseInt(req.getParameter("id_historia")));
-            h.setMotivoConsulta(req.getParameter("motivo"));
+            h.setMotivoConsulta(req.getParameter("motivoConsulta"));
             h.setDiagnostico(req.getParameter("diagnostico"));
             h.setTratamiento(req.getParameter("tratamiento"));
             h.setObservaciones(req.getParameter("observaciones"));
@@ -84,7 +84,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             dao.actualizar(h);
 
             // redirigir a la lista del paciente
-            resp.sendRedirect("ctHistoriaOdontologo?id_paciente=" + req.getParameter("id_paciente"));
+            resp.sendRedirect("ctHistoriaOdontologo?cedula_paciente=" + req.getParameter("cedula_paciente"));
         }
     }
 }

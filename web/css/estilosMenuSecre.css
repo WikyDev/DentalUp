@@ -1,0 +1,294 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 29 nov 2025, 1:34:01 a.m.
+    Author     : Daniel
+*/
+
+/* =========================
+   Reset básico
+   ========================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    font-family: "System UI", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* =========================
+   Fondo general tipo Figma
+   ========================= */
+body {
+    background: radial-gradient(circle at top, #eef5ff 0%, #f6f7fb 40%, #fdfdfd 100%);
+    color: #0f172a;
+}
+
+.secre-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 10% 20%, rgba(59,130,246,0.08) 0, transparent 55%),
+        radial-gradient(circle at 90% 10%, rgba(56,189,248,0.06) 0, transparent 55%),
+        radial-gradient(circle at 15% 90%, rgba(251,146,60,0.06) 0, transparent 55%);
+    z-index: -1;
+}
+
+/* =========================
+   Layout principal
+   ========================= */
+.secre-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 32px 16px 40px;
+}
+
+/* ===== Header ===== */
+.secre-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.secre-logo img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 24px;
+    background: linear-gradient(145deg, #eff6ff, #ffffff);
+    box-shadow: 0 18px 45px rgba(15,23,42,0.25);
+    padding: 16px;
+}
+
+.secre-tagline {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #64748b;
+}
+
+.secre-title {
+    margin-top: 8px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.secre-title span {
+    color: #2563eb;
+}
+
+.secre-subtitle {
+    margin-top: 4px;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+/* =========================
+   Contenedor de tarjetas
+   ========================= */
+.secre-menu {
+    width: 100%;
+    max-width: 520px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* ===== Tarjeta base ===== */
+.secre-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border-radius: 18px;
+    background: #ffffff;
+    text-decoration: none;
+    color: #0f172a;
+    box-shadow: 0 6px 18px rgba(15,23,42,0.08);
+    transition:
+        transform 0.14s ease,
+        box-shadow 0.14s ease,
+        background 0.14s ease,
+        color 0.14s ease;
+}
+
+/* Elevación suave al pasar el cursor (todas) */
+.secre-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 45px rgba(15,23,42,0.18);
+}
+
+/* =========================
+   Estilos especiales por tipo
+   ========================= */
+
+/* --- Registrar / Agenda / Buscar / Historias ---
+   (todas las tarjetas "normales", incl. la primera) */
+/* Puedes usar secre-card-primary en la primera solo para diferenciarla si quieres */
+.secre-card-primary {
+    background: #ffffff;
+}
+
+/* Hover AZUL para TODAS las tarjetas que NO son consejo ni cerrar sesión */
+.secre-card:not(.secre-card-tip):not(.secre-card-danger):hover {
+    background: linear-gradient(135deg, #2563eb, #38bdf8);
+    color: #ffffff;
+    box-shadow: 0 22px 50px rgba(37,99,235,0.45);
+}
+
+.secre-card:not(.secre-card-tip):not(.secre-card-danger):hover .secre-card-icon {
+    background: rgba(255,255,255,0.25);
+}
+
+.secre-card:not(.secre-card-tip):not(.secre-card-danger):hover .secre-card-arrow {
+    color: rgba(255,255,255,0.95);
+}
+
+.secre-card:not(.secre-card-tip):not(.secre-card-danger):hover .secre-card-body p {
+    color: rgba(241,245,249,0.9);
+}
+
+/* --- Consejo del día --- */
+/* Normal: blanco simple */
+.secre-card-tip {
+    background: #ffffff;
+    color: #0f172a;
+    box-shadow: 0 6px 18px rgba(15,23,42,0.07);
+}
+
+/* Hover: degradado dorado–amarillo + glow */
+.secre-card-tip:hover {
+    background: linear-gradient(135deg, #facc15, #fbbf24, #f59e0b);
+    box-shadow: 0 22px 50px rgba(245,158,11,0.45);
+    color: #ffffff;
+}
+
+.secre-card-tip:hover .secre-card-body p {
+    color: rgba(255,255,255,0.9);
+}
+
+.secre-card-tip:hover .secre-card-icon {
+    background: rgba(255,255,255,0.25);
+}
+
+/* --- Cerrar sesión --- */
+/* Normal: blanco simple */
+.secre-card-danger {
+    background: #ffffff;
+    color: #b91c1c;
+    box-shadow: 0 6px 18px rgba(15,23,42,0.07);
+}
+
+/* Hover: degradado rojo + glow */
+.secre-card-danger:hover {
+    background: linear-gradient(135deg, #ef4444, #f87171, #fecaca);
+    color: #ffffff;
+    box-shadow: 0 22px 50px rgba(239,68,68,0.45);
+}
+
+.secre-card-danger:hover .secre-card-body p {
+    color: rgba(255,255,255,0.9);
+}
+
+.secre-card-danger:hover .secre-card-icon {
+    background: rgba(255,255,255,0.25);
+}
+
+.secre-card-danger:hover .secre-card-arrow {
+    color: rgba(255,255,255,0.95);
+}
+
+/* =========================
+   Iconos y cuerpo de tarjeta
+   ========================= */
+.secre-card-icon {
+    flex: 0 0 auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eff6ff;
+}
+
+.secre-card-tip .secre-card-icon {
+    background: #fff7ed;
+}
+
+.secre-card-danger .secre-card-icon {
+    background: #fee2e2;
+}
+
+.secre-card-icon img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.secre-card-body {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.secre-card-body h2 {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.secre-card-body p {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+/* Flecha al final */
+.secre-card-arrow {
+    flex: 0 0 auto;
+    font-size: 20px;
+    font-weight: 400;
+    color: #cbd5f5;
+}
+
+/* =========================
+   Sección de ayuda
+   ========================= */
+.secre-help {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.secre-help a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.secre-help a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   Responsive
+   ========================= */
+@media (max-width: 480px) {
+    .secre-wrapper {
+        padding-top: 24px;
+    }
+
+    .secre-card {
+        padding: 12px 14px;
+    }
+}
