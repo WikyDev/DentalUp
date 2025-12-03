@@ -1,34 +1,56 @@
-<%-- Vista limpia: sin lógica embebida --%>
-
+<%-- Vista limpia: sin lÃ³gica embebida --%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Menú Administrador</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilosMenus.css">
+    <title>MenÃº del Administrador</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/estilosMenus.css">
 </head>
-<%--<body>
-    <h2>Menú Administrador</h2>
-    <div class="menu menu-admin">
-        <a href="/control/ct_admin.jsp?op=resumenSemanal">Ver resumen semanal</a><br>
-        <a href="/control/ct_admin.jsp?op=verCitasDadas">Citas dadas</a><br>
-        <a href="/control/ct_admin.jsp?op=verPacientesAlta">Pacientes dados de alta</a><br>
-        <a href="/control/ct_admin.jsp?op=verPendientes">Pacientes pendientes</a><br>
-        <a href="/control/ct_admin.jsp?op=registrarOdontologo">Registrar odontólogos</a><br>
-        <a href="/control/ct_admin.jsp?op=registrarSecretario">Registrar secretarios</a>
-    </div>
-    <p style="margin-top:20px;">
-      <a href="/vista/vs_login.jsp">Cerrar sesión</a>
-    </p>
-</body>
-</html>--%>
-
 <!-- muestra el nombre_user y rol que este en la base de datos -->
 <body>
-    <h1>Bienvenido, <%= session.getAttribute("usuario") %> &#x1F9D1;&#x200D;&#x2695;&#xFE0F;
- </h1>
-    <h2>Rol: <%= session.getAttribute("rol") %></h2>
+    <video autoplay muted loop playsinline preload="auto" id="video-bg">
+        <source src="${pageContext.request.contextPath}/imagenes/menus.mp4" type="video/mp4">
+    </video>
+    <div class="menu-container">
+        <header>
+            <div class="logo">
+                <img src="${pageContext.request.contextPath}/imagenes/logo.png" alt="Logo DentalUp">
+            </div>
+            <h1>
+                Bienvenido, 
+                <span class="usuario-nombre"><%= session.getAttribute("usuario") %></span> ğŸ¦·
+            </h1>
+            <h2>
+                Rol: <%= session.getAttribute("rol") %>
+            </h2>
+        </header>
 
-    <a href="logout.jsp">Cerrar sesión</a>
+        <h3>Seleccione una opciÃ³n:</h3>
+
+        <div class="menu-opciones">
+            <a href="${pageContext.request.contextPath}/AdminServlet?accion=formNuevoAdmin" class="boton boton-agendar">
+                <img class="icono-cita" alt="Agendar cita" src="${pageContext.request.contextPath}/imagenes/calendario.gif">
+                <span class="texto-agendar">Crear nuevo administrador</span>
+            </a>
+
+
+            <a href="${pageContext.request.contextPath}/AdminServlet?accion=formNuevoOdontologo" class="boton boton-agendar">
+                <img class="icono-cita" alt="Ver historial ClÃ­nico" src="${pageContext.request.contextPath}/imagenes/historial.gif">
+                <span class="texto-agendar">Crear nuevo odontÃ³logo</span>
+            </a>
+
+            <a href="${pageContext.request.contextPath}/AdminServlet?accion=formNuevoSecretario" class="boton boton-agendar">
+                <img class="icono-cita" alt="Ver mis Citas" src="${pageContext.request.contextPath}/imagenes/cita.gif">
+                <span class="texto-agendar">Crear nuevo secretario</span>
+            </a>
+                
+            <a href="${pageContext.request.contextPath}/AdminServlet?accion=listarUsuarios" class="boton boton-agendar">
+                <img class="icono-cita" alt="Ver mis Citas" src="${pageContext.request.contextPath}/imagenes/cita.gif">
+                <span class="texto-agendar">Lista de usuarios</span>
+            </a>
+        </div>
+    </div>
+    <a href="${pageContext.request.contextPath}/vistas/logout.jsp">Cerrar sesiÃ³n</a>
 </body>
 </html>
