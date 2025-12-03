@@ -25,53 +25,10 @@
 
 <!-- muestra el nombre_user y rol que este en la base de datos -->
 <body>
-<<<<<<< HEAD
-    
-    <div id="img-fondo" style="background-image: url('${pageContext.request.contextPath}/imagenes/menu.jpeg');"></div>
-=======
-    <h1>Bienvenido, <%= session.getAttribute("usuario") %></h1>
+    <h1>Bienvenido, <%= session.getAttribute("usuario") %> &#x1F9D1;&#x200D;&#x2695;&#xFE0F;
+ </h1>
     <h2>Rol: <%= session.getAttribute("rol") %></h2>
->>>>>>> fd03fe203541775932b193068ec514f770e08e71
 
-    <div class="top-layout">
-
-        <!-- CONTENEDOR IZQUIERDO INFORMATIVO -->
-        <div class="info-container">
-            <h2 class="info-title">Tu bienestar es primero</h2>
-
-            <p class="info-text">
-                En DentalUp te ofrecemos acceso rápido a tus citas, historial clínico y
-                servicios personalizados. Mantén el control de tu salud oral de manera fácil
-                y segura.
-            </p>
-
-            <div class="info-list">
-                <div class="info-item">
-                    <img src="${pageContext.request.contextPath}/imagenes/cita.png" alt="Icono" class="info-icon">
-                    <span>Especialistas certificados</span>
-                </div>
-
-                <div class="info-item">
-                    <img src="${pageContext.request.contextPath}/imagenes/sonrisa.gif" alt="Icono" class="info-icon">
-                    <span>Tratamientos modernos</span>
-                </div>
-
-                <div class="info-item">
-                    <img src="${pageContext.request.contextPath}/imagenes/cita.png" alt="Icono" class="info-icon">
-                    <span>Atención personalizada</span>
-                </div>
-            </div>
-
-            <div class="frase-inspiracion">
-                "Una sonrisa sana abre puertas cada día."
-            </div>
-        </div>
-                    
-        <h1>Bienvenido, <%= session.getAttribute("usuario") %> &#x1F9D1;&#x200D;&#x2695;&#xFE0F;
-     </h1>
-        <h2>Rol: <%= session.getAttribute("rol") %></h2>
-
-        <a href="logout.jsp">Cerrar sesión</a>
-    </div>
+    <a href="logout.jsp">Cerrar sesión</a>
 </body>
 </html>
