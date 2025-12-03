@@ -38,7 +38,7 @@
     
     <div>
         <br>
-        <a href="/vista/vs_menuOdonto.jsp">Volver al menÃº</a>
+        < <a href="${pageContext.request.contextPath}/vistas/vs_menuOdonto.jsp">Volver al menú</a>
     </div>
 </body>
 </html>

@@ -108,5 +108,62 @@ public class HistoriaClinicaDAO {
 
         return lista;
     }
-  
+
+    public mdHistoriaClinica obtenerPorId(int idHistoria) {
+    String sql = "SELECT id_historia, cedula_paciente, cedula_odontologo, fecha, "
+               + "motivoConsulta, diagnostico, tratamiento, observaciones "
+               + "FROM historias_clinicas WHERE id_historia = ?";
+
+    mdHistoriaClinica h = null;
+
+    try (Connection con = conexion.getConexion();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+        ps.setInt(1, idHistoria);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            h = new mdHistoriaClinica();
+            h.setIdHistoria(rs.getInt("id_historia"));
+            h.setCedulaPaciente(rs.getInt("cedula_paciente"));
+            h.setCedulaOdontologo(rs.getInt("cedula_odontologo"));
+            h.setFecha(rs.getDate("fecha"));
+            h.setMotivoConsulta(rs.getString("motivoConsulta"));
+            h.setDiagnostico(rs.getString("diagnostico"));
+            h.setTratamiento(rs.getString("tratamiento"));  // ✔ ahora sí trae el valor
+            h.setObservaciones(rs.getString("observaciones"));
+        }
+
+    } catch (Exception e) {
+        System.out.println("Error obtener historia: " + e.getMessage());
+    }
+
+    return h;
+}
+
+public boolean actualizar(mdHistoriaClinica h) {
+
+    String sql = "UPDATE historias_clinicas SET motivoConsulta=?, diagnostico=?, tratamiento=?, observaciones=? "
+               + "WHERE id_historia=?";
+
+    try (Connection con = conexion.getConexion();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+        ps.setString(1, h.getMotivoConsulta());
+        ps.setString(2, h.getDiagnostico());
+        ps.setString(3, h.getTratamiento());
+        ps.setString(4, h.getObservaciones());
+        ps.setInt(5, h.getIdHistoria());
+
+        return ps.executeUpdate() > 0;
+
+    } catch (Exception e) {
+        System.out.println("Error al actualizar historia clínica: " + e.getMessage());
+        return false;
+    }
+}
+
+    
+
+    
 }
