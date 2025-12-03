@@ -11,6 +11,8 @@ package controlador;
 import util.conexion;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import modelo.mdCita;
+import modeloDAO.CitaDAO;
 
 /**
  * Controlador para las funcionalidades del secretario (agenda, búsqueda de citas, reportes).
@@ -33,7 +35,7 @@ public class ctSecre {
         return lista;
     }
 
-    public ArrayList<String> buscarCitasPorPaciente(String idPaciente) {
+    /*public ArrayList<String> buscarCitasPorPaciente(String idPaciente) {
         ArrayList<String> lista = new ArrayList<>();
         try {
             conexion c = new conexion();
@@ -46,8 +48,20 @@ public class ctSecre {
             System.out.println("Error buscando citas por paciente: " + e.getMessage());
         }
         return lista;
-    }
+    }*/
+    
+    // DAO que se comunica con la base de datos
+    private final CitaDAO citaDAO = new CitaDAO();
 
+    /**
+     * Busca citas usando la CÉDULA del paciente.
+     * Este es el método que llamará el JSP vs_buscarCita.jsp
+     */
+    public ArrayList<mdCita> buscarCitasPorPaciente(int cedulaPaciente) {
+        return citaDAO.obtenerCitasPorCedulaPaciente(cedulaPaciente);
+    }
+    
+    
     public boolean eliminarCita(String idCita) {
         try {
             conexion c = new conexion();

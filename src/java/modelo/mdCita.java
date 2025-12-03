@@ -14,6 +14,7 @@ public class mdCita {
     private String motivo;
     private String estado;
     private String nombrePaciente;
+    private String apellidoPaciente;
     private String nombreOdontologo;
     
     public static final String ESTADO_PENDIENTE = "PENDIENTE";
@@ -93,6 +94,14 @@ public class mdCita {
 
     public void setNombrePaciente(String nombrePaciente) {
         this.nombrePaciente = nombrePaciente;
+    }
+    
+    public String getApellidoPaciente() {
+        return apellidoPaciente;
+    }
+
+    public void setApellidoPaciente(String apellidoPaciente) {
+        this.apellidoPaciente = apellidoPaciente;
     }
 
     public String getNombreOdontologo() {
