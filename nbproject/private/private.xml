@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/WikyLix/Desktop/DentalUp/web/vistas/vs_menuAdmin.jsp</file>
-            <file>file:/C:/Users/WikyLix/Desktop/DentalUp/web/vistas/vs_menuSecre.jsp</file>
-            <file>file:/C:/Users/WikyLix/Desktop/DentalUp/web/vistas/vs_menuOdonto.jsp</file>
+            <file>file:/C:/Users/Jhoon/Documents/Universidad/Java/DentalUp/DentalUp/web/vistas/vs_historiaClinicaOdontologo.jsp</file>
+            <file>file:/C:/Users/Jhoon/Documents/Universidad/Java/DentalUp/DentalUp/src/java/controlador/ctHistoriaOdontologo.java</file>
+            <file>file:/C:/Users/Jhoon/Documents/Universidad/Java/DentalUp/DentalUp/src/java/modeloDAO/HistoriaClinicaDAO.java</file>
+            <file>file:/C:/Users/Jhoon/Documents/Universidad/Java/DentalUp/DentalUp/src/java/modelo/mdHistoriaClinica.java</file>
         </group>
     </open-files>
 </project-private>
