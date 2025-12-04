@@ -210,4 +210,45 @@ public class CitaDAO {
 
         return lista;
     }
+    
+    public ArrayList<mdCita> listarTodasLasCitas() {
+        ArrayList<mdCita> lista = new ArrayList<>();
+
+        String sql =
+            "SELECT c.id_cita, c.cedula_paciente, c.cedula_odontologo, c.fecha_cita, " +
+            "c.motivo, c.estado, " +
+            "p.nombre AS nombre_paciente, p.apellido AS apellido_paciente, " +
+            "o.nombre_completo AS nombre_odontologo " +
+            "FROM citas c " +
+            "LEFT JOIN pacientes p ON c.cedula_paciente = p.cedula_paciente " +
+            "LEFT JOIN odontologos o ON c.cedula_odontologo = o.cedula_odontologo " +
+            "ORDER BY c.fecha_cita DESC";
+
+        try (Connection con = conexion.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                mdCita c = new mdCita(
+                        rs.getInt("id_cita"),
+                        rs.getInt("cedula_paciente"),
+                        rs.getInt("cedula_odontologo"),
+                        rs.getString("fecha_cita"),
+                        rs.getString("motivo"),
+                        rs.getString("estado")
+                );
+
+                c.setNombrePaciente(rs.getString("nombre_paciente"));
+                c.setApellidoPaciente(rs.getString("apellido_paciente"));
+                c.setNombreOdontologo(rs.getString("nombre_odontologo"));
+
+                lista.add(c);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error listando citas: " + e.getMessage());
+        }
+
+        return lista;
+    }
 }

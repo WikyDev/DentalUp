@@ -54,10 +54,12 @@
             </a>
 
             <!-- Generar reporte PDF de citas -->
-            <a href="${pageContext.request.contextPath}/ctSecre?op=generarReporteCitas" class="boton boton-agendar">
-                <img class="icono-cita" alt="Generar reporte PDF" 
-                     src="${pageContext.request.contextPath}/imagenes/historial.gif">
-                <span class="texto-agendar">Generar reporte de citas (PDF)</span>
+            <a href="${pageContext.request.contextPath}/ReportePDFServlet"
+                target="_blank"
+                class="boton boton-agendar">
+                 <img class="icono-cita" alt="Generar reporte PDF"
+                      src="${pageContext.request.contextPath}/imagenes/historial.gif">
+                 <span class="texto-agendar">Generar reporte de citas (PDF)</span>
             </a>
 
             <!-- Consejo del día (opcional, para mantener el mismo diseño) -->

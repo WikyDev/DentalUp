@@ -1,55 +1,54 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package util;
 
-/**
- *
- * @author Anthony
- */
+import modeloDAO.CitaDAO;
+import modelo.mdCita;
 import util.reportePDF;
-import util.conexion;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.sql.ResultSet;
+import java.util.ArrayList;
 
 @WebServlet("/ReportePDFServlet")
 public class ReportePDFServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id_odontologo"));
-        String fecha = request.getParameter("fecha");
+
+    @Override
+    protected void doGet(HttpServletRequest request,
+                         HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("application/pdf");
+        response.setHeader(
+                "Content-Disposition",
+                "inline; filename=reporte_citas.pdf"
+        );
 
         try {
-            System.out.println("👉 Inició generación de PDF...");
-            conexion c = new conexion();
-            ResultSet rs = c.consultarScrollable(
-                "SELECT ci.id_cita, p.nombre AS paciente, p.apellido, TIME(ci.fecha_cita) AS hora, ci.motivo, o.nombre_completo AS odontologo " +
-                "FROM citas ci " +
-                "JOIN pacientes p ON ci.id_paciente = p.id_paciente " +
-                "JOIN odontologos o ON ci.id_odontologo = o.id_odontologo " +
-                "WHERE DATE(ci.fecha_cita) = '" + fecha + "' AND o.id_odontologo = " + id
-            );
+            // 1. Obtener todas las citas
+            CitaDAO dao = new CitaDAO();
+            ArrayList<mdCita> citas = dao.listarTodasLasCitas();
 
-            String nombre = "";
-            if (rs != null && rs.next()) {
-                nombre = rs.getString("odontologo");
-                rs.beforeFirst();
-            }
+            // 2. Obtener ruta física del logo en la carpeta /imagenes
+            // Cambia el nombre del archivo si tu logo se llama diferente
+            String logoPath = getServletContext().getRealPath("/imagenes/logo.png");
 
-            // Lógica del PDF
-            reportePDF pdf = new reportePDF();
-            pdf.generarAgendaDiaria(response, rs, fecha, nombre);
-            System.out.println("✅ PDF generado correctamente.");
+            // 3. Generar PDF
+            reportePDF generador = new reportePDF();
+            generador.generarReporteCitas(citas, response.getOutputStream(), logoPath);
 
-            rs.close();
-            c.cerrar();
         } catch (Exception e) {
             e.printStackTrace();
-            response.setContentType("text/plain");
-            response.getWriter().write("Error al generar PDF: " + e.getMessage());
+            response.reset();
+            response.setContentType("text/plain; charset=UTF-8");
+            response.getWriter().println("Error generando PDF: " + e.getMessage());
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req,
+                          HttpServletResponse resp)
+            throws ServletException, IOException {
+        doGet(req, resp);
     }
 }
