@@ -1,77 +1,150 @@
 <%-- 
     Document   : vs_historiaClinica
-    Created on : 14/11/2025, 10:50:22 a. m.
+    Created on : 14/11/2025, 10:50:22 a. m.
     Author     : Anthony
 --%>
-
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.*, modelo.mdHistoriaClinica" %>
-
 <%
     ArrayList<mdHistoriaClinica> listaHistorias = 
         (ArrayList<mdHistoriaClinica>) request.getAttribute("listaHistorias");
 %>
-
-
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Historias Clínicas</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilos.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilosSubMenus.css">
+    <style>
+        /* Contenedor más amplio para tablas */
+        .container {
+            width: 95%;
+            max-width: 1200px;
+        }
+
+        /* Tabla estilizada */
+        .table-container {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 24px;
+            border-radius: 16px;
+            margin: 25px 0;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.6s ease-out 0.1s backwards;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        th {
+            background: linear-gradient(135deg, #647CF5 0%, #73A6F2 100%);
+            color: white;
+            padding: 16px 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        td {
+            padding: 14px 12px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #2d3748;
+            font-size: 0.95em;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: #f7fafc;
+            transition: background 0.2s ease;
+        }
+
+        /* Mensaje de no encontrado */
+        .no-results {
+            background: rgba(255, 255, 255, 0.95);
+            color: #718096;
+            padding: 30px;
+            border-radius: 16px;
+            border: 2px dashed #e2e8f0;
+            margin: 25px 0;
+            text-align: center;
+            font-size: 1.05em;
+            animation: fadeInUp 0.5s ease-out;
+        }
+    </style>
 </head>
 <body>
-
-<h2>Mis Historias Clínicas</h2>
-
-<!-- Mensajes -->
-<% if (request.getAttribute("mensaje") != null) { %>
-    <p style="color: green;"><%= request.getAttribute("mensaje") %></p>
-<% } %>
-<% if (request.getAttribute("error") != null) { %>
-    <p style="color: red;"><%= request.getAttribute("error") %></p>
-<% } %>
-
-<!-- Verificar si hay historias -->
-<% if (listaHistorias == null || listaHistorias.isEmpty()) { %>
-
-    <p>No se encontraron historias clínicas registradas.</p>
-
-<% } else { %>
-
-    <table border="1" cellpadding="8" cellspacing="0">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Fecha de Registro</th>
-                <th>Diagnóstico</th>
-                <th>Tratamiento</th>
-                <th>Observaciones</th>
-                <th>Odontólogo</th>
-            </tr>
-        </thead>
+    <div id="img-fondo"></div>
+    
+    <div class="container">
+        <div class="logo-container">
+            <img src="${pageContext.request.contextPath}/imagenes/logo.png" alt="Logo DentalUp">
+        </div>
         
-        <tbody>
-            <% for (mdHistoriaClinica h : listaHistorias) {%>
-            <tr>
-                <td><%= h.getIdHistoria()%></td>
-                <td><%= h.getFecha()%></td>
-                <td><%= h.getDiagnostico()%></td>
-                <td><%= h.getTratamiento()%></td>
-                <td><%= h.getObservaciones()%></td>
-                <td><%= h.getNombreOdontologo()%></td>
-            </tr>
-            <% } %>
-        </tbody>
-    </table>
-
-<% } %>
-
-<br>
-<a href="${pageContext.request.contextPath}/vistas/vs_menuPaciente.jsp">⬅ Volver al menú</a>
-
+        <h2>Mis Historias Clínicas</h2>
+        
+        <!-- Mensajes -->
+        <% if (request.getAttribute("mensaje") != null) { %>
+            <div class="mensaje">
+                <%= request.getAttribute("mensaje") %>
+            </div>
+        <% } %>
+        
+        <% if (request.getAttribute("error") != null) { %>
+            <div class="error">
+                <%= request.getAttribute("error") %>
+            </div>
+        <% } %>
+        
+        <!-- Verificar si hay historias -->
+        <% if (listaHistorias == null || listaHistorias.isEmpty()) { %>
+            <div class="no-results">
+                No se encontraron historias clínicas registradas.
+            </div>
+        <% } else { %>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Fecha de Registro</th>
+                            <th>Diagnóstico</th>
+                            <th>Tratamiento</th>
+                            <th>Observaciones</th>
+                            <th>Odontólogo</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <% for (mdHistoriaClinica h : listaHistorias) {%>
+                        <tr>
+                            <td><%= h.getIdHistoria()%></td>
+                            <td><%= h.getFecha()%></td>
+                            <td><%= h.getDiagnostico()%></td>
+                            <td><%= h.getTratamiento()%></td>
+                            <td><%= h.getObservaciones()%></td>
+                            <td><%= h.getNombreOdontologo()%></td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        <% } %>
+        
+        <a href="${pageContext.request.contextPath}/vistas/vs_menuPaciente.jsp" class="btn">Volver al menú</a>
+    </div>
 </body>
 </html>
-
-

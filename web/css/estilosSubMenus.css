@@ -111,6 +111,9 @@ label {
 
 /* Inputs, selects, textarea */
 input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
 input[type="datetime-local"],
 select,
 textarea {
@@ -221,7 +224,7 @@ a.btn {
     border-radius: 14px;
     background: white;
     border: 2px solid #e2e8f0;
-    color: #fff5f5;
+    color: #2d3748;
     text-decoration: none;
     box-sizing: border-box;
     transition: all 0.3s ease;
