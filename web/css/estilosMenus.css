@@ -1,4 +1,4 @@
-/* Fondo general */
+i/* Fondo general */
 body {
   background: linear-gradient(135deg, #647CF5 0%, #73A6F2 100%);
   font-family: 'Segoe UI', 'DM Sans', Arial, sans-serif;
@@ -217,7 +217,7 @@ body {
 .usuario-nombre {
   font-size: 1.6em;
   font-weight: 800;
-  background: linear-gradient(135deg, #F48B4A 0%, #647CF5 100%);
+  background: linear-gradient(135deg, #3A60E7 0%, #7AB6FF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -298,12 +298,13 @@ body {
   width: 52px;
   height: 52px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #73A6F2 0%, #F48B4A 100%);
+  background: linear-gradient(135deg, #3A60E7 0%, #7AB6FF 100%);
   object-fit: contain;
   padding: 8px;
-  box-shadow: 0 4px 12px rgba(115, 166, 242, 0.3);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.35);
   transition: all 0.3s ease;
 }
+
 
 .menu-opciones .boton:hover .icono-cita {
   transform: scale(1.1) rotate(5deg);
