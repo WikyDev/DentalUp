@@ -60,6 +60,16 @@ public class ctSecre {
     public ArrayList<mdCita> buscarCitasPorPaciente(int cedulaPaciente) {
         return citaDAO.obtenerCitasPorCedulaPaciente(cedulaPaciente);
     }
+
+    /** Devuelve todas las citas para el módulo Secretario. */
+    public ArrayList<mdCita> listarTodasLasCitas() {
+        return citaDAO.listarTodasLasCitas();
+    }
+    
+    public ArrayList<mdCita> obtenerTodasLasCitas() {
+        return citaDAO.listarCitasParaSecretario();
+    }
+
     
     
     public boolean eliminarCita(String idCita) {

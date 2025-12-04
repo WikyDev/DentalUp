@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/WikyLix/Desktop/DentalUp/web/css/estilosMenus.css</file>
-            <file>file:/C:/Users/WikyLix/Desktop/DentalUp/web/vistas/vs_menuPaciente.jsp</file>
+            <file>file:/C:/Users/user/Documents/DentalUp/src/java/util/conexion.java</file>
+            <file>file:/C:/Users/user/Documents/DentalUp/src/java/modeloDAO/CitaDAO.java</file>
+            <file>file:/C:/Users/user/Documents/DentalUp/src/java/util/ReportePDFServlet.java</file>
+            <file>file:/C:/Users/user/Documents/DentalUp/src/java/util/reportePDF.java</file>
+            <file>file:/C:/Users/user/Documents/DentalUp/web/vistas/vs_menuSecre.jsp</file>
         </group>
     </open-files>
 </project-private>

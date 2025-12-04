@@ -13,6 +13,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import modelo.mdCita;
 
 // Anotación que define la URL que activará este servlet
 // Por ejemplo: http://localhost:8080/tuApp/ctSecre
@@ -68,6 +69,14 @@ public class SecreServlet extends HttpServlet {
                 rd = request.getRequestDispatcher("/vistas/vs_listarCitas.jsp");
                 rd.forward(request, response);
                 break;
+                
+            case "verTodasCitas":
+                ArrayList<mdCita> todas = secreCtrl.obtenerTodasLasCitas();
+                request.setAttribute("listaCitas", todas);
+                request.getRequestDispatcher("/vistas/vs_verTodaslasCitasSecre.jsp")
+                        .forward(request, response);
+                break;
+
 
             // 🔹 Caso 3: Eliminar cita
             case "eliminarCita":
