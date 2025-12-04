@@ -64,6 +64,30 @@ public class ctAgendarCita {
         return lista;
     }
     
+    
+    //Validar disponibilidad del odontólogo
+    public boolean odontologoDisponible(int cedulaOdontologo, String fechaHora) {
+
+        String sql = "SELECT COUNT(*) FROM citas WHERE cedula_odontologo = ? AND fecha_cita = ?";
+        try (Connection con = conexion.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, cedulaOdontologo);
+            ps.setString(2, fechaHora);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next() && rs.getInt(1) > 0) {
+                return false; // Si ya existe una cita en ese horario
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al validar disponibilidad: " + e.getMessage());
+        }
+
+        return true; // Disponible
+    }
+
+    
 }
 
 

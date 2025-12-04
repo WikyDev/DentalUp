@@ -51,7 +51,7 @@ public class CitaServlet extends HttpServlet {
                 break;
             case "agendar":
                 mostrarFormularioAgendar(request, response);
-                break;
+                break;  
             default:
                 response.sendRedirect("vistas/vs_menuPaciente.jsp");
                 break;
@@ -83,15 +83,36 @@ public class CitaServlet extends HttpServlet {
             throws ServletException, IOException {
         String cedulaStr = request.getParameter("cedula_paciente");
         if (cedulaStr == null || cedulaStr.trim().isEmpty()) {
-            request.setAttribute("mensaje", "❌ Error: no se recibió la cédula del paciente.");
+            request.setAttribute("mensaje", "Error: no se recibió la cédula del paciente.");
             request.getRequestDispatcher("vistas/vs_agendarCita.jsp").forward(request, response);
             return;
         }
         int cedulaPaciente = Integer.parseInt(cedulaStr);
         int cedulaOdontologo = Integer.parseInt(request.getParameter("cedula_odontologo"));
-        String fechaCita = request.getParameter("fecha_cita");
+        
+        // Convertir formato del input datetime-local
+        String fechaCita = request.getParameter("fecha_cita"); // 2025-12-10T10:00
+        String fechaFormateada = fechaCita.replace("T", " ") + ":00"; // 2025-12-10 10:00:00
+        
         String motivo = request.getParameter("motivo");
+        
+         // ---- Validar disponibilidad de odontologo ----
+        ctAgendarCita ct = new ctAgendarCita();
+        boolean disponible = ct.odontologoDisponible(cedulaOdontologo, fechaFormateada);
 
+        if (!disponible) {
+            request.setAttribute("mensaje", "El odontólogo ya tiene una cita en esa fecha y hora.");
+
+            // Recargar odontólogos para que no se pierda el select
+            controlador.ctOdonto ctrl = new controlador.ctOdonto();
+            ArrayList<mdOdontologo> lista = ctrl.obtenerTodos();
+            request.setAttribute("listaOdontologos", lista);
+
+            request.getRequestDispatcher("vistas/vs_agendarCita.jsp").forward(request, response);
+            return;
+        }
+
+        // Si está disponible → registrar
         String sql = "INSERT INTO citas (cedula_paciente, cedula_odontologo, fecha_cita, motivo) VALUES (?, ?, ?, ?)";
 
         try (Connection con = conexion.getConexion();
@@ -99,15 +120,20 @@ public class CitaServlet extends HttpServlet {
 
             ps.setInt(1, cedulaPaciente);
             ps.setInt(2, cedulaOdontologo);
-            ps.setString(3, fechaCita);
+            ps.setString(3, fechaFormateada);
             ps.setString(4, motivo);
             ps.executeUpdate();
 
-            request.setAttribute("mensaje", "✅ Cita agendada correctamente");
+            request.setAttribute("mensaje", "Cita agendada correctamente");
         } catch (SQLException e) {
             e.printStackTrace();
-            request.setAttribute("mensaje", "❌ Error al registrar la cita: " + e.getMessage());
+            request.setAttribute("mensaje", "Error al registrar la cita: " + e.getMessage());
         }
+        
+        // Volver a cargar odontólogos después de agendar
+        controlador.ctOdonto ctrl = new controlador.ctOdonto();
+        ArrayList<mdOdontologo> lista = ctrl.obtenerTodos();
+        request.setAttribute("listaOdontologos", lista);
         
         RequestDispatcher rd = request.getRequestDispatcher("vistas/vs_agendarCita.jsp");
         rd.forward(request, response);
@@ -139,7 +165,7 @@ public class CitaServlet extends HttpServlet {
         Integer cedulaPaciente = (Integer) session.getAttribute("cedula_paciente");
 
         if (cedulaPaciente == null) {
-            request.setAttribute("mensaje", "⚠️ Debe iniciar sesión para ver sus citas.");
+            request.setAttribute("mensaje", "⚠ Debe iniciar sesión para ver sus citas.");
             request.getRequestDispatcher("vistas/vs_login.jsp").forward(request, response);
             return;
         }
@@ -249,7 +275,7 @@ public class CitaServlet extends HttpServlet {
             String motivo = request.getParameter("motivo");
 
             // Combina fecha + hora en el mismo formato que usas en BD
-            String fechaCita = fecha + " " + hora;
+            String fechaCita = fecha + " " + hora + ":00";
 
             mdCita citaExistente = citaDAO.obtenerCitaPorId(idCita);
             if (citaExistente == null) {
@@ -271,7 +297,36 @@ public class CitaServlet extends HttpServlet {
                 listarCitasPaciente(request, response);
                 return;
             }
+            
+            //VALIDAR DISPONIBILIDAD
+            ctAgendarCita ct = new ctAgendarCita();
+            boolean disponible = ct.odontologoDisponible(cedulaOdontologo, fechaCita);
 
+            // Si NO está disponible y NO es la misma cita -> ERROR
+            if (!disponible
+                    && !(citaExistente.getCedulaOdontologo() == cedulaOdontologo
+                    && citaExistente.getFechaCita().equals(fechaCita))) {
+
+                request.setAttribute("mensaje", "El odontólogo ya tiene una cita en esa fecha y hora.");
+
+                // Recargar datos necesarios
+                Map<Integer, String> odontologos = new LinkedHashMap<>();
+                String sql = "SELECT cedula_odontologo, nombre_completo FROM odontologos ORDER BY nombre_completo ASC";
+                try (Connection con = conexion.getConexion(); PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+
+                    while (rs.next()) {
+                        odontologos.put(rs.getInt("cedula_odontologo"), rs.getString("nombre_completo"));
+                    }
+                }
+
+                request.setAttribute("odontologos", odontologos);
+                request.setAttribute("cita", citaExistente);
+
+                request.getRequestDispatcher("vistas/vs_editarCita.jsp").forward(request, response);
+                return;
+            }
+
+            // SI ESTÁ DISPONIBLE → ACTUALIZAR
             mdCita nueva = new mdCita();
             nueva.setIdCita(idCita);
             nueva.setCedulaPaciente(citaExistente.getCedulaPaciente());
@@ -282,13 +337,13 @@ public class CitaServlet extends HttpServlet {
 
             boolean ok = citaDAO.actualizar(nueva);
             if (ok) {
-                request.setAttribute("mensaje", "✅ Cita actualizada correctamente.");
+                request.setAttribute("mensaje", "Cita actualizada correctamente.");
             } else {
-                request.setAttribute("mensaje", "❌ Error al actualizar la cita.");
+                request.setAttribute("mensaje", "Error al actualizar la cita.");
             }
 
         } catch (Exception e) {
-            request.setAttribute("mensaje", "❌ Error en los datos: " + e.getMessage());
+            request.setAttribute("mensaje", "Error en los datos: " + e.getMessage());
         }
 
         listarCitasPaciente(request, response);
