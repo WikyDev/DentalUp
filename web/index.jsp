@@ -17,8 +17,8 @@
             </div>
             <span class="brand-name">DentalUp</span>
         </div>
-        <span class="nav-link">Servicios</span>
-        <span class="nav-link">Desarrolladores</span>
+        <a href="${pageContext.request.contextPath}/index.jsp" class="nav-link">Inicio</a>
+        <a href="${pageContext.request.contextPath}/vistas/vs_desarrolladores.jsp" class="nav-link">Desarrolladores</a>
         <a href="${pageContext.request.contextPath}/vistas/vs_profesionales.jsp" class="nav-link">Profesionales</a>
         <a href="${pageContext.request.contextPath}/vistas/vs_login.jsp" class="cita-btn-unico btn-ingresar">Ingresar</a>
     </nav>

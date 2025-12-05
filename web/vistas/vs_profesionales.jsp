@@ -1,6 +1,6 @@
 <%-- 
     Document   : vs_profesionales
-    Created on : 4/12/2025, 8:01:09?p. m.
+    Created on : 4/12/2025, 8:01:09 p. m.
     Author     : WikyLix
 --%>
 <!DOCTYPE html>
@@ -22,10 +22,9 @@
             </div>
             <span class="brand-name">DentalUp</span>
         </div>
-        <span class="nav-link">Servicios</span>
-        <span class="nav-link">Desarrolladores</span>
-        <span class="nav-link">Profesionales</span>
-        <a href="${pageContext.request.contextPath}/index.jsp" class="btn-inicio">Volver al Inicio</a>
+        <a href="${pageContext.request.contextPath}/index.jsp" class="nav-link">Inicio</a>
+        <a href="${pageContext.request.contextPath}/vistas/vs_desarrolladores.jsp" class="nav-link">Desarrolladores</a>
+        <a href="${pageContext.request.contextPath}/vistas/vs_profesionales.jsp" class="nav-link">Profesionales</a>
     </nav>
 
     <header class="hero">
@@ -45,29 +44,29 @@
         <p class="section-desc">Profesionales con años de experiencia y pasión por la odontología</p>
         
         <div class="profesional-card">
+            <img src="${pageContext.request.contextPath}/imagenes/doctor1.jpg" alt="Dra. Laura Gomez" class="profesional-icon">
             <h3>Dra. Laura Gomez</h3>
-            <img src="${pageContext.request.contextPath}/imagenes/doctor1.jpg" alt="Dr. Carlos Méndez" class="profesional-icon">
             <span class="profesional-especialidad">Ortodoncista Senior</span>
             <p class="profesional-desc">15 años de experiencia en ortodoncia invisible y brackets. Certificado por la Asociación Americana de Ortodoncistas.</p>
         </div>
         
         <div class="profesional-card">
+            <img src="${pageContext.request.contextPath}/imagenes/doctor2.jpg" alt="Dr. Miguel Ospina" class="profesional-icon">
             <h3>Dr. Miguel Ospina</h3>
-            <img src="${pageContext.request.contextPath}/imagenes/doctor2.jpg" alt="Dra. Ana Rodríguez" class="profesional-icon">
-            <span class="profesional-especialidad">Implantóloga</span>
+            <span class="profesional-especialidad">Implantólogo</span>
             <p class="profesional-desc">Especialista en implantes dentales con técnicas de cirugía guiada por computadora.</p>
         </div>
         
         <div class="profesional-card">
+            <img src="${pageContext.request.contextPath}/imagenes/doctor3.jpg" alt="Dra. Camila Perez" class="profesional-icon">
             <h3>Dra. Camila Perez</h3>
-            <img src="${pageContext.request.contextPath}/imagenes/doctor3.jpg" alt="Dr. Miguel Torres" class="profesional-icon">
             <span class="profesional-especialidad">Endodoncista</span>
             <p class="profesional-desc">Experto en tratamientos de conducto con microscopio dental. Certificación internacional en endodoncia avanzada.</p>
         </div>
         
         <div class="profesional-card">
+            <img src="${pageContext.request.contextPath}/imagenes/doctor4.jpg" alt="Dr. Pablo Torres" class="profesional-icon">
             <h3>Dr. Pablo Torres</h3>
-            <img src="${pageContext.request.contextPath}/imagenes/doctor4.jpg" alt="Dra. Laura Gómez" class="profesional-icon">
             <span class="profesional-especialidad">Periodoncista</span>
             <p class="profesional-desc">Especializada en regeneración de tejidos y cirugía periodontal. Miembro activo de la Sociedad Europea de Periodoncia.</p>
         </div>
@@ -78,20 +77,20 @@
         <p class="section-desc">Nuestro compromiso con la excelencia está respaldado por certificaciones internacionales</p>
         
         <div class="certificacion-card">
+            <img src="${pageContext.request.contextPath}/imagenes/admin.png" alt="Certificación" class="certificacion-icon">
             <h3>Certificación Internacional</h3>
-            <img src="${pageContext.request.contextPath}/imagenes/admin.png" alt="Certifiación" class="certificacion-icon">
             <p class="certificacion-desc">Todos nuestros especialistas cuentan con certificaciones internacionales vigentes y participan en programas de educación continua.</p>
         </div>
         
         <div class="certificacion-card">
+            <img src="${pageContext.request.contextPath}/imagenes/tecno.png" alt="Tecnología" class="certificacion-icon">
             <h3>Tecnología Aprobada</h3>
-            <img src="${pageContext.request.contextPath}/imagenes/tecno.png" alt="tecnología" class="certificacion-icon">
             <p class="certificacion-desc">Utilizamos únicamente equipos y materiales aprobados por organismos internacionales de salud y regulación dental.</p>
         </div>
         
         <div class="certificacion-card">
-            <h3>Formación Continua</h3>
             <img src="${pageContext.request.contextPath}/imagenes/dentista.png" alt="Formación" class="certificacion-icon">
+            <h3>Formación Continua</h3>
             <p class="certificacion-desc">Nuestro equipo asiste regularmente a congresos y cursos especializados para mantenerse actualizado con las últimas técnicas.</p>
         </div>
     </section>
