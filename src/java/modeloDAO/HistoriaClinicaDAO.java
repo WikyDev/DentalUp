@@ -110,9 +110,15 @@ public class HistoriaClinicaDAO {
     }
 
     public mdHistoriaClinica obtenerPorId(int idHistoria) {
-    String sql = "SELECT id_historia, cedula_paciente, cedula_odontologo, fecha, "
-               + "motivoConsulta, diagnostico, tratamiento, observaciones "
-               + "FROM historias_clinicas WHERE id_historia = ?";
+    String sql = "SELECT h.id_historia, h.cedula_paciente, h.cedula_odontologo, h.fecha, "
+               + "h.motivoConsulta, h.diagnostico, h.tratamiento, h.observaciones, "
+               + "CONCAT (p.nombre, ' ', p.apellido) AS nombrePaciente, "
+               + "p.edad, p.telefono, p.fecha_nac, p.email, "
+               + "o.nombre_completo AS nombreOdontologo "
+               + "FROM historias_clinicas h "
+               + "INNER JOIN pacientes p ON h.cedula_paciente = p.cedula_paciente "
+               + "INNER JOIN odontologos o ON h.cedula_odontologo = o.cedula_odontologo "
+               + "WHERE h.id_historia = ?";
 
     mdHistoriaClinica h = null;
 
@@ -130,8 +136,16 @@ public class HistoriaClinicaDAO {
             h.setFecha(rs.getDate("fecha"));
             h.setMotivoConsulta(rs.getString("motivoConsulta"));
             h.setDiagnostico(rs.getString("diagnostico"));
-            h.setTratamiento(rs.getString("tratamiento"));  // ✔ ahora sí trae el valor
+            h.setTratamiento(rs.getString("tratamiento")); 
             h.setObservaciones(rs.getString("observaciones"));
+            
+            //datos traídos con JOIN
+            h.setNombrePaciente(rs.getString("nombrePaciente"));
+            h.setEdad(rs.getInt("edad"));
+            h.setTelefono(rs.getString("telefono"));
+            h.setFechaNac(rs.getDate("fecha_nac"));
+            h.setEmail(rs.getString("email"));
+            h.setNombreOdontologo(rs.getString("nombreOdontologo"));
         }
 
     } catch (Exception e) {

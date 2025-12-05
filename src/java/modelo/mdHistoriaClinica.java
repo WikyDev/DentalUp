@@ -24,11 +24,16 @@ public class mdHistoriaClinica {
     private String observaciones;
     private String nombrePaciente;
     private String nombreOdontologo;
+    private int edad;
+    private Date fechaNac;
+    private String telefono;
+    private String email;
 
     public mdHistoriaClinica() {
     }
 
-    public mdHistoriaClinica(int id_historia, int cedulaPaciente, int cedulaOdontologo, Date fecha, String motivoConsulta, String diagnostico, String tratamiento, String observaciones) {
+    public mdHistoriaClinica(int id_historia, int cedulaPaciente, int cedulaOdontologo, Date fecha, String motivoConsulta, 
+            String diagnostico, String tratamiento, String observaciones, String nombrePaciente, String nombreOdontologo) {
         this.id_historia = id_historia;
         this.cedulaPaciente = cedulaPaciente;
         this.cedulaOdontologo = cedulaOdontologo;
@@ -37,6 +42,8 @@ public class mdHistoriaClinica {
         this.diagnostico = diagnostico;
         this.tratamiento = tratamiento;
         this.observaciones = observaciones;
+        this.nombrePaciente = nombrePaciente;
+        this.nombreOdontologo = nombreOdontologo;
     }
 
     //Geters y seters
@@ -119,6 +126,48 @@ public class mdHistoriaClinica {
     public void setNombreOdontologo(String nombreOdontologo) {
         this.nombreOdontologo = nombreOdontologo;
     }
+
+    public int getId_historia() {
+        return id_historia;
+    }
+
+    public void setId_historia(int id_historia) {
+        this.id_historia = id_historia;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public Date getFechaNac() {
+        return fechaNac;
+    }
+
+    public void setFechaNac(Date fechaNac) {
+        this.fechaNac = fechaNac;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    
     
     
 }

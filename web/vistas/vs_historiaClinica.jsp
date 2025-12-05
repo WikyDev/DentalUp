@@ -126,6 +126,7 @@
                             <th>Tratamiento</th>
                             <th>Observaciones</th>
                             <th>Odontólogo</th>
+                            <th>PDF</th>
                         </tr>
                     </thead>
                     
@@ -138,6 +139,13 @@
                             <td><%= h.getTratamiento()%></td>
                             <td><%= h.getObservaciones()%></td>
                             <td><%= h.getNombreOdontologo()%></td>
+                            <td><a 
+                                    href="HistoriaServlet?accion=pdf&id_historia=<%= h.getIdHistoria()%>" 
+                                    class="btn"
+                                    style="padding:6px 10px; font-size:0.9em;"
+                                    >
+                                    Descargar PDF
+                                </a></td>
                         </tr>
                         <% } %>
                     </tbody>
