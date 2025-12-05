@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Perfil del Odontólogo</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/imagenes/diente.ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/formularios.css">
 </head>
 

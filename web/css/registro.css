@@ -18,7 +18,7 @@
 /* ======== Estilos generales ======== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #e3f2fd, #ffffff);
+    background: linear-gradient(135deg, #1c1f26, #2a2f38); /* oscuro suave */
     margin: 0;
     padding: 0;
     display: flex;
@@ -28,6 +28,7 @@ body {
     padding-bottom: 40px;
     min-height: 100vh;
 }
+
 
 #img-fondo {
     position: fixed;
@@ -42,8 +43,10 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(0, 122, 204, 0.1), rgba(255, 255, 255, 0.3));
+    background: rgba(0, 0, 0, 0.55); /* oscurecido elegante */
+    backdrop-filter: blur(4px);       /* integración suave */
 }
+
 
 /* ======== Contenedor del formulario ======== */
 .form-container {

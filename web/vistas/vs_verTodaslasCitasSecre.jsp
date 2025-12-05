@@ -19,7 +19,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Ver todas las citas - Secretario</title>
-
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/imagenes/diente.ico">
     <!-- Ajusta esta ruta al CSS que estés usando para las vistas del secre -->
     <link rel="stylesheet" href="../css/estilosBuscarCita.css">
 </head>

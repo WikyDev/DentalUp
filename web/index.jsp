@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DentalUp - Inicio</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/imagenes/diente.ico">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css">
+
 </head>
 <body>
     <div id="img-fondo"></div>
@@ -16,9 +18,11 @@
             <span class="brand-name">DentalUp</span>
         </div>
         <span class="nav-link">Servicios</span>
-        <span class="nav-link">Desarroladores</span>
-        <span class="nav-link">Testimonios</span>
+        <span class="nav-link">Desarrolladores</span>
+        <a href="${pageContext.request.contextPath}/vistas/vs_profesionales.jsp" class="nav-link">Profesionales</a>
+        <a href="${pageContext.request.contextPath}/vistas/vs_login.jsp" class="cita-btn-unico btn-ingresar">Ingresar</a>
     </nav>
+    
     <header class="hero">
         <div class="hero-content">
         <div class="hero-text">
@@ -102,7 +106,6 @@
             <h3>Profesionales Certificados</h3>
             <img src="${pageContext.request.contextPath}/imagenes/certificados.gif" alt="Icono Profesionales" class="ventaja-icon">
             <p class="ventaja-desc">Nuestro equipo cuenta con especialistas certificados internacionalmente con años de experiencia en odontología moderna.</p>
-
         </div>
     </section>
 </body>

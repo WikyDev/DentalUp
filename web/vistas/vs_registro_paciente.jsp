@@ -13,6 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registro de Paciente</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/imagenes/diente.ico">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/registro.css">
 
 </head>

@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Menú del Administrador</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/imagenes/diente.ico">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/estilosMenus.css">
 </head>
 <!-- muestra el nombre_user y rol que este en la base de datos -->
@@ -88,7 +89,7 @@
                 <div class="consejo-dia">
                     <img class="icono-cita" alt="Recuerda cepillarte después de cada comida" src="${pageContext.request.contextPath}/imagenes/consejo.gif">
                     <strong>Consejo del día:</strong>
-                    <span>💡 Recuerda cepillarte después de cada comida</span>
+                    <span>💡 Mantén tus ideas claras, dirije con conocimiento</span>
                 </div>
 
                 <a href="../vistas/logout.jsp" class="boton boton-agendar">

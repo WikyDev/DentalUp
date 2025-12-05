@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>DentalUp</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/imagenes/diente.ico">
     <!-- se hace el llamado a la ruta de la hoja de estilos -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 </head>

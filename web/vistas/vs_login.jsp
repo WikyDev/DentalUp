@@ -9,6 +9,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - DentalUp</title>
+  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/imagenes/diente.ico">
   <!-- Enlace correcto al CSS -->
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
 </head>

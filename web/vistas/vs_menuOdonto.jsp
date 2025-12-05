@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Menú Odontólogo</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/imagenes/diente.ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilosMenus.css">
 </head>
 <body>
@@ -79,7 +80,7 @@
                 <div class="consejo-dia">
                     <img class="icono-cita" alt="Recuerda cepillarte después de cada comida" src="${pageContext.request.contextPath}/imagenes/consejo.gif">
                     <strong>Consejo del día:</strong>
-                    <span>? Recuerda cepillarte después de cada comida</span>
+                    <span>? Cada día da lo mejor de tí para ser un gran Profesional</span>
                 </div>
 
                 <a href="../vistas/logout.jsp" class="boton boton-agendar">

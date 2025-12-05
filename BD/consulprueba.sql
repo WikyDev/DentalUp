@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2025 a las 04:03:16
+-- Tiempo de generación: 05-12-2025 a las 03:09:17
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -108,10 +108,10 @@ CREATE TABLE `odontologos` (
 --
 
 INSERT INTO `odontologos` (`cedula_odontologo`, `nombre_completo`, `especialidad`, `correo`, `id_user`) VALUES
-(300000006, 'pablo torre', 'dentista de limpieza', 'pablo44@gmail.com', 4),
-(300000007, 'camilo perez', 'dentista estetico', 'camilo44@gmail.com', 5),
-(1100223366, 'pepe perez sanchez', 'Limpieza', 'pepe22@email.com', 26),
-(2147483647, 'jose perez', 'dentista estetico', 'joserr@gmail.com', 2);
+(300000006, 'Pablo Torres', 'dentista de limpieza', 'pablo44@gmail.com', 4),
+(300000007, 'Camila Perez', 'dentista estetico', 'camilo44@gmail.com', 5),
+(1100223366, 'Miguel Ospina', 'Limpieza', 'pepe22@email.com', 26),
+(2147483647, 'Laura Gomez', 'dentista estetico', 'joserr@gmail.com', 2);
 
 -- --------------------------------------------------------
 
@@ -138,7 +138,7 @@ CREATE TABLE `pacientes` (
 --
 
 INSERT INTO `pacientes` (`cedula_paciente`, `nombre`, `apellido`, `edad`, `telefono`, `fecha_nac`, `tiene_OS`, `tipo_sangre`, `email`, `cedula_responsable`, `id_user`) VALUES
-(13131313, 'dasa', 'fsda', 23, '31245621', '2025-11-13', NULL, 'A+', 'dadoM@email.com', NULL, 16);
+(13131313, 'Wilson', 'Ospina', 26, '3152318262', '1999-11-01', NULL, 'O+', 'wilson@gmail.com', NULL, 16);
 
 -- --------------------------------------------------------
 

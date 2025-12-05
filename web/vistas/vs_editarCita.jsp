@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Editar Cita</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/imagenes/diente.ico">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/listaCitasPaciente.css">
 </head>
 <body>

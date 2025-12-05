@@ -22,6 +22,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrar Historia Clínica</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/imagenes/diente.ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilos.css">
 </head>
 <body>

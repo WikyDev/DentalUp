@@ -37,7 +37,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Buscar citas por paciente</title>
-
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/imagenes/diente.ico">
     <!-- Ruta al CSS (ajústala si tu estructura es distinta) -->
     <link rel="stylesheet" href="../css/estilosBuscarCita.css">
 </head>

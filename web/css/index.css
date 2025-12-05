@@ -110,9 +110,15 @@ body {
     color: #76B4FF;
 }
 
-.nav-link:hover::after {
-    transform: translateX(-50%) scaleX(1);
+/* Quitar línea del subrayado en enlaces nav-link */
+a.nav-link {
+    text-decoration: none;
 }
+
+a.nav-link::after {
+    display: none;
+}
+
 
 /* ============================
    HERO
@@ -586,3 +592,34 @@ body {
 .ventaja-link:hover::after {
     transform: translateX(5px);
 }
+
+.btn-ingresar {
+    padding: 12px 18px;
+    background: #ffffff22;
+    color: #fff;
+    border: 1px solid #ffffff44;
+    border-radius: 8px;
+    font-weight: 600;
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+.btn-ingresar:hover {
+    background: #ffffff33;
+    border-color: #ffffff77;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* separa extremos */
+    padding-right: 20px;            /* margen a la derecha (ajustable) */
+    gap: 25px;
+}
+
+.btn-ingresar {
+    margin-left: auto; /* empuja el botón a la esquina derecha */
+}
+

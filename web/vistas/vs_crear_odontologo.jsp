@@ -8,6 +8,7 @@
 <html>
 <head>
     <title>Registrar Odontólogo</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/imagenes/diente.ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilosSubMenus.css">
 </head>
 <body>

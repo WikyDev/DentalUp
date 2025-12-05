@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>Agenda por Odontólogo</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/imagenes/diente.ico">
 </head>
 <body>
     <h2>Consultar agenda de odontólogo</h2>

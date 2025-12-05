@@ -9,6 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrar Secretario</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/imagenes/diente.ico">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/estilosSubMenus.css">
 </head>
 <body>

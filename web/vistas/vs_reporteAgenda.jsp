@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>Generar Reporte de Agenda</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/imagenes/diente.ico">
 </head>
 <body>
     <h2>Generar Reporte de Agenda del Odontólogo</h2>

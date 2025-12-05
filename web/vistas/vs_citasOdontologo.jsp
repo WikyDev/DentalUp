@@ -12,6 +12,7 @@
 <html>
 <head>
     <title>Citas del Odontólogo</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/imagenes/diente.ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilosSubMenus.css">
     <style>
         /* Estilos adicionales para la tabla */

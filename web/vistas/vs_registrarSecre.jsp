@@ -17,6 +17,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Registrar Secretario</title>
+  <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/imagenes/diente.ico">
 </head>
 <body>
   <h2>Registro de Secretario</h2>
