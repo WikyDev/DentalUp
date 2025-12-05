@@ -22,22 +22,17 @@ public class SecreServlet extends HttpServlet {
 
     // Método principal que responde a las peticiones GET (desde enlaces o formularios con method="get")
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request,
+                         HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Obtiene el parámetro "op" de la URL, que indica qué acción se debe ejecutar
-        // Ejemplo: /ctSecre?op=listarCitas
         String op = request.getParameter("op");
+        if (op == null) {
+            op = "menu";
+        }
 
-        // Se crea un objeto del controlador lógico (ctSecre)
-        // Este controlador contiene los métodos para interactuar con la base de datos
         ctSecre secreCtrl = new ctSecre();
-
-        // Objeto usado para redirigir a una vista JSP
         RequestDispatcher rd;
-
-        // Si no se envió ningún parámetro "op", por defecto se va al menú
-        if (op == null) op = "menu";
 
         // Estructura switch que evalúa la acción solicitada
         switch (op) {
@@ -57,7 +52,7 @@ public class SecreServlet extends HttpServlet {
                 break;
 
             // 🔹 Caso 2: Buscar cita por paciente
-            case "buscarCita":
+            /*case "buscarCita":
                 // Obtiene el ID del paciente desde el formulario o la URL
                 String idPaciente = request.getParameter("idPaciente");
 
@@ -68,14 +63,23 @@ public class SecreServlet extends HttpServlet {
                 request.setAttribute("listaCitas", citasPaciente);
                 rd = request.getRequestDispatcher("/vistas/vs_listarCitas.jsp");
                 rd.forward(request, response);
-                break;
+                break;*/
                 
-            case "verTodasCitas":
-                ArrayList<mdCita> todas = secreCtrl.obtenerTodasLasCitas();
-                request.setAttribute("listaCitas", todas);
-                request.getRequestDispatcher("/vistas/vs_verTodaslasCitasSecre.jsp")
-                        .forward(request, response);
+            case "verTodasCitas": {
+                String cedulaFiltro = request.getParameter("cedulaPaciente");
+                String estadoFiltro = request.getParameter("estadoCita");
+
+                ArrayList<mdCita> lista =
+                        secreCtrl.obtenerCitasParaSecretario(cedulaFiltro, estadoFiltro);
+
+                request.setAttribute("listaCitas", lista);
+                request.setAttribute("cedulaFiltro", cedulaFiltro);
+                request.setAttribute("estadoFiltro", estadoFiltro);
+
+                rd = request.getRequestDispatcher("/vistas/vs_verTodaslasCitasSecre.jsp");
+                rd.forward(request, response);
                 break;
+            }
 
 
             // 🔹 Caso 3: Eliminar cita

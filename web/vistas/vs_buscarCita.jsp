@@ -69,7 +69,7 @@
                         type="number"
                         id="cedulaPaciente"
                         name="cedulaPaciente"
-                        placeholder="Ej: 13131313"
+                        placeholder=""
                         value="<%= (cedulaParam != null ? cedulaParam : "") %>">
                 </div>
 

@@ -66,8 +66,26 @@ public class ctSecre {
         return citaDAO.listarTodasLasCitas();
     }
     
-    public ArrayList<mdCita> obtenerTodasLasCitas() {
-        return citaDAO.listarCitasParaSecretario();
+    // Usado por "Ver todas las citas" con filtros
+    public ArrayList<mdCita> obtenerCitasParaSecretario(String cedulaParam, String estadoParam) {
+
+        Integer cedulaPaciente = null;
+
+        if (cedulaParam != null && !cedulaParam.trim().isEmpty()) {
+            try {
+                cedulaPaciente = Integer.parseInt(cedulaParam.trim());
+            } catch (NumberFormatException e) {
+                // si no es numérico, ignoramos el filtro
+                cedulaPaciente = null;
+            }
+        }
+
+        String estado = null;
+        if (estadoParam != null && !estadoParam.trim().isEmpty()) {
+            estado = estadoParam.trim();
+        }
+
+        return citaDAO.listarCitasParaSecretario(cedulaPaciente, estado);
     }
 
     

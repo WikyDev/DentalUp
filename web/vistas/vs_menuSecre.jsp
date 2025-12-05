@@ -72,9 +72,11 @@
             
             <div class="menu-opciones">
                 <!-- Ver todas las citas -->
-                <a href="${pageContext.request.contextPath}/ctSecre?op=verTodasCitas" class="boton boton-agendar">
-                    <img class="icono-cita" alt="Ver todas las citas" 
-                         src="${pageContext.request.contextPath}/imagenes/id.png">
+                <a href="${pageContext.request.contextPath}/ctSecre?op=verTodasCitas"
+                   class="boton boton-agendar">
+                    <img class="icono-cita"
+                         src="${pageContext.request.contextPath}/imagenes/historial.gif"
+                         alt="Ver todas las citas">
                     <span class="texto-agendar">Ver todas las citas</span>
                 </a>
 

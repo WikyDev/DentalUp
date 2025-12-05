@@ -27,7 +27,7 @@ public class conexion {
     public conexion() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/consulprueba", "root", "root");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/consulprueba", "root", "");
             st = conn.createStatement();
         } catch (Exception e) {
             System.out.println("Error de conexión: " + e);
@@ -38,7 +38,7 @@ public class conexion {
     public void conexion() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/consulprueba", "root", "root");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/consulprueba", "root", "");
             st = conn.createStatement();
         } catch (Exception e) {
             System.out.println("Error de conexión: " + e);
@@ -120,7 +120,7 @@ public class conexion {
         Connection con = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/consulprueba", "root", "root");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/consulprueba", "root", "");
         } catch (Exception e) {
             System.out.println("Error en la conexión: " + e.getMessage());
         }
