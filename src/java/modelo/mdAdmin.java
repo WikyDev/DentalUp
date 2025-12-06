@@ -8,7 +8,7 @@ package modelo;
 
 //clase de modelo de la tabla de administradores 
 public class mdAdmin {
-    private int cedulaAdmin;
+    private long cedulaAdmin;
     private String nombreCompleto;
     private String correo;
     private int idUser;
@@ -18,18 +18,18 @@ public class mdAdmin {
         
     }
     
-    public mdAdmin(int cedulaAdmin, String nombreCompleto, String correo, int idUser){
+    public mdAdmin(long cedulaAdmin, String nombreCompleto, String correo, int idUser){
         this.cedulaAdmin = cedulaAdmin;
         this.nombreCompleto = nombreCompleto;
         this.correo = correo;
         this.idUser = idUser;
     }
 
-    public int getCedulaAdmin() {
+    public long getCedulaAdmin() {
         return cedulaAdmin;
     }
 
-    public void setCedulaAdmin(int cedulaAdmin) {
+    public void setCedulaAdmin(long cedulaAdmin) {
         this.cedulaAdmin = cedulaAdmin;
     }
 

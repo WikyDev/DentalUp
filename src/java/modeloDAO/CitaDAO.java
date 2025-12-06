@@ -27,8 +27,8 @@ public class CitaDAO {
             while (rs.next()) {
                 mdCita c = new mdCita(
                         rs.getInt("id_cita"),
-                        rs.getInt("cedula_paciente"),
-                        rs.getInt("cedula_odontologo"),
+                        rs.getLong("cedula_paciente"),
+                        rs.getLong("cedula_odontologo"),
                         rs.getString("fecha_cita"),
                         rs.getString("motivo"),
                         rs.getString("estado")
@@ -57,8 +57,8 @@ public class CitaDAO {
             while (rs.next()) {
                 mdCita c = new mdCita(
                         rs.getInt("id_cita"),
-                        rs.getInt("cedula_paciente"),
-                        rs.getInt("cedula_odontologo"),
+                        rs.getLong("cedula_paciente"),
+                        rs.getLong("cedula_odontologo"),
                         rs.getString("fecha_cita"),
                         rs.getString("motivo"),
                         rs.getString("estado")
@@ -87,8 +87,8 @@ public class CitaDAO {
             if (rs.next()) {
                 cita = new mdCita(
                         rs.getInt("id_cita"),
-                        rs.getInt("cedula_paciente"),
-                        rs.getInt("cedula_odontologo"),
+                        rs.getLong("cedula_paciente"),
+                        rs.getLong("cedula_odontologo"),
                         rs.getString("fecha_cita"),
                         rs.getString("motivo"),
                         rs.getString("estado")
@@ -127,7 +127,7 @@ public class CitaDAO {
         try (Connection con = conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, cita.getCedulaOdontologo());
+            ps.setLong(1, cita.getCedulaOdontologo());
             ps.setString(2, cita.getFechaCita()); // formato: "YYYY-MM-DD HH:MM"
             ps.setString(3, cita.getMotivo());
             ps.setInt(4, cita.getIdCita());
@@ -183,7 +183,7 @@ public class CitaDAO {
         try (Connection con = conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
  
-            ps.setInt(1, cedulaPaciente);
+            ps.setLong(1, cedulaPaciente);
             ResultSet rs = ps.executeQuery();
  
             while (rs.next()) {
@@ -191,8 +191,8 @@ public class CitaDAO {
                 // pero realmente guardan la CÉDULA del paciente y del odontólogo
                  mdCita c = new mdCita(
                         rs.getInt("id_cita"),
-                        rs.getInt("cedula_paciente"),    // idPaciente = cedula_paciente
-                        rs.getInt("cedula_odontologo"),  // idOdontologo = cedula_odontologo
+                        rs.getLong("cedula_paciente"),    // idPaciente = cedula_paciente
+                        rs.getLong("cedula_odontologo"),  // idOdontologo = cedula_odontologo
                         rs.getString("fecha_cita"),
                         rs.getString("motivo"),
                         rs.getString("estado")
@@ -232,8 +232,8 @@ public class CitaDAO {
             while (rs.next()) {
                 mdCita c = new mdCita(
                         rs.getInt("id_cita"),
-                        rs.getInt("cedula_paciente"),
-                        rs.getInt("cedula_odontologo"),
+                        rs.getLong("cedula_paciente"),
+                        rs.getLong("cedula_odontologo"),
                         rs.getString("fecha_cita"),
                         rs.getString("motivo"),
                         rs.getString("estado")
@@ -299,8 +299,8 @@ public class CitaDAO {
             while (rs.next()) {
                 mdCita cita = new mdCita(
                         rs.getInt("id_cita"),
-                        rs.getInt("cedula_paciente"),
-                        rs.getInt("cedula_odontologo"),
+                        rs.getLong("cedula_paciente"),
+                        rs.getLong("cedula_odontologo"),
                         rs.getString("fecha_cita"),
                         rs.getString("motivo"),
                         rs.getString("estado")

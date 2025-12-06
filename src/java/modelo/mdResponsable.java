@@ -7,7 +7,7 @@ package modelo;
  */
 
 public class mdResponsable {
-    private int cedulaResponsable;
+    private long cedulaResponsable;
     private String nombre;
     private String apellido;
     private int edad;
@@ -18,7 +18,7 @@ public class mdResponsable {
 
     public mdResponsable() {}
 
-    public mdResponsable(int cedulaResponsable, String nombre, String apellido, int edad,
+    public mdResponsable(long cedulaResponsable, String nombre, String apellido, int edad,
                        String telefono, String fechaNac, String email, String tipoRelacion) {
         this.cedulaResponsable = cedulaResponsable;
         this.nombre = nombre;
@@ -31,8 +31,8 @@ public class mdResponsable {
     }
 
     // Getters y Setters
-    public int getCedulaResponsable() { return cedulaResponsable; }
-    public void setCedulaResponsable(int cedulaResponsable) { this.cedulaResponsable = cedulaResponsable; }
+    public long getCedulaResponsable() { return cedulaResponsable; }
+    public void setCedulaResponsable(long cedulaResponsable) { this.cedulaResponsable = cedulaResponsable; }
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }

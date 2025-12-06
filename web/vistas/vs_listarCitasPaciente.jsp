@@ -3,7 +3,8 @@
     Created on : 29/10/2025, 10:01:40 p. m.
     Author     : Anthony
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, modelo.mdCita" %>
 <!DOCTYPE html>
 <!-- Vista que muestra el listado de las citas para el paciente que se encuentre logueado -->
@@ -224,7 +225,7 @@
             <img src="${pageContext.request.contextPath}/imagenes/logo.png" alt="Logo DentalUp">
         </div>
         
-        <h2>🗓 Mis Citas Agendadas</h2>
+        <h2>Mis Citas Agendadas</h2>
         
         <!-- Mostrar mensajes de estado -->
         <%

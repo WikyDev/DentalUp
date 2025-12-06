@@ -21,8 +21,8 @@ public class HistoriaClinicaDAO {
         try (Connection con = conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, h.getCedulaPaciente());
-            ps.setInt(2, h.getCedulaOdontologo());
+            ps.setLong(1, h.getCedulaPaciente());
+            ps.setLong(2, h.getCedulaOdontologo());
             ps.setDate(3, h.getFecha());
             ps.setString(4, h.getMotivoConsulta());
             ps.setString(5, h.getDiagnostico());
@@ -58,8 +58,8 @@ public class HistoriaClinicaDAO {
             while (rs.next()) {
                 mdHistoriaClinica h = new mdHistoriaClinica();
                 h.setIdHistoria(rs.getInt("id_historia"));
-                h.setCedulaPaciente(rs.getInt("cedula_paciente"));
-                h.setCedulaOdontologo(rs.getInt("cedula_odontologo"));
+                h.setCedulaPaciente(rs.getLong("cedula_paciente"));
+                h.setCedulaOdontologo(rs.getLong("cedula_odontologo"));
                 h.setFecha(rs.getDate("fecha"));
                 h.setMotivoConsulta(rs.getString("motivoConsulta"));
                 h.setDiagnostico(rs.getString("diagnostico"));
@@ -91,8 +91,8 @@ public class HistoriaClinicaDAO {
             while (rs.next()) {
                 mdHistoriaClinica h = new mdHistoriaClinica();
                 h.setIdHistoria(rs.getInt("id_historia"));
-                h.setCedulaPaciente(rs.getInt("cedula_paciente"));
-                h.setCedulaOdontologo(rs.getInt("cedula_odontologo"));
+                h.setCedulaPaciente(rs.getLong("cedula_paciente"));
+                h.setCedulaOdontologo(rs.getLong("cedula_odontologo"));
                 h.setFecha(rs.getDate("fecha"));
                 h.setMotivoConsulta(rs.getString("motivoConsulta"));
                 h.setDiagnostico(rs.getString("diagnostico"));
@@ -131,8 +131,8 @@ public class HistoriaClinicaDAO {
         if (rs.next()) {
             h = new mdHistoriaClinica();
             h.setIdHistoria(rs.getInt("id_historia"));
-            h.setCedulaPaciente(rs.getInt("cedula_paciente"));
-            h.setCedulaOdontologo(rs.getInt("cedula_odontologo"));
+            h.setCedulaPaciente(rs.getLong("cedula_paciente"));
+            h.setCedulaOdontologo(rs.getLong("cedula_odontologo"));
             h.setFecha(rs.getDate("fecha"));
             h.setMotivoConsulta(rs.getString("motivoConsulta"));
             h.setDiagnostico(rs.getString("diagnostico"));

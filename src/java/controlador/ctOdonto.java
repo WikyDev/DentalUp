@@ -18,11 +18,10 @@ import java.sql.*;
 
 /**
  * Controlador para operaciones sobre odontólogos (esqueleto).
- * Ajusta columnas según tu tabla 'odontologos' o como la tengas definida.
  */
 public class ctOdonto {
 
-    public boolean insertarOdontologo(int cedula, String nombre_completo, String especialidad, String correo) {
+    public boolean insertarOdontologo(long cedula, String nombre_completo, String especialidad, String correo) {
         try {
             conexion c = new conexion();
             String sql = "INSERT INTO odontologos (cedula_odontologo, nombre_completo, especialidad, correo) VALUES ('" + cedula + "','" + nombre_completo + "','" + especialidad + "','" + correo + "')";
@@ -63,8 +62,8 @@ public class ctOdonto {
             while (rs.next()) {
                 mdCita c = new mdCita();
                 c.setIdCita(rs.getInt("id_cita"));
-                c.setCedulaPaciente(rs.getInt("cedula_paciente"));
-                c.setCedulaOdontologo(rs.getInt("cedula_odontologo"));
+                c.setCedulaPaciente(rs.getLong("cedula_paciente"));
+                c.setCedulaOdontologo(rs.getLong("cedula_odontologo"));
                 c.setFechaCita(rs.getString("fecha_cita"));
                 c.setMotivo(rs.getString("motivo"));
                 c.setEstado(rs.getString("estado"));
@@ -85,7 +84,7 @@ public class ctOdonto {
 
             while (rs.next()) {
                 mdOdontologo o = new mdOdontologo(
-                        rs.getInt("cedula_odontologo"),
+                        rs.getLong("cedula_odontologo"),
                         rs.getString("nombre_completo"),
                         rs.getString("especialidad"),
                         rs.getString("correo"),

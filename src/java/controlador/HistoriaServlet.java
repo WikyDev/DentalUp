@@ -114,8 +114,8 @@ public class HistoriaServlet extends HttpServlet {
         if ("registrar".equals(accion)) {
 
             int idCita = Integer.parseInt(request.getParameter("id_cita"));
-            int cedulaPaciente = Integer.parseInt(request.getParameter("cedula_paciente"));
-            int cedulaOdontologo = Integer.parseInt(request.getParameter("cedula_odontologo"));
+            long cedulaPaciente = Long.parseLong(request.getParameter("cedula_paciente"));
+            long cedulaOdontologo =Long.parseLong(request.getParameter("cedula_odontologo"));
             String fechaStr = request.getParameter("fecha");
             String motivo = request.getParameter("motivoConsulta");
             String diagnostico = request.getParameter("diagnostico");

@@ -49,7 +49,7 @@
                        int oid = e.getKey();
                        String oname = e.getValue();
             %>
-                <option value="<%= oid %>" <%= (oid == cita.getCedulaOdontologo()? "seleccione" : "") %>><%= oname %></option>
+                <option value="<%= oid %>" <%= (oid == cita.getCedulaOdontologo()? "selected" : "") %>><%= oname %></option>
             <%     }
                } else { %>
                 <option value="<%= cita.getCedulaOdontologo()%>">ID: <%= cita.getCedulaOdontologo()%></option>

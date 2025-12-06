@@ -15,8 +15,8 @@ import java.sql.Date;
 
 public class mdHistoriaClinica {
     private int id_historia;
-    private int cedulaPaciente;
-    private int cedulaOdontologo;
+    private long cedulaPaciente;
+    private long cedulaOdontologo;
     private java.sql.Date fecha;
     private String motivoConsulta;
     private String diagnostico;
@@ -32,7 +32,7 @@ public class mdHistoriaClinica {
     public mdHistoriaClinica() {
     }
 
-    public mdHistoriaClinica(int id_historia, int cedulaPaciente, int cedulaOdontologo, Date fecha, String motivoConsulta, 
+    public mdHistoriaClinica(int id_historia, long cedulaPaciente, long cedulaOdontologo, Date fecha, String motivoConsulta, 
             String diagnostico, String tratamiento, String observaciones, String nombrePaciente, String nombreOdontologo) {
         this.id_historia = id_historia;
         this.cedulaPaciente = cedulaPaciente;
@@ -55,19 +55,19 @@ public class mdHistoriaClinica {
         this.id_historia = idHistoria;
     }
 
-    public int getCedulaPaciente() {
+    public long getCedulaPaciente() {
         return cedulaPaciente;
     }
 
-    public void setCedulaPaciente(int cedulaPaciente) {
+    public void setCedulaPaciente(long cedulaPaciente) {
         this.cedulaPaciente = cedulaPaciente;
     }
 
-    public int getCedulaOdontologo() {
+    public long getCedulaOdontologo() {
         return cedulaOdontologo;
     }
 
-    public void setCedulaOdontologo(int cedulaOdontologo) {
+    public void setCedulaOdontologo(long cedulaOdontologo) {
         this.cedulaOdontologo = cedulaOdontologo;
     }
     

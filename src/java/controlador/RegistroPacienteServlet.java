@@ -32,9 +32,9 @@ public class RegistroPacienteServlet extends HttpServlet {
         String nombre_user = request.getParameter("usuario");
         String password = request.getParameter("password");
         
-        int cedula = 0;
+        long cedula = 0;
         try {
-            cedula = Integer.parseInt(cedulaStr);
+            cedula = Long.parseLong(cedulaStr);
         } catch (Exception e) {
             cedula = 0;
         }

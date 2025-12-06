@@ -272,11 +272,16 @@ public class CitaServlet extends HttpServlet {
             int cedulaOdontologo = Integer.parseInt(request.getParameter("cedula_odontologo"));
             String fecha = request.getParameter("fecha"); // yyyy-MM-dd
             String hora = request.getParameter("hora");   // HH:mm
+            
+            // Normalizar hora a HH:MM:SS
+            if (hora.length() == 5) { // viene HH:MM
+                hora = hora + ":00";  // agregar segundos
+            }
+
+            // Unir fecha y hora
+            String fechaCita = fecha + " " + hora;
             String motivo = request.getParameter("motivo");
-
-            // Combina fecha + hora en el mismo formato que usas en BD
-            String fechaCita = fecha + " " + hora + ":00";
-
+            
             mdCita citaExistente = citaDAO.obtenerCitaPorId(idCita);
             if (citaExistente == null) {
                 request.setAttribute("mensaje", "Cita no encontrada.");

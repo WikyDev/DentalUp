@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-12-2025 a las 03:09:17
+-- Tiempo de generación: 06-12-2025 a las 07:20:45
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `administradores` (
-  `cedula_admin` int(11) NOT NULL,
+  `cedula_admin` bigint(20) NOT NULL,
   `nombre_completo` varchar(100) DEFAULT NULL,
   `correo` varchar(100) DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL
@@ -39,6 +39,7 @@ CREATE TABLE `administradores` (
 --
 
 INSERT INTO `administradores` (`cedula_admin`, `nombre_completo`, `correo`, `id_user`) VALUES
+(11002255, 'Juan  Jose Torres', 'juant@email.com', 32),
 (2000000001, 'jorge martinez', 'jorge99@gmail.com', 1);
 
 -- --------------------------------------------------------
@@ -49,8 +50,8 @@ INSERT INTO `administradores` (`cedula_admin`, `nombre_completo`, `correo`, `id_
 
 CREATE TABLE `citas` (
   `id_cita` int(11) NOT NULL,
-  `cedula_paciente` int(11) NOT NULL,
-  `cedula_odontologo` int(11) NOT NULL,
+  `cedula_paciente` bigint(20) NOT NULL,
+  `cedula_odontologo` bigint(20) NOT NULL,
   `fecha_cita` datetime NOT NULL,
   `motivo` text DEFAULT NULL,
   `estado` varchar(20) NOT NULL DEFAULT 'PENDIENTE'
@@ -62,7 +63,8 @@ CREATE TABLE `citas` (
 
 INSERT INTO `citas` (`id_cita`, `cedula_paciente`, `cedula_odontologo`, `fecha_cita`, `motivo`, `estado`) VALUES
 (43, 13131313, 2147483647, '2025-11-20 10:00:00', 'limpieza', 'ATENDIDA'),
-(44, 13131313, 300000006, '2025-12-10 08:00:00', 'dolorcito', 'ATENDIDA');
+(44, 13131313, 300000006, '2025-12-10 08:00:00', 'dolorcito', 'ATENDIDA'),
+(47, 13131313, 2147483647, '2025-12-20 15:00:00', 'no se ', 'PENDIENTE');
 
 -- --------------------------------------------------------
 
@@ -77,8 +79,8 @@ CREATE TABLE `historias_clinicas` (
   `diagnostico` text DEFAULT NULL,
   `tratamiento` text DEFAULT NULL,
   `observaciones` text DEFAULT NULL,
-  `cedula_paciente` int(11) NOT NULL,
-  `cedula_odontologo` int(11) NOT NULL
+  `cedula_paciente` bigint(20) NOT NULL,
+  `cedula_odontologo` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -86,7 +88,7 @@ CREATE TABLE `historias_clinicas` (
 --
 
 INSERT INTO `historias_clinicas` (`id_historia`, `fecha`, `motivoConsulta`, `diagnostico`, `tratamiento`, `observaciones`, `cedula_paciente`, `cedula_odontologo`) VALUES
-(7, '2025-11-20', 'limpieza', 'aaaaaaa', 'bbbbbbb', 'cccccc', 13131313, 2147483647),
+(7, '2025-11-20', 'ortodoncia', 'cepillarse', 'cepillo de bambu', 'dientes amarillos', 13131313, 2147483647),
 (8, '2025-12-10', 'dolorcito', 'dada', 'adaad', 'addada', 13131313, 300000006);
 
 -- --------------------------------------------------------
@@ -96,7 +98,7 @@ INSERT INTO `historias_clinicas` (`id_historia`, `fecha`, `motivoConsulta`, `dia
 --
 
 CREATE TABLE `odontologos` (
-  `cedula_odontologo` int(11) NOT NULL,
+  `cedula_odontologo` bigint(20) NOT NULL,
   `nombre_completo` varchar(100) DEFAULT NULL,
   `especialidad` varchar(100) DEFAULT NULL,
   `correo` varchar(200) DEFAULT NULL,
@@ -108,10 +110,10 @@ CREATE TABLE `odontologos` (
 --
 
 INSERT INTO `odontologos` (`cedula_odontologo`, `nombre_completo`, `especialidad`, `correo`, `id_user`) VALUES
-(300000006, 'Pablo Torres', 'dentista de limpieza', 'pablo44@gmail.com', 4),
-(300000007, 'Camila Perez', 'dentista estetico', 'camilo44@gmail.com', 5),
-(1100223366, 'Miguel Ospina', 'Limpieza', 'pepe22@email.com', 26),
-(2147483647, 'Laura Gomez', 'dentista estetico', 'joserr@gmail.com', 2);
+(300000006, 'Laura Gómez', 'Ortodoncista Senior', 'lauriG44@gmail.com', 4),
+(300000007, 'Miguel Ospina', 'Implantólogo', 'ospinamiguel@gmail.com', 5),
+(2147483647, 'Pablo Torres', 'Periodoncista', 'pablito@gmail.com', 2),
+(11129568714, 'Maria Camila Perez', 'Endodoncista', 'Camila99@email.com', 31);
 
 -- --------------------------------------------------------
 
@@ -120,7 +122,7 @@ INSERT INTO `odontologos` (`cedula_odontologo`, `nombre_completo`, `especialidad
 --
 
 CREATE TABLE `pacientes` (
-  `cedula_paciente` int(11) NOT NULL,
+  `cedula_paciente` bigint(20) NOT NULL,
   `nombre` varchar(40) DEFAULT NULL,
   `apellido` varchar(40) DEFAULT NULL,
   `edad` int(11) DEFAULT NULL,
@@ -129,7 +131,7 @@ CREATE TABLE `pacientes` (
   `tiene_OS` varchar(3) DEFAULT NULL,
   `tipo_sangre` varchar(6) DEFAULT NULL,
   `email` varchar(40) DEFAULT NULL,
-  `cedula_responsable` int(11) DEFAULT NULL,
+  `cedula_responsable` bigint(20) DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -138,7 +140,8 @@ CREATE TABLE `pacientes` (
 --
 
 INSERT INTO `pacientes` (`cedula_paciente`, `nombre`, `apellido`, `edad`, `telefono`, `fecha_nac`, `tiene_OS`, `tipo_sangre`, `email`, `cedula_responsable`, `id_user`) VALUES
-(13131313, 'Wilson', 'Ospina', 26, '3152318262', '1999-11-01', NULL, 'O+', 'wilson@gmail.com', NULL, 16);
+(13131313, 'dasa', 'fsda', 23, '31245621', '2025-11-13', NULL, 'A+', 'dadoM@email.com', NULL, 16),
+(1114445552, 'Anthony', 'Brand', 21, '3145745492', '2004-05-30', NULL, 'A+', 'bandramos@gamil.com', NULL, 29);
 
 -- --------------------------------------------------------
 
@@ -148,7 +151,7 @@ INSERT INTO `pacientes` (`cedula_paciente`, `nombre`, `apellido`, `edad`, `telef
 
 CREATE TABLE `perfiles_odontologos` (
   `id_perfil` int(11) NOT NULL,
-  `cedula_odontologo` int(11) NOT NULL,
+  `cedula_odontologo` bigint(20) NOT NULL,
   `descripcion` text DEFAULT NULL,
   `foto` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -158,7 +161,7 @@ CREATE TABLE `perfiles_odontologos` (
 --
 
 INSERT INTO `perfiles_odontologos` (`id_perfil`, `cedula_odontologo`, `descripcion`, `foto`) VALUES
-(3, 1100223366, 'iklofgh', 'Gemini_Generated_Image_z0alcxz0alcxz0al.png');
+(5, 11129568714, 'excelente', 'poster pulpas uva1.png');
 
 -- --------------------------------------------------------
 
@@ -167,7 +170,7 @@ INSERT INTO `perfiles_odontologos` (`id_perfil`, `cedula_odontologo`, `descripci
 --
 
 CREATE TABLE `responsables` (
-  `cedula_responsable` int(11) NOT NULL,
+  `cedula_responsable` bigint(20) NOT NULL,
   `nombre` varchar(40) DEFAULT NULL,
   `apellido` varchar(40) DEFAULT NULL,
   `edad` int(11) DEFAULT NULL,
@@ -191,7 +194,7 @@ INSERT INTO `responsables` (`cedula_responsable`, `nombre`, `apellido`, `edad`, 
 --
 
 CREATE TABLE `secretarios` (
-  `cedula_secretario` int(11) NOT NULL,
+  `cedula_secretario` bigint(20) NOT NULL,
   `nombre_completo` varchar(100) DEFAULT NULL,
   `telefono` varchar(20) DEFAULT NULL,
   `correo` varchar(200) DEFAULT NULL,
@@ -203,6 +206,7 @@ CREATE TABLE `secretarios` (
 --
 
 INSERT INTO `secretarios` (`cedula_secretario`, `nombre_completo`, `telefono`, `correo`, `id_user`) VALUES
+(112234455, 'Sandra maria paredes', '31542154', 'sandrae@email.com', 33),
 (400000005, 'camila lopez', '31425678', 'camila00@gmail.com', 3);
 
 -- --------------------------------------------------------
@@ -226,10 +230,13 @@ INSERT INTO `usuarios` (`id_user`, `nombre_user`, `password`, `rol`) VALUES
 (1, 'admin', '123456', 'admin'),
 (2, 'pabloT', '258369', 'odontologo'),
 (3, 'secretario333', 'abc123', 'secretario'),
-(4, 'jose11', '235689', 'odontologo'),
-(5, 'camilopp', 'zxc123', 'odontologo'),
+(4, 'Lauri', '235689', 'odontologo'),
+(5, 'miguelito10', 'zxc123', 'odontologo'),
 (16, 'dado', '5555', 'paciente'),
-(26, 'pepe55', '4512848', 'odontologo');
+(29, 'AnthonyBr', 'Arrozconfrijoles', 'paciente'),
+(31, 'cami33', 'peluche33', 'odontologo'),
+(32, 'juan56', 'futbolmivida', 'admin'),
+(33, 'sandrapds', 'fortnite', 'secretario');
 
 --
 -- Índices para tablas volcadas
@@ -278,7 +285,7 @@ ALTER TABLE `pacientes`
 --
 ALTER TABLE `perfiles_odontologos`
   ADD PRIMARY KEY (`id_perfil`),
-  ADD KEY `cedula_odontologo` (`cedula_odontologo`);
+  ADD KEY `perfiles_odontologos_ibfk_1` (`cedula_odontologo`);
 
 --
 -- Indices de la tabla `responsables`
@@ -307,7 +314,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT de la tabla `historias_clinicas`
@@ -319,13 +326,13 @@ ALTER TABLE `historias_clinicas`
 -- AUTO_INCREMENT de la tabla `perfiles_odontologos`
 --
 ALTER TABLE `perfiles_odontologos`
-  MODIFY `id_perfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_perfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Restricciones para tablas volcadas

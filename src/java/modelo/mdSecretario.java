@@ -8,7 +8,7 @@ package modelo;
 
 //clase de modelo de la tabla de secretarios 
 public class mdSecretario {
-    private int cedulaSecretario;
+    private long cedulaSecretario;
     private String nombreCompleto;
     private String telefono;
     private String correo;
@@ -18,7 +18,7 @@ public class mdSecretario {
         
     }
     
-    public mdSecretario(int cedulaSecretario, String nombreCompleto, String telefono, String correo, int idUser){
+    public mdSecretario(long cedulaSecretario, String nombreCompleto, String telefono, String correo, int idUser){
         this.cedulaSecretario = cedulaSecretario;
         this.nombreCompleto = nombreCompleto;
         this.telefono = telefono;
@@ -26,11 +26,11 @@ public class mdSecretario {
         this.idUser = idUser;
     }
 
-    public int getCedulaSecretario() {
+    public long getCedulaSecretario() {
         return cedulaSecretario;
     }
 
-    public void setCedulaSecretario(int cedulaSecretario) {
+    public void setCedulaSecretario(long cedulaSecretario) {
         this.cedulaSecretario = cedulaSecretario;
     }
 

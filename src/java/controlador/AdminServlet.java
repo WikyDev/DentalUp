@@ -40,12 +40,7 @@ public class AdminServlet extends HttpServlet{
             return;
         }
         
-        System.out.println("ACCION RECIBIDA: " + accion);
         
-        System.out.println("CÉDULA: " + request.getParameter("cedula_odontologo"));
-        System.out.println("NOMBRE: " + request.getParameter("nombre_completo"));
-        System.out.println("USUARIO: " + request.getParameter("usuario"));
-        System.out.println("PASSWORD: " + request.getParameter("password"));
         
         switch (accion) {
 
@@ -149,9 +144,9 @@ public class AdminServlet extends HttpServlet{
         String usuario = request.getParameter("usuario");
         String password = request.getParameter("password");
 
-        int cedula = 0;
+        long cedula = 0;
         try {
-            cedula = Integer.parseInt(cedulaStr);
+            cedula = Long.parseLong(cedulaStr);
         } catch (Exception e) {
             cedula = 0;
         }
@@ -191,8 +186,8 @@ public class AdminServlet extends HttpServlet{
         String usuario = request.getParameter("usuario");
         String password = request.getParameter("password");
 
-        int cedula = 0;
-        try { cedula = Integer.parseInt(cedulaStr); } catch (Exception e) { cedula = 0; }
+        long cedula = 0;
+        try { cedula = Long.parseLong(cedulaStr); } catch (Exception e) { cedula = 0; }
 
         if (cedula <= 0) {
             request.setAttribute("mensaje", "❌ Cédula inválida.");
@@ -228,8 +223,8 @@ public class AdminServlet extends HttpServlet{
         String usuario = request.getParameter("usuario");
         String password = request.getParameter("password");
 
-        int cedula = 0;
-        try { cedula = Integer.parseInt(cedulaStr); } catch (Exception e) { cedula = 0; }
+        long cedula = 0;
+        try { cedula = Long.parseLong(cedulaStr); } catch (Exception e) { cedula = 0; }
 
         if (cedula <= 0) {
             request.setAttribute("mensaje", "❌ Cédula inválida.");
@@ -273,7 +268,7 @@ public class AdminServlet extends HttpServlet{
             throws ServletException, IOException {
 
         //Datos del paso 1
-        int cedula = Integer.parseInt(request.getParameter("cedula_odontologo"));
+        long cedula = Long.parseLong(request.getParameter("cedula_odontologo"));
         String nombre = request.getParameter("nombre_completo");
         String especialidad = request.getParameter("especialidad");
         String correo = request.getParameter("correo");

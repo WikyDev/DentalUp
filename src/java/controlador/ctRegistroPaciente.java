@@ -47,7 +47,7 @@ public class ctRegistroPaciente {
         }
 
         // Crear paciente vinculado
-        psPaciente.setInt(1, paciente.getCedulaPaciente());
+        psPaciente.setLong(1, paciente.getCedulaPaciente());
         psPaciente.setString(2, paciente.getNombre());
         psPaciente.setString(3, paciente.getApellido());
         psPaciente.setInt(4, paciente.getEdad());

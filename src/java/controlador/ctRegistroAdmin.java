@@ -54,7 +54,7 @@ public class ctRegistroAdmin {
             }
 
             // Insertar en administradores
-            psAdmin.setInt(1, admin.getCedulaAdmin());
+            psAdmin.setLong(1, admin.getCedulaAdmin());
             psAdmin.setString(2, admin.getNombreCompleto());
             psAdmin.setString(3, admin.getCorreo());
             psAdmin.setInt(4, idUser);
@@ -92,7 +92,7 @@ public class ctRegistroAdmin {
             if (idUser == 0) return false;
 
             // Insertar secretario
-            psSec.setInt(1, sec.getCedulaSecretario());
+            psSec.setLong(1, sec.getCedulaSecretario());
             psSec.setString(2, sec.getNombreCompleto());
             psSec.setString(3, sec.getTelefono());
             psSec.setString(4, sec.getCorreo());
@@ -114,12 +114,6 @@ public class ctRegistroAdmin {
     public boolean registrarOdontologo(mdOdontologo odo, String nombre_user, String password) {
         boolean ok = false;
 
-        //AQUÍ ES DONDE IRÁ LA VALIDACIÓN DEL PERFIL
-        //validar si ya existe la foto y descripción en otra tabla.
-        //
-        // if (!perfilCompletado(session, odo.getCedulaOdontologo())) {
-        //     return false;
-        // }
         
         String sqlUsuario = "INSERT INTO usuarios (nombre_user, password, rol) VALUES (?, ?, 'odontologo')";
         String sqlOdo = "INSERT INTO odontologos (cedula_odontologo, nombre_completo, especialidad, correo, id_user) "
@@ -140,7 +134,7 @@ public class ctRegistroAdmin {
             if (idUser == 0) return false;
 
             // Insertar odontólogo
-            psOdo.setInt(1, odo.getCedulaOdontologo());
+            psOdo.setLong(1, odo.getCedulaOdontologo());
             psOdo.setString(2, odo.getNombreCompleto());
             psOdo.setString(3, odo.getEspecialidad());
             psOdo.setString(4, odo.getCorreo());
@@ -150,57 +144,6 @@ public class ctRegistroAdmin {
 
         } catch (Exception e) {
             System.out.println("❌ Error registrarOdontologo(): " + e.getMessage());
-        }
-
-        return ok;
-    }
-    
-    public boolean registrarOdontologoCompleto(
-            int cedula, String nombre, String especialidad, String correo,
-            String usuario, String password, String descripcion, Part foto) {
-
-        boolean ok = false;
-
-        String sqlUsuario = "INSERT INTO usuarios (nombre_user, password, rol) VALUES (?, ?, 'odontologo')";
-        String sqlOdonto = "INSERT INTO odontologos (cedula_odontologo, nombre_completo, especialidad, correo, id_user) "
-                + "VALUES (?, ?, ?, ?, ?)";
-        String sqlPerfil = "INSERT INTO perfiles_odontologos (cedula_odontologo, descripcion, ruta_foto) VALUES (?, ?, ?)";
-
-        try (Connection con = conexion.getConexion(); PreparedStatement psUser = con.prepareStatement(sqlUsuario, Statement.RETURN_GENERATED_KEYS); PreparedStatement psOdo = con.prepareStatement(sqlOdonto); PreparedStatement psPerfil = con.prepareStatement(sqlPerfil)) {
-
-            // Insert usuario
-            psUser.setString(1, usuario);
-            psUser.setString(2, password);
-            psUser.executeUpdate();
-
-            ResultSet rs = psUser.getGeneratedKeys();
-            int idUser = 0;
-
-            if (rs.next()) {
-                idUser = rs.getInt(1);
-            }
-
-            // Insert odontólogo
-            psOdo.setInt(1, cedula);
-            psOdo.setString(2, nombre);
-            psOdo.setString(3, especialidad);
-            psOdo.setString(4, correo);
-            psOdo.setInt(5, idUser);
-            psOdo.executeUpdate();
-
-            // Guardar foto en carpeta
-            String ruta = guardarArchivoFoto(cedula, foto);
-
-            // Insert perfil
-            psPerfil.setInt(1, cedula);
-            psPerfil.setString(2, descripcion);
-            psPerfil.setString(3, ruta);
-            psPerfil.executeUpdate();
-
-            ok = true;
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
         return ok;
@@ -234,7 +177,7 @@ public class ctRegistroAdmin {
             int idUser = (rs.next()) ? rs.getInt(1) : 0;
 
             // 2. Insertar odontólogo
-            psOdo.setInt(1, odo.getCedulaOdontologo());
+            psOdo.setLong(1, odo.getCedulaOdontologo());
             psOdo.setString(2, odo.getNombreCompleto());
             psOdo.setString(3, odo.getEspecialidad());
             psOdo.setString(4, odo.getCorreo());
@@ -242,7 +185,7 @@ public class ctRegistroAdmin {
             psOdo.executeUpdate();
 
             // 3. Insertar perfil
-            psPerfil.setInt(1, odo.getCedulaOdontologo());
+            psPerfil.setLong(1, odo.getCedulaOdontologo());
             psPerfil.setString(2, descripcion);
             psPerfil.setString(3, fotoNombre);
             psPerfil.executeUpdate();

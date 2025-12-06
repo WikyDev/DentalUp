@@ -72,6 +72,27 @@
             background: #f7fafc;
             transition: background 0.2s ease;
         }
+        
+        /* Boton de acción */
+        .btn-ds {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        .btn-ds {
+            background: linear-gradient(135deg, #f56565 0%, #fc8181 100%);
+        }
+
+        .btn-ds:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(100, 124, 245, 0.3);
+        }
 
         /* Mensaje de no encontrado */
         .no-results {
@@ -141,7 +162,7 @@
                             <td><%= h.getNombreOdontologo()%></td>
                             <td><a 
                                     href="HistoriaServlet?accion=pdf&id_historia=<%= h.getIdHistoria()%>" 
-                                    class="btn"
+                                    class="btn-ds"
                                     style="padding:6px 10px; font-size:0.9em;"
                                     >
                                     Descargar PDF

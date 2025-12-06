@@ -8,8 +8,8 @@ package modelo;
 
 public class mdCita {
     private int idCita;
-    private int cedulaPaciente;
-    private int cedulaOdontologo;
+    private long cedulaPaciente;
+    private long cedulaOdontologo;
     private String fechaCita;
     private String motivo;
     private String estado;
@@ -22,7 +22,7 @@ public class mdCita {
 
     public mdCita() {}
 
-    public mdCita(int cedulaPaciente, int cedulaOdontologo, String fechaCita, String motivo, String estado) {
+    public mdCita(long cedulaPaciente, long cedulaOdontologo, String fechaCita, String motivo, String estado) {
         this.cedulaPaciente = cedulaPaciente;
         this.cedulaOdontologo = cedulaOdontologo;
         this.fechaCita = fechaCita;
@@ -30,7 +30,7 @@ public class mdCita {
         this.estado = estado;
     }
 
-    public mdCita(int idCita, int cedulaPaciente, int cedulaOdontologo, String fechaCita, String motivo, String estado) {
+    public mdCita(int idCita, long cedulaPaciente, long cedulaOdontologo, String fechaCita, String motivo, String estado) {
         this.idCita = idCita;
         this.cedulaPaciente = cedulaPaciente;
         this.cedulaOdontologo = cedulaOdontologo;
@@ -48,19 +48,19 @@ public class mdCita {
         this.idCita = idCita;
     }
 
-    public int getCedulaPaciente() {
+    public long getCedulaPaciente() {
         return cedulaPaciente;
     }
 
-    public void setCedulaPaciente(int cedulaPaciente) {
+    public void setCedulaPaciente(long cedulaPaciente) {
         this.cedulaPaciente = cedulaPaciente;
     }
 
-    public int getCedulaOdontologo() {
+    public long getCedulaOdontologo() {
         return cedulaOdontologo;
     }
 
-    public void setCedulaOdontologo(int cedulaOdontologo) {
+    public void setCedulaOdontologo(long cedulaOdontologo) {
         this.cedulaOdontologo = cedulaOdontologo;
     }
 

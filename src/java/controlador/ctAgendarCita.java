@@ -24,8 +24,8 @@ public class ctAgendarCita {
         String sql = "INSERT INTO citas (cedula_paciente, cedula_odontologo, fecha_cita, motivo) VALUES (?, ?, ?, ?)";
         try (Connection con = conexion.getConexion();
             PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, c.getCedulaPaciente());
-            ps.setInt(2, c.getCedulaOdontologo());
+            ps.setLong(1, c.getCedulaPaciente());
+            ps.setLong(2, c.getCedulaOdontologo());
             ps.setString(3, c.getFechaCita());
             ps.setString(4, c.getMotivo());
             exito = ps.executeUpdate() > 0;
@@ -50,8 +50,8 @@ public class ctAgendarCita {
             while (rs.next()) {
                 mdCita c = new mdCita();
                 c.setIdCita(rs.getInt("id_cita"));
-                c.setCedulaPaciente(rs.getInt("cedula_paciente"));
-                c.setCedulaOdontologo(rs.getInt("cedula_odontologo"));
+                c.setCedulaPaciente(rs.getLong("cedula_paciente"));
+                c.setCedulaOdontologo(rs.getLong("cedula_odontologo"));
                 c.setFechaCita(rs.getString("fecha_cita"));
                 c.setMotivo(rs.getString("motivo"));
                 c.setEstado(rs.getString("estado"));
@@ -72,7 +72,7 @@ public class ctAgendarCita {
         try (Connection con = conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, cedulaOdontologo);
+            ps.setLong(1, cedulaOdontologo);
             ps.setString(2, fechaHora);
 
             ResultSet rs = ps.executeQuery();
