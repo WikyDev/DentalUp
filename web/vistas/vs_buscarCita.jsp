@@ -38,61 +38,145 @@
     <meta charset="UTF-8">
     <title>Buscar citas por paciente</title>
     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/imagenes/diente.ico">
-    <!-- Ruta al CSS (ajústala si tu estructura es distinta) -->
-    <link rel="stylesheet" href="../css/estilosBuscarCita.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilosSubMenus.css">
+    <style>
+        /* Estilos adicionales para la tabla */
+        .tabla-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 20px;
+            border-radius: 14px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tabla-citas {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+        
+        .tabla-citas thead {
+            background: linear-gradient(135deg, #647CF5 0%, #73A6F2 100%);
+            color: white;
+        }
+        
+        .tabla-citas th {
+            padding: 14px 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        
+        .tabla-citas td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #2d3748;
+        }
+        
+        .tabla-citas tbody tr:hover {
+            background: #f7fafc;
+        }
+        
+        .tabla-citas tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .nota-ayuda {
+            margin-top: 20px;
+            padding: 14px 18px;
+            background: #e6fffa;
+            border: 2px solid #81e6d9;
+            border-radius: 12px;
+            color: #2c7a7b;
+            font-size: 0.9em;
+        }
+        
+        .nota-ayuda code {
+            background: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #647CF5;
+        }
+        
+        .acciones-formulario {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .acciones-formulario .btn,
+        .acciones-formulario a.btn {
+            flex: 1;
+            margin-top: 0;
+        }
+        
+        .btn-secundario {
+            display: block;
+            padding: 14px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1em;
+            border-radius: 14px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            color: #2d3748;
+            text-decoration: none;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn-secundario:hover {
+            background: #f7fafc;
+            border-color: #cbd5e0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitulo {
+            color: #cbd5e0;
+            font-size: 0.95em;
+            margin-top: 8px;
+        }
+    </style>
 </head>
 <body>
-
-<div class="buscar-wrapper">
-    <div class="buscar-card">
-
-        <!-- HEADER -->
-        <header class="buscar-header">
-            <div class="logo">
-                <!-- Cambia la ruta del logo si está en otra carpeta -->
-                <img src="../img/icono-diente.png" alt="DentalUp">
-            </div>
-            <div class="titulos">
-                <h1>Buscar citas por paciente</h1>
-                <p class="subtitulo">
-                    Ingresa la <strong>cédula del paciente</strong> para ver sus citas registradas.
-                </p>
-            </div>
-        </header>
+    <div id="img-fondo"></div>
+    <div class="container">
+        <div class="logo-container">
+            <img src="${pageContext.request.contextPath}/imagenes/logo.png" alt="Logo DentalUp">
+        </div>
+        
+        <h2>Buscar citas por paciente</h2>
+        <p class="subtitulo" style="text-align: center; margin-bottom: 20px;">
+            Ingresa la <strong>cédula del paciente</strong> para ver sus citas registradas.
+        </p>
 
         <!-- FORMULARIO -->
-        <section class="buscar-formulario">
-            <form action="vs_buscarCita.jsp" method="get">
-                <div class="campo-formulario">
-                    <label for="cedulaPaciente">Cédula del paciente</label>
-                    <input
-                        type="number"
-                        id="cedulaPaciente"
-                        name="cedulaPaciente"
-                        placeholder=""
-                        value="<%= (cedulaParam != null ? cedulaParam : "") %>">
-                </div>
+        <form action="vs_buscarCita.jsp" method="get">
+            <label for="cedulaPaciente">Cédula del paciente</label>
+            <input
+                type="number"
+                id="cedulaPaciente"
+                name="cedulaPaciente"
+                placeholder="Ingrese la cédula"
+                value="<%= (cedulaParam != null ? cedulaParam : "") %>">
 
-                <div class="acciones-formulario">
-                    <button type="submit" class="btn-primario">Buscar</button>
-                    <a href="vs_buscarCita.jsp" class="btn-secundario">Limpiar</a>
-                    <a href="vs_menuSecre.jsp" class="btn-secundario">Volver al menú</a>
-                </div>
-            </form>
-        </section>
+            <div class="acciones-formulario">
+                <button type="submit" class="btn">Buscar</button>
+                <a href="vs_buscarCita.jsp" class="btn-secundario">Limpiar</a>
+                <a href="vs_menuSecre.jsp" class="btn-secundario">Volver al menú</a>
+            </div>
+        </form>
 
         <!-- MENSAJES -->
-        <section class="resultado-busqueda">
-            <% if (mensajeError != null) { %>
-                <p class="mensaje-error"><%= mensajeError %></p>
-            <% } else if (mensajeInfo != null) { %>
-                <p class="mensaje-exito"><%= mensajeInfo %></p>
-            <% } else if (cedulaParam == null || cedulaParam.trim().isEmpty()) { %>
-                <p class="mensaje-exito">
-                    Ingresa una cédula y presiona <strong>Buscar</strong> para ver las citas del paciente.
-                </p>
-            <% } %>
-        </section>
+        <% if (mensajeError != null) { %>
+            <div class="error"><%= mensajeError %></div>
+        <% } else if (mensajeInfo != null) { %>
+            <div class="mensaje"><%= mensajeInfo %></div>
+        <% } %>
 
         <!-- TABLA DE RESULTADOS -->
         <% if (listaCitas != null && !listaCitas.isEmpty()) { %>
@@ -121,9 +205,9 @@
                     %>
                     <tr>
                         <td><%= c.getIdCita() %></td>
-                        <td><%= c.getCedulaPaciente() %></td> <!-- aquí va la cédula del paciente -->
+                        <td><%= c.getCedulaPaciente() %></td>
                         <td><%= nombreCompletoPac %></td>
-                        <td><%= c.getCedulaOdontologo() %></td> <!-- aquí va la cédula del odontólogo -->
+                        <td><%= c.getCedulaOdontologo() %></td>
                         <td><%= (c.getNombreOdontologo() != null ? c.getNombreOdontologo() : "") %></td>
                         <td><%= c.getFechaCita() %></td>
                         <td><%= c.getMotivo() %></td>
@@ -138,15 +222,12 @@
         <% } %>
 
         <!-- NOTA / AYUDA -->
-        <section class="nota-ayuda">
+        <div class="nota-ayuda">
             <p>
-                💡 Tip: la cédula debe existir en <code>pacientes.cedula_paciente</code> y el paciente
-                debe tener citas registradas en <code>citas</code>.
+                💡 <strong>Ayuda:</strong> La cédula debe estar registrada en el sistema y tener citas asociadas.
             </p>
-        </section>
+        </div>
 
     </div>
-</div>
-
 </body>
 </html>
