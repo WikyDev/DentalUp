@@ -87,8 +87,8 @@ public class CitaServlet extends HttpServlet {
             request.getRequestDispatcher("vistas/vs_agendarCita.jsp").forward(request, response);
             return;
         }
-        int cedulaPaciente = Integer.parseInt(cedulaStr);
-        int cedulaOdontologo = Integer.parseInt(request.getParameter("cedula_odontologo"));
+        long cedulaPaciente = Long.parseLong(cedulaStr);
+        long cedulaOdontologo = Long.parseLong(request.getParameter("cedula_odontologo"));
         
         // Convertir formato del input datetime-local
         String fechaCita = request.getParameter("fecha_cita"); // 2025-12-10T10:00
@@ -98,7 +98,7 @@ public class CitaServlet extends HttpServlet {
         
          // ---- Validar disponibilidad de odontologo ----
         ctAgendarCita ct = new ctAgendarCita();
-        boolean disponible = ct.odontologoDisponible(cedulaOdontologo, fechaFormateada);
+        boolean disponible = ct.odontologoDisponible((int) cedulaOdontologo, fechaFormateada);
 
         if (!disponible) {
             request.setAttribute("mensaje", "El odontólogo ya tiene una cita en esa fecha y hora.");
@@ -118,8 +118,8 @@ public class CitaServlet extends HttpServlet {
         try (Connection con = conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, cedulaPaciente);
-            ps.setInt(2, cedulaOdontologo);
+            ps.setLong(1, cedulaPaciente);
+            ps.setLong(2, cedulaOdontologo);
             ps.setString(3, fechaFormateada);
             ps.setString(4, motivo);
             ps.executeUpdate();
@@ -162,7 +162,7 @@ public class CitaServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        Integer cedulaPaciente = (Integer) session.getAttribute("cedula_paciente");
+        Long cedulaPaciente = (Long) session.getAttribute("cedula_paciente");
 
         if (cedulaPaciente == null) {
             request.setAttribute("mensaje", "⚠ Debe iniciar sesión para ver sus citas.");
@@ -186,7 +186,7 @@ public class CitaServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        Integer cedulaOdontologo = (Integer) session.getAttribute("cedula_odontologo");
+        Long cedulaOdontologo = (Long) session.getAttribute("cedula_odontologo");
 
         if (cedulaOdontologo == null) {
             request.setAttribute("mensaje", "⚠️ Debe iniciar sesión como odontólogo.");
@@ -207,7 +207,7 @@ public class CitaServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        Integer idPacienteSesion = (Integer) session.getAttribute("cedula_paciente");
+        Long idPacienteSesion = (Long) session.getAttribute("cedula_paciente");
 
         String idStr = request.getParameter("id");
         if (idStr == null) {
@@ -240,14 +240,14 @@ public class CitaServlet extends HttpServlet {
         }
 
         // Obtener lista de odontólogos (id, nombre) para el select
-        Map<Integer, String> odontologos = new LinkedHashMap<>();
+        Map<Long, String> odontologos = new LinkedHashMap<>();
         String sql = "SELECT cedula_odontologo, nombre_completo FROM odontologos ORDER BY nombre_completo ASC";
         try (Connection con = conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                odontologos.put(rs.getInt("cedula_odontologo"), rs.getString("nombre_completo"));
+                odontologos.put(rs.getLong("cedula_odontologo"), rs.getString("nombre_completo"));
             }
 
         } catch (SQLException e) {
@@ -265,11 +265,11 @@ public class CitaServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        Integer idPacienteSesion = (Integer) session.getAttribute("cedula_paciente");
+        Long idPacienteSesion = (Long) session.getAttribute("cedula_paciente");
 
         try {
             int idCita = Integer.parseInt(request.getParameter("id_cita"));
-            int cedulaOdontologo = Integer.parseInt(request.getParameter("cedula_odontologo"));
+            long cedulaOdontologo = Long.parseLong(request.getParameter("cedula_odontologo"));
             String fecha = request.getParameter("fecha"); // yyyy-MM-dd
             String hora = request.getParameter("hora");   // HH:mm
             
@@ -305,7 +305,7 @@ public class CitaServlet extends HttpServlet {
             
             //VALIDAR DISPONIBILIDAD
             ctAgendarCita ct = new ctAgendarCita();
-            boolean disponible = ct.odontologoDisponible(cedulaOdontologo, fechaCita);
+            boolean disponible = ct.odontologoDisponible((int) cedulaOdontologo, fechaCita);
 
             // Si NO está disponible y NO es la misma cita -> ERROR
             if (!disponible
@@ -359,7 +359,7 @@ public class CitaServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        Integer idPacienteSesion = (Integer) session.getAttribute("cedula_paciente");
+        Long idPacienteSesion = (Long) session.getAttribute("cedula_paciente");
 
         String idStr = request.getParameter("id");
         if (idStr == null) {

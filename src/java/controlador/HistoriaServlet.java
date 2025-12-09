@@ -56,7 +56,7 @@ public class HistoriaServlet extends HttpServlet {
             // VER HISTORIAS DEL PACIENTE LOGUEADO
             // --------------------------------------------------------------------
             case "verHistoriasPaciente":
-                Integer cedulaPaciente = (Integer) session.getAttribute("cedula_paciente");
+                Long cedulaPaciente = (Long) session.getAttribute("cedula_paciente");
 
                 if (cedulaPaciente == null) {
                     response.sendRedirect("vistas/vs_login.jsp");
@@ -172,7 +172,7 @@ public class HistoriaServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        Integer cedulaPaciente = (Integer) session.getAttribute("cedula_paciente");
+        Long cedulaPaciente = (Long) session.getAttribute("cedula_paciente");
 
         if (cedulaPaciente == null) {
             request.setAttribute("error", "Debe iniciar sesión.");

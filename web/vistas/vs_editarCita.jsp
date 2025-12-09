@@ -19,7 +19,7 @@
 
     <%
         mdCita cita = (mdCita) request.getAttribute("cita");
-        Map<Integer, String> odontologos = (Map<Integer, String>) request.getAttribute("odontologos");
+        Map<Long, String> odontologos = (Map<Long, String>) request.getAttribute("odontologos");
         if (cita == null) {
     %>
         <p class="error">Cita no encontrada.</p>
@@ -45,8 +45,8 @@
         <label for="odontologo">Odontólogo:</label><br>
         <select id="odontologo" name="cedula_odontologo" required>
             <% if (odontologos != null && !odontologos.isEmpty()) {
-                   for (Map.Entry<Integer, String> e : odontologos.entrySet()) {
-                       int oid = e.getKey();
+                   for (Map.Entry<Long, String> e : odontologos.entrySet()) {
+                       long oid = e.getKey();
                        String oname = e.getValue();
             %>
                 <option value="<%= oid %>" <%= (oid == cita.getCedulaOdontologo()? "selected" : "") %>><%= oname %></option>

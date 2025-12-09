@@ -36,7 +36,7 @@ public class ctAgendarCita {
     }
 
     // Listar todas las citas de un paciente
-    public ArrayList<mdCita> obtenerCitasPorPaciente(int idPaciente) {
+    public ArrayList<mdCita> obtenerCitasPorPaciente(long idPaciente) {
         ArrayList<mdCita> lista = new ArrayList<>();
         String sql = "SELECT c.id_cita, c.cedula_paciente, c.cedula_odontologo, c.fecha_cita, c.motivo, c.estado, "
                + "o.nombre_completo AS nombre_odontologo "
@@ -45,7 +45,7 @@ public class ctAgendarCita {
                + "WHERE c.cedula_paciente = ?";
         try (Connection con = conexion.getConexion();
             PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, idPaciente);
+            ps.setLong(1, idPaciente);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 mdCita c = new mdCita();

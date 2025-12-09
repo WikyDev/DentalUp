@@ -48,8 +48,8 @@ public class ctLogin {
     /**
      * Obtiene el id_paciente asociado al usuario logueado.
      */
-    public int obtenerIdPaciente(String usuario) {
-        int cedulaPaciente = 0;
+    public long obtenerIdPaciente(String usuario) {
+        long cedulaPaciente = 0;
         String sql = "SELECT p.cedula_paciente FROM pacientes p " +
                      "INNER JOIN usuarios u ON p.id_user = u.id_user " +
                      "WHERE u.nombre_user = ?";
@@ -61,7 +61,7 @@ public class ctLogin {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                cedulaPaciente = rs.getInt("cedula_paciente");
+                cedulaPaciente = rs.getLong("cedula_paciente");
             }
 
         } catch (Exception e) {
@@ -74,8 +74,8 @@ public class ctLogin {
     /**
      * Obtiene el id_odontologo asociado al usuario logueado.
      */
-    public int obtenerIdOdontologo(String usuario) {
-        int cedulaOdontologo = 0;
+    public long obtenerIdOdontologo(String usuario) {
+        long cedulaOdontologo = 0;
 
         String sql = "SELECT o.cedula_odontologo FROM odontologos o "
                 + "INNER JOIN usuarios u ON o.id_user = u.id_user "
@@ -88,7 +88,7 @@ public class ctLogin {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                cedulaOdontologo = rs.getInt("cedula_odontologo");
+                cedulaOdontologo = rs.getLong("cedula_odontologo");
             }
 
         } catch (Exception e) {

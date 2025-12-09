@@ -39,7 +39,7 @@ public class HistoriaClinicaDAO {
     }
 
     // OBTENER HISTORIAS DE UN PACIENTE
-    public ArrayList<mdHistoriaClinica> obtenerPorPaciente(int cedulaPaciente) {
+    public ArrayList<mdHistoriaClinica> obtenerPorPaciente(long cedulaPaciente) {
         ArrayList<mdHistoriaClinica> lista = new ArrayList<>();
         String sql = "SELECT h.id_historia, h.cedula_paciente, h.cedula_odontologo, h.fecha, "
            + "h.motivoConsulta, h.diagnostico, h.tratamiento, h.observaciones, "
@@ -52,7 +52,7 @@ public class HistoriaClinicaDAO {
         try (Connection con = conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, cedulaPaciente);
+            ps.setLong(1, cedulaPaciente);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
